@@ -6,6 +6,26 @@ import Powers from './powers.js';
 import Energy from './energy.js';
 import Building from './building.js';
 
+/** @function Math.randomBetween()
+  * Math prototype function built to easily create ranom floats
+  * @param float min - the lowest number you want
+  * @param float max - the highest number you want (I beleive it is non-inclusive)
+  * @returns random float between the parameters
+  */
+Math.randomBetween = function (min, max) {
+  return Math.random() * (max - min) + min;
+};
+
+/** @function Math.randomBetween()
+  * Math prototype function built to easily create ranom integers
+  * @param float min - the lowest number you want
+  * @param float max - the highest number you want (I beleive it is non-inclusive)
+  * @returns random integer between the parameters
+  */
+Math.randomInt = function (min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+};
+
 export default class Game {
   constructor() {
 

@@ -1,7 +1,7 @@
 //Structural component super class
 
 export default class Struct {
-  constructor() {
+  constructor(x, y) {
 
   }
 
@@ -9,7 +9,7 @@ export default class Struct {
 
   }
 
-  render() {
+  render(ctx) {
 
   }
 }
