@@ -1,6 +1,6 @@
 //Structural component super class
 
-export defualt class Struct {
+export default class Struct {
   constructor() {
 
   }
@@ -10,6 +10,6 @@ export defualt class Struct {
   }
 
   render() {
-    
+
   }
 }

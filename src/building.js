@@ -1,6 +1,6 @@
 
 
-export defualt class Building {
+export default class Building {
   constructor() {
 
   }
@@ -10,6 +10,6 @@ export defualt class Building {
   }
 
   render() {
-    
+
   }
 }

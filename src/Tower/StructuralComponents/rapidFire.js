@@ -1,6 +1,6 @@
 import Struct from './struct.js';
 
-export defualt class RapidFire extends Struct {
+export default class RapidFire extends Struct {
   constructor() {
     super();
   }
@@ -10,6 +10,6 @@ export defualt class RapidFire extends Struct {
   }
 
   render() {
-    
+
   }
 }

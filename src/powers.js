@@ -1,6 +1,6 @@
 
 
-export defualt class Powers {
+export default class Powers {
   constructor() {
 
   }
@@ -10,6 +10,6 @@ export defualt class Powers {
   }
 
   render() {
-    
+
   }
 }
