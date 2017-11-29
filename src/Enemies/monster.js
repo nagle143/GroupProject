@@ -17,7 +17,6 @@ export defualt class Monster
         this.armor = 0;
         this.bounty = 1;
         this.statusEffect = null;
-
     }
 
     update()

@@ -15,6 +15,7 @@ export default class EMPbot extends Monster
         this.range = 5; // temp how far of shutdown reach
         this.shutdowntime = 2; // temp time tower is shutdown
         this.cooldown = 5; // temp time till next shutdown 
+
     }
 
     update()

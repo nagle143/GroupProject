@@ -14,6 +14,7 @@ export default class Energizer extends Monster
         this.bounty = 12; // * (level * increase percentage) how much you earn
         this.SPS = 5; //temp shield gained per second
         this.aura = 5; // range of radius shield increasing
+
     }
 
     update()

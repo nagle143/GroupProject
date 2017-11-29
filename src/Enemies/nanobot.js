@@ -13,7 +13,6 @@ export default class NanoBot extends Monster
         this.bounty = 12; // * (level * increase percentage) how much you earn
         this.HPS = 5; //temp heals per second
         this.aura = 5; //temp radius of range of heal
-
     }
 
     update()

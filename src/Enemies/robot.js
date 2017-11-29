@@ -10,7 +10,6 @@ export default class Robot extends Monster
         this.currentSpeed = this.ogSpeed; // current speed
         this.bounty = 5; // * (level * increase percentage) how much you earn
 
-
     }
 
     update()
