@@ -1,38 +1,15 @@
-
-
 export default class Maps {
-  constructor(tilemapData) {
+  constructor(tilemapData, tileset) {
     // Load the map data
     this.mapWidth = tilemapData.width;
     this.mapHeight = tilemapData.height;
     this.tileWidth = tilemapData.tilewidth;
     this.tileHeight = tilemapData.tileheight;
-    this.tiles = [];
+    this.tileset = tileset;
     this.tileLayers = [];
     this.spawns = [];
     this.buildable = [];
     this.target = undefined;
-
-    // Load our tiles from tilesets
-    let image, id;
-    tilemapData.tilesets.forEach((tileset) => {
-      // Create an image for the tileset's image
-      image = new Image();
-      image.src = tileset.image;
-
-      // Create tiles for tileset
-      id = tileset.firstgid;
-      for(let y = 0; y < tileset.imageheight; y += tileset.tileheight) {
-        for(let x = 0; x < tileset.imagewidth; x += tileset.tilewidth) {
-          this.tiles[id] = {
-            image: image,
-            sx: x,
-            sy: y
-          };
-          id++;
-        }
-      }
-    });
 
     for (let i = 0; i < tilemapData.properties.spawns; i++) {
       this.spawns.push(null);
@@ -44,11 +21,11 @@ export default class Maps {
         case 'tilelayer':
           data = undefined;
 
-          if (this.tiles.length < 255) {
+          if (tilesets.tiles.length < 255) {
             data = new Uint8Array(layer.data);
-          } else if (this.tiles.length < 65535) {
+          } else if (tilesets.tiles.length < 65535) {
             data = new Uint16Array(layer.data);
-          } else if (this.tiles.length < 4294967295) {
+          } else if (tilesets.tiles.length < 4294967295) {
             data = new Uint32Array(layer.data);
           } else {
             throw "Tile indices too large to store";
@@ -127,11 +104,18 @@ export default class Maps {
         for(let y = 0; y < this.mapHeight; y++) {
           for(let x = 0; x < this.mapWidth; x++) {
             tileIndex = layer.data[y * this.mapWidth + x];
+
             // Skip non-existant tiles
-            if(tileIndex === 0) continue;
-            tile = this.tiles[tileIndex];
+            if(tileIndex === 0) {
+              continue;
+            }
+            tile = this.tileset.tiles[tileIndex];
+
             // Don't draw a non-existant image
-            if (!tile.image) continue;
+            if (!tile.image) {
+              continue;
+            }
+
             ctx.drawImage(
               // The source image
               tile.image,

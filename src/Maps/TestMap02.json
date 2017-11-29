@@ -1135,17 +1135,8 @@
  "tileheight":64,
  "tilesets":[
         {
-         "columns":7,
          "firstgid":1,
-         "image":"tileSet01.png",
-         "imageheight":384,
-         "imagewidth":448,
-         "margin":0,
-         "name":"tileSet01",
-         "spacing":0,
-         "tilecount":42,
-         "tileheight":64,
-         "tilewidth":64
+         "source":"tileSet01.json"
         }],
  "tilewidth":64,
  "type":"map",
