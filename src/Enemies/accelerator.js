@@ -1,6 +1,7 @@
 import Monster from './monster.js';
 
-export default class Accelerator extends Monster {
+export default class Accelerator extends Monster
+{
     constructor()
     {
         super();
@@ -8,10 +9,15 @@ export default class Accelerator extends Monster {
         this.buffSpeed = 5;// extra speed
     }
 
-    update() {
+    update()
+    {
+        // increse speed if in aura for all monster in aura
+        super.update(); // do as all enemies do
+    }
+
+    render()
+    {
 
     }
 
-    render() {
-
-    }
+}

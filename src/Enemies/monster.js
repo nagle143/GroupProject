@@ -2,17 +2,17 @@
 
 export defualt class Monster
 {
-    constructor(x, y, MHP,CHP,color,speed,armor,bounty)
+    constructor(x, y, MHP,color,ogSpeed,armor,bounty)
     {
 
         this.x = x;
         this.y = y;
         this.MHP = MHP; //max health
-        this.CHP = CHP; // current health
+        this.CHP = MHP; // current health
         this.MS = 0;  // max shield
         this.CS = 0; // current shield
         this.HealthColor = color;
-        this.speed = speed;
+        this.ogSpeed = ogSpeed; // oringal speed of a monster
         this.armor = armor;
         this.bounty = bounty;
         this.statusEffect = null;
@@ -21,6 +21,7 @@ export defualt class Monster
 
     update()
     {
+        status(); //see if status effects need to be applied
         die(); //see if dead
         march(); // move foward in the path
     }
@@ -47,6 +48,12 @@ export defualt class Monster
     }
 
     march() // move along the path
+    {
+
+    }
+
+
+    status() // handles status effects from tower
     {
 
     }

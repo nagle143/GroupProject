@@ -1,15 +1,19 @@
 import Monster from './monster.js';
 
-export default class Robot extends Monster {
-  constructor() {
-    super();
-  }
+export default class Robot extends Monster
+{
+    constructor()
+    {
+        super();
+    }
 
-  update() {
+    update()
+    {
+      super.update(); // do as all enemies do
+    }
 
-  }
-
-  render() {
+    render()
+    {
     
-  }
+    }
 }

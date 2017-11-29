@@ -9,11 +9,14 @@ export default class Chameleon extends Monster
         this.cooldown = 5; // temp time before next change;
     }
 
-    update() {
-
+    update()
+    {
+        // if cooldown done change colors to next color in the color wheel
+        super.update(); // do as all enemies do
     }
 
-    render() {
+    render()
+    {
 
     }
 }
