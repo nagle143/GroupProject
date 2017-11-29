@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templategroup name="TileData" nexttemplateid="4">
+ <tileset firstgid="1" source="phts.tsx"/>
+ <template name="Spawn" id="0">
+  <object type="Spawn" width="64" height="64">
+   <properties>
+    <property name="id" type="int" value="0"/>
+    <property name="steps" type="int" value="0"/>
+   </properties>
+  </object>
+ </template>
+ <template name="Path" id="1">
+  <object type="Path" width="64" height="64">
+   <properties>
+    <property name="id" type="int" value="0"/>
+    <property name="step" type="int" value="0"/>
+   </properties>
+  </object>
+ </template>
+ <template name="Target" id="2">
+  <object type="Target" width="64" height="64">
+   <properties>
+    <property name="energy" type="int" value="0"/>
+   </properties>
+  </object>
+ </template>
+ <template name="Structure" id="3">
+  <object type="Structure" gid="31" width="64" height="64"/>
+ </template>
+</templategroup>

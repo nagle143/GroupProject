@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="2017.09.27" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="64" tileheight="64" infinite="0" nextobjectid="45">
+ <properties>
+  <property name="spawns" type="int" value="1"/>
+ </properties>
+ <tileset firstgid="1" name="tileSet01" tilewidth="64" tileheight="64" tilecount="42" columns="7">
+  <image source="tileSet01.png" width="448" height="384"/>
+ </tileset>
+ <templategroup firsttid="1" source="TileData.tgx"/>
+ <layer name="Platforms" width="15" height="13">
+  <data encoding="csv">
+8,9,5,2,2,2,2,2,2,2,2,3,8,9,10,
+8,9,9,9,9,9,9,9,9,9,9,10,8,9,10,
+8,9,9,9,9,9,9,9,9,9,9,10,15,16,17,
+8,9,9,9,9,9,9,9,9,9,9,5,2,2,3,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+15,16,16,16,16,16,16,16,16,16,16,16,16,16,17
+</data>
+ </layer>
+ <layer name="Catwalks" width="15" height="13">
+  <data encoding="csv">
+0,22,0,0,0,0,0,0,0,0,0,0,0,24,0,
+0,25,0,18,19,21,0,18,19,19,21,0,0,0,0,
+0,25,0,25,0,25,0,25,0,0,25,0,0,6,0,
+0,39,19,42,0,25,0,25,18,19,42,0,18,42,0,
+0,0,0,0,0,25,0,25,25,0,0,0,25,0,0,
+0,18,19,19,19,42,0,25,39,19,21,0,39,21,0,
+0,25,0,0,0,0,0,25,0,0,25,0,0,25,0,
+0,39,19,19,19,21,0,25,18,19,42,18,19,42,0,
+0,0,0,0,0,25,0,25,25,0,0,25,0,0,0,
+0,18,19,19,19,42,0,25,25,0,0,39,19,21,0,
+0,25,0,0,0,0,0,25,25,0,0,0,0,25,0,
+0,39,19,19,19,19,19,42,39,19,19,19,19,42,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="Pathing">
+  <object id="1" tid="1" x="64" y="0">
+   <properties>
+    <property name="steps" type="int" value="31"/>
+   </properties>
+  </object>
+  <object id="2" tid="2" x="64.0039" y="192.004"/>
+  <object id="3" tid="2" x="192" y="192">
+   <properties>
+    <property name="step" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="4" tid="2" x="192" y="64">
+   <properties>
+    <property name="step" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="5" tid="2" x="320" y="64">
+   <properties>
+    <property name="step" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="6" tid="2" x="320" y="320">
+   <properties>
+    <property name="step" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="7" tid="2" x="64" y="320">
+   <properties>
+    <property name="step" type="int" value="5"/>
+   </properties>
+  </object>
+  <object id="8" tid="2" x="64" y="448">
+   <properties>
+    <property name="step" type="int" value="6"/>
+   </properties>
+  </object>
+  <object id="9" tid="2" x="320" y="448">
+   <properties>
+    <property name="step" type="int" value="7"/>
+   </properties>
+  </object>
+  <object id="10" tid="2" x="320" y="576">
+   <properties>
+    <property name="step" type="int" value="8"/>
+   </properties>
+  </object>
+  <object id="11" tid="2" x="64" y="576">
+   <properties>
+    <property name="step" type="int" value="9"/>
+   </properties>
+  </object>
+  <object id="12" tid="2" x="64" y="704">
+   <properties>
+    <property name="step" type="int" value="10"/>
+   </properties>
+  </object>
+  <object id="13" tid="2" x="448" y="704">
+   <properties>
+    <property name="step" type="int" value="11"/>
+   </properties>
+  </object>
+  <object id="14" tid="2" x="448" y="64">
+   <properties>
+    <property name="step" type="int" value="12"/>
+   </properties>
+  </object>
+  <object id="15" tid="2" x="640" y="64">
+   <properties>
+    <property name="step" type="int" value="13"/>
+   </properties>
+  </object>
+  <object id="16" tid="2" x="640" y="192">
+   <properties>
+    <property name="step" type="int" value="14"/>
+   </properties>
+  </object>
+  <object id="17" tid="2" x="512" y="192">
+   <properties>
+    <property name="step" type="int" value="15"/>
+   </properties>
+  </object>
+  <object id="18" tid="2" x="512" y="320">
+   <properties>
+    <property name="step" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="19" tid="2" x="640" y="320">
+   <properties>
+    <property name="step" type="int" value="17"/>
+   </properties>
+  </object>
+  <object id="20" tid="2" x="640" y="448">
+   <properties>
+    <property name="step" type="int" value="18"/>
+   </properties>
+  </object>
+  <object id="21" tid="2" x="512" y="448">
+   <properties>
+    <property name="step" type="int" value="19"/>
+   </properties>
+  </object>
+  <object id="22" tid="2" x="512" y="704">
+   <properties>
+    <property name="step" type="int" value="20"/>
+   </properties>
+  </object>
+  <object id="23" tid="2" x="832" y="704">
+   <properties>
+    <property name="step" type="int" value="21"/>
+   </properties>
+  </object>
+  <object id="24" tid="2" x="832" y="576">
+   <properties>
+    <property name="step" type="int" value="22"/>
+   </properties>
+  </object>
+  <object id="25" tid="2" x="704" y="576">
+   <properties>
+    <property name="step" type="int" value="23"/>
+   </properties>
+  </object>
+  <object id="26" tid="2" x="704" y="448">
+   <properties>
+    <property name="step" type="int" value="24"/>
+   </properties>
+  </object>
+  <object id="27" tid="2" x="832" y="448">
+   <properties>
+    <property name="step" type="int" value="25"/>
+   </properties>
+  </object>
+  <object id="28" tid="2" x="832" y="320">
+   <properties>
+    <property name="step" type="int" value="26"/>
+   </properties>
+  </object>
+  <object id="29" tid="2" x="768" y="320">
+   <properties>
+    <property name="step" type="int" value="27"/>
+   </properties>
+  </object>
+  <object id="30" tid="2" x="768" y="192">
+   <properties>
+    <property name="step" type="int" value="28"/>
+   </properties>
+  </object>
+  <object id="31" tid="2" x="832" y="192">
+   <properties>
+    <property name="step" type="int" value="29"/>
+   </properties>
+  </object>
+  <object id="32" tid="2" x="832" y="64">
+   <properties>
+    <property name="step" type="int" value="30"/>
+   </properties>
+  </object>
+  <object id="33" tid="3" x="832" y="0"/>
+ </objectgroup>
+ <objectgroup name="Placement">
+  <object id="34" type="Placement" x="128" y="64">
+   <properties>
+    <property name="onPath" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 0,128 64,128 64,0"/>
+  </object>
+  <object id="35" type="Placement" x="256" y="128">
+   <properties>
+    <property name="onPath" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 0,128 -192,128 -192,192 64,192 64,0"/>
+  </object>
+  <object id="36" type="Placement" x="384" y="64">
+   <properties>
+    <property name="onPath" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 0,320 -256,320 -256,384 0,384 0,576 -256,576 -256,640 64,640 64,0"/>
+  </object>
+  <object id="37" type="Placement" x="64" y="512">
+   <properties>
+    <property name="onPath" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 256,0 256,64 0,64"/>
+  </object>
+  <object id="38" type="Placement" x="512" y="128">
+   <properties>
+    <property name="onPath" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 0,64 128,64 128,0"/>
+  </object>
+  <object id="39" type="Placement" x="512" y="384">
+   <properties>
+    <property name="onPath" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 128,0 128,64 0,64"/>
+  </object>
+  <object id="40" type="Placement" x="576" y="256">
+   <properties>
+    <property name="onPath" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 0,64 128,64 128,192 256,192 256,128 192,128 192,0"/>
+  </object>
+  <object id="41" type="Placement" x="576" y="512">
+   <properties>
+    <property name="onPath" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 0,192 256,192 256,128 128,128 128,0"/>
+  </object>
+  <object id="42" type="Placement" x="896" y="512">
+   <properties>
+    <property name="onPath" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 0,64 -128,64 -128,0"/>
+  </object>
+  <object id="43" type="Placement" x="832" y="256">
+   <properties>
+    <property name="onPath" type="bool" value="false"/>
+   </properties>
+   <polygon points="0,0 0,64 64,64 64,0"/>
+  </object>
+  <object id="44" type="Placement" x="64" y="64">
+   <properties>
+    <property name="onPath" type="bool" value="true"/>
+   </properties>
+   <polygon points="0,0 0,192 192,192 192,64 256,64 256,256 0,256 0,448 256,448 256,512 0,512 0,704 448,704 448,64 576,64 576,128 448,128 448,320 576,320 576,384 448,384 448,704 832,704 832,512 704,512 704,448 832,448 832,256 768,256 768,192 832,192 832,0 768,0 768,128 704,128 704,320 768,320 768,384 640,384 640,576 768,576 768,640 512,640 512,448 640,448 640,256 512,256 512,192 640,192 640,0 384,0 384,640 64,640 64,576 320,576 320,384 64,384 64,320 320,320 320,0 128,0 128,128 64,128 64,0"/>
+  </object>
+ </objectgroup>
+</map>
