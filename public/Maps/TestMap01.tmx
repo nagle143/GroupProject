@@ -3,7 +3,7 @@
  <properties>
   <property name="spawns" type="int" value="1"/>
  </properties>
- <tileset firstgid="1" source="../Tilesets/tileSet01.json"/>
+ <tileset firstgid="1" source="../../public/Tilesets/tileSet01.json"/>
  <templategroup firsttid="1" source="TileData.tgx"/>
  <layer name="Platforms" width="15" height="13">
   <data encoding="csv">
@@ -42,163 +42,199 @@
  <objectgroup name="Pathing">
   <object id="1" tid="1" x="64" y="0">
    <properties>
+    <property name="id" type="int" value="1"/>
     <property name="steps" type="int" value="31"/>
    </properties>
   </object>
-  <object id="2" tid="2" x="64.0039" y="192.004"/>
+  <object id="2" tid="2" x="64" y="192">
+   <properties>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="1"/>
+   </properties>
+  </object>
   <object id="3" tid="2" x="192" y="192">
    <properties>
-    <property name="step" type="int" value="1"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="2"/>
    </properties>
   </object>
   <object id="4" tid="2" x="192" y="64">
    <properties>
-    <property name="step" type="int" value="2"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="3"/>
    </properties>
   </object>
   <object id="5" tid="2" x="320" y="64">
    <properties>
-    <property name="step" type="int" value="3"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="4"/>
    </properties>
   </object>
   <object id="6" tid="2" x="320" y="320">
    <properties>
-    <property name="step" type="int" value="4"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="5"/>
    </properties>
   </object>
   <object id="7" tid="2" x="64" y="320">
    <properties>
-    <property name="step" type="int" value="5"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="6"/>
    </properties>
   </object>
   <object id="8" tid="2" x="64" y="448">
    <properties>
-    <property name="step" type="int" value="6"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="7"/>
    </properties>
   </object>
   <object id="9" tid="2" x="320" y="448">
    <properties>
-    <property name="step" type="int" value="7"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="8"/>
    </properties>
   </object>
   <object id="10" tid="2" x="320" y="576">
    <properties>
-    <property name="step" type="int" value="8"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="9"/>
    </properties>
   </object>
   <object id="11" tid="2" x="64" y="576">
    <properties>
-    <property name="step" type="int" value="9"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="10"/>
    </properties>
   </object>
   <object id="12" tid="2" x="64" y="704">
    <properties>
-    <property name="step" type="int" value="10"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="11"/>
    </properties>
   </object>
   <object id="13" tid="2" x="448" y="704">
    <properties>
-    <property name="step" type="int" value="11"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="12"/>
    </properties>
   </object>
   <object id="14" tid="2" x="448" y="64">
    <properties>
-    <property name="step" type="int" value="12"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="13"/>
    </properties>
   </object>
   <object id="15" tid="2" x="640" y="64">
    <properties>
-    <property name="step" type="int" value="13"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="14"/>
    </properties>
   </object>
   <object id="16" tid="2" x="640" y="192">
    <properties>
-    <property name="step" type="int" value="14"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="15"/>
    </properties>
   </object>
   <object id="17" tid="2" x="512" y="192">
    <properties>
-    <property name="step" type="int" value="15"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="16"/>
    </properties>
   </object>
   <object id="18" tid="2" x="512" y="320">
    <properties>
-    <property name="step" type="int" value="16"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="17"/>
    </properties>
   </object>
   <object id="19" tid="2" x="640" y="320">
    <properties>
-    <property name="step" type="int" value="17"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="18"/>
    </properties>
   </object>
   <object id="20" tid="2" x="640" y="448">
    <properties>
-    <property name="step" type="int" value="18"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="19"/>
    </properties>
   </object>
   <object id="21" tid="2" x="512" y="448">
    <properties>
-    <property name="step" type="int" value="19"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="20"/>
    </properties>
   </object>
   <object id="22" tid="2" x="512" y="704">
    <properties>
-    <property name="step" type="int" value="20"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="21"/>
    </properties>
   </object>
   <object id="23" tid="2" x="832" y="704">
    <properties>
-    <property name="step" type="int" value="21"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="22"/>
    </properties>
   </object>
   <object id="24" tid="2" x="832" y="576">
    <properties>
-    <property name="step" type="int" value="22"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="23"/>
    </properties>
   </object>
   <object id="25" tid="2" x="704" y="576">
    <properties>
-    <property name="step" type="int" value="23"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="24"/>
    </properties>
   </object>
   <object id="26" tid="2" x="704" y="448">
    <properties>
-    <property name="step" type="int" value="24"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="25"/>
    </properties>
   </object>
   <object id="27" tid="2" x="832" y="448">
    <properties>
-    <property name="step" type="int" value="25"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="26"/>
    </properties>
   </object>
   <object id="28" tid="2" x="832" y="320">
    <properties>
-    <property name="step" type="int" value="26"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="27"/>
    </properties>
   </object>
   <object id="29" tid="2" x="768" y="320">
    <properties>
-    <property name="step" type="int" value="27"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="28"/>
    </properties>
   </object>
   <object id="30" tid="2" x="768" y="192">
    <properties>
-    <property name="step" type="int" value="28"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="29"/>
    </properties>
   </object>
   <object id="31" tid="2" x="832" y="192">
    <properties>
-    <property name="step" type="int" value="29"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="30"/>
    </properties>
   </object>
   <object id="32" tid="2" x="832" y="64">
    <properties>
-    <property name="step" type="int" value="30"/>
+    <property name="id" type="int" value="1"/>
+    <property name="step" type="int" value="31"/>
    </properties>
   </object>
   <object id="33" tid="3" x="832" y="0"/>
  </objectgroup>
- <objectgroup name="Placement">
+ <objectgroup name="Placement" visible="0">
   <object id="34" type="Placement" x="128" y="64">
    <properties>
     <property name="onPath" type="bool" value="false"/>
