@@ -17,8 +17,7 @@ export default class NanoBot extends Monster
 
     update()
     {
-        die();
-        // if in range of aura heal those inside up to max health 
+        healAura();// if in range of aura heal those inside up to max health 
         super.update(); // do as all enemies do
     }
 
@@ -27,19 +26,9 @@ export default class NanoBot extends Monster
 
     }
 
-    die()
+    healAura()
     {
-        if (CHP <= 0) // if tower kills monster
-        {
-            // add bounty to energy
-            // delete monster
-        }
-        /**
-        if ( ) //if endpoint reached 
-        {
-            // take away energy from player based on bounty
-            //delete monster
-        }
-        **/
+
     }
+
 }

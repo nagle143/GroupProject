@@ -20,8 +20,7 @@ export default class EMPbot extends Monster
 
     update()
     {
-        die();
-        //if cooldown is done and a tower is in range shutdown
+        shutDown();//if cooldown is done and a tower is in range shutdown
         super.update(); // do as all enemies do
     }
 
@@ -30,18 +29,8 @@ export default class EMPbot extends Monster
 
     }
 
-    die() {
-        if (CHP <= 0) // if tower kills monster
-        {
-            // add bounty to energy
-            // delete monster
-        }
-        /**
-        if ( ) //if endpoint reached 
-        {
-            // take away energy from player based on bounty
-            //delete monster
-        }
-        **/
+    shutDown()
+    {
+
     }
 }

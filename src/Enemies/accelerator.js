@@ -18,8 +18,7 @@ export default class Accelerator extends Monster
 
     update()
     {
-        die();
-        // increse speed if in aura for all monster in aura
+        speedBoost();// increse speed if in aura for all monster in aura
         super.update(); // do as all enemies do
     }
 
@@ -28,19 +27,8 @@ export default class Accelerator extends Monster
 
     }
 
-    die() {
-        if (CHP <= 0) // if tower kills monster
-        {
-            // add bounty to energy
-            // delete monster
-        }
-        /**
-        if ( ) //if endpoint reached 
-        {
-            // take away energy from player based on bounty
-            //delete monster
-        }
-        **/
-    }
+    speedBoost()
+    {
 
+    }
 }

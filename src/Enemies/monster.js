@@ -16,7 +16,8 @@ export defualt class Monster
         this.currentSpeed = 0; // current speed of a monster
         this.armor = 0;
         this.bounty = 1;
-        this.statusEffect = null;
+        this.lives = 0;
+        this.statusEffect[] = null;
     }
 
     update()
@@ -33,6 +34,28 @@ export defualt class Monster
     march() // move along the path
     {
 
+    }
+
+    die(eX, eY, energy) // coded wrong i think energy not by refrence
+    {
+        if (CHP <= 0 && lives <= 0) // if tower kills monster
+        {
+            energy = energy + bounty;// add bounty to energy
+            return true// tell game to delete monster
+        }
+
+        if (CHP <= 0 && lives > 0)
+        {
+            this.lies = this.lives - 1;
+            this.CHP = this.MHP;
+            return false;
+        }
+        
+        if (eX == this.x && eY == this.y) //if endpoint reached 
+        {
+            energy = energy - bounty; // take away energy from player based on bounty
+            return true;//delete monster
+        }
     }
 
 
@@ -69,23 +92,24 @@ export defualt class Monster
 
     burn(time) // damage over time
     {
-
+        var damage = CHP * 0.98; // deal 2% of max health
+        //deal this damage based on the time 
     }
 
     slow(time) // slow based on percentage
     {
 
-        this.currentSpeed = this.currentSpeed * .25; // slow by 25%
+        this.currentSpeed = this.currentSpeed * 0.25; // slow by 25%
     }
 
     stun(time) // stun 
     {
-
+        this.currentSpeed = 0; // stop moving
     }
 
     shredArmor() // destroy armor
     {
-
+        this.armor = this.armor * 0.90; // destroys 10 % of armor
     }
 
     energyGain() // gain more money based on a dot

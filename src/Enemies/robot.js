@@ -14,27 +14,11 @@ export default class Robot extends Monster
 
     update()
     {
-      die();
       super.update(); // do as all enemies do
     }
 
     render()
     {
     
-    }
-
-    die() {
-        if (CHP <= 0) // if tower kills monster
-        {
-            // add bounty to energy
-            // delete monster
-        }
-        /**
-        if ( ) //if endpoint reached 
-        {
-            // take away energy from player based on bounty
-            //delete monster
-        }
-        **/
     }
 }

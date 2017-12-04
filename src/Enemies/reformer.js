@@ -15,7 +15,6 @@ export default class Reformer extends Monster
 
     update()
     {
-        die();
         super.update(); // do as all enemies do
     }
 
@@ -24,26 +23,6 @@ export default class Reformer extends Monster
 
     }
 
-    die()
-    {
-        if (CHP <= 0 && lives <=0) // if tower kills monster
-        {
-            // add bounty to energy
-            // delete monster
-        }
-
-        if (CHP <= 0 && lives > 0)
-        {
-            this.lies = this.lives - 1;
-            this.CHP = this.MHP;
-        }
-        /**
-        if ( ) //if endpoint reached 
-        {
-            // take away energy from player based on bounty
-            //delete monster
-        }
-        **/
-    }
+    
 
 }

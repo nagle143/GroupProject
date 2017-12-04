@@ -19,8 +19,7 @@ export default class Energizer extends Monster
 
     update()
     {
-        die();
-        // if in range recharge shields by SPS up to max + 20%
+        recharge();// if in range recharge shields by SPS up to max + 20%
         super.update(); // do as all enemies do
     }
 
@@ -29,18 +28,8 @@ export default class Energizer extends Monster
 
     }
 
-    die() {
-        if (CHP <= 0) // if tower kills monster
-        {
-            // add bounty to energy
-            // delete monster
-        }
-        /**
-        if ( ) //if endpoint reached 
-        {
-            // take away energy from player based on bounty
-            //delete monster
-        }
-        **/
+    recharge()
+    {
+
     }
 }
