@@ -22,7 +22,7 @@ export defualt class Monster
 
     update()
     {
-        status(); //see if status effects need to be applied
+        applyStatus(); //see if status effects need to be applied
         march(); // move foward in the path
     }
 
@@ -59,32 +59,41 @@ export defualt class Monster
     }
 
 
-    status(color, time) // handles status effects from tower // this is wrong need to fix
+    status(color) // handles status effects from tower // this is wrong need to fix
     {
         if (this.CS == 0)
         {
-            switch (color) {
-                case "red":
-                    burn(time);
-                    break;
-                case "cyan":
-                    slow(time);
-                    break;
-                case "yellow":
-                    stun(time);
-                    break;
-                case "green":
-                    shredArmor();
-                    break;
-                case "blue":
-                    energyGain();
-                    break;
-                case "magenta":
-                    Charm(time);
-                    break;
-                default:
-                    break;
-            }
+          statusEffect.push(color);                
+        }
+    }
+
+
+
+
+
+    ApplyStatus() // not done just coppied some stuff
+    {
+        switch (color) {
+            case "red":
+                burn(time);
+                break;
+            case "cyan":
+                slow(time);
+                break;
+            case "yellow":
+                stun(time);
+                break;
+            case "green":
+                shredArmor();
+                break;
+            case "blue":
+                energyGain();
+                break;
+            case "magenta":
+                Charm(time);
+                break;
+            default:
+                break;
         }
     }
 
