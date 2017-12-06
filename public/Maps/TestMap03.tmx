@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.09.27" orientation="orthogonal" renderorder="right-down" width="17" height="17" tilewidth="64" tileheight="64" infinite="0" nextobjectid="45">
+<map version="1.0" tiledversion="2017.09.27" orientation="orthogonal" renderorder="right-down" width="17" height="17" tilewidth="64" tileheight="64" infinite="0" nextobjectid="61">
  <tileset firstgid="1" source="../Tilesets/tileSet01.json"/>
  <layer name="PlatfromLower" width="17" height="17">
   <data encoding="csv">
@@ -132,260 +132,356 @@
    <properties>
     <property name="id" type="int" value="1"/>
    </properties>
-   <polyline points="0,0 -16,0 -32,16 -32,48 -48,64 -272,64 -288,48 -288,16 -304,0 -464,0 -480,-16 -480,-240 -464,-256 -432,-256 -416,-272 -416,-368 -400,-384 -304,-384"/>
+   <polyline points="0,0 -16,0 -32,16 -32,48 -48,64 -272,64 -288,48 -288,16 -304,0 -464,0 -480,-16 -480,-240 -464,-256 -432,-256 -416,-272 -416,-368 -400,-384 -304,-384 -288,-368 -288,-208 -272,-192 -176,-192 -160,-208 -160,-368 -144,-384 16,-384 32,-400 32,-560 16,-576 -400,-576 -416,-592 -416,-688 -400,-704 -176,-704 -160,-720 -160,-816 -176,-832 -336,-832 -352,-848 -352,-944 -336,-960 -16,-960"/>
   </object>
-  <object id="2" type="Path" x="576" y="992">
-   <properties>
-    <property name="id" type="int" value="4"/>
-   </properties>
-   <polyline points="0,0 16,0 32,16 32,48 48,64 272,64 288,48 288,16 304,0 464,0 480,-16 480,-240 464,-256 432,-256 416,-272 416,-368 400,-384 304,-384"/>
-  </object>
-  <object id="3" type="Path" x="288" y="816">
-   <properties>
-    <property name="id" type="int" value="7"/>
-   </properties>
-   <polyline points="0,0 -16,-16 -48,-16 -64,-32 -64,-256 -48,-272 48,-272 64,-256 64,-224 80,-208 240,-208 256,-224 256,-384"/>
-  </object>
-  <object id="4" type="Path" x="288" y="816">
-   <properties>
-    <property name="id" type="int" value="8"/>
-   </properties>
-   <polyline points="0,0 16,-16 48,-16 64,-32 64,-192 80,-208 240,-208 256,-224 256,-384"/>
-  </object>
-  <object id="5" type="Path" x="800" y="816">
-   <properties>
-    <property name="id" type="int" value="10"/>
-   </properties>
-   <polyline points="0,0 16,-16 48,-16 64,-32 64,-256 48,-272 -48,-272 -64,-256 -64,-224 -80,-208 -240,-208 -256,-224 -256,-384"/>
-  </object>
-  <object id="6" type="Path" x="800" y="816">
-   <properties>
-    <property name="id" type="int" value="9"/>
-   </properties>
-   <polyline points="0,0 -16,-16 -48,-16 -64,-32 -64,-192 -80,-208 -240,-208 -256,-224 -256,-384"/>
-  </object>
-  <object id="7" type="Path" x="208" y="608">
-   <properties>
-    <property name="id" type="int" value="5"/>
-   </properties>
-   <polyline points="0,0 16,-16 16,-48 32,-64 128,-64 144,-48 144,-16 160,0 320,0 336,-16 336,-176"/>
-  </object>
-  <object id="8" type="Path" x="208" y="608">
-   <properties>
-    <property name="id" type="int" value="6"/>
-   </properties>
-   <polyline points="0,0 16,16 16,176 32,192 128,192 144,176 144,16 160,0 320,0 336,-16 336,-176"/>
-  </object>
-  <object id="9" type="Path" x="880" y="608">
-   <properties>
-    <property name="id" type="int" value="12"/>
-   </properties>
-   <polyline points="0,0 -16,-16 -16,-48 -32,-64 -128,-64 -144,-48 -144,-16 -160,0 -320,0 -336,-16 -336,-176"/>
-  </object>
-  <object id="10" type="Path" x="880" y="608">
-   <properties>
-    <property name="id" type="int" value="11"/>
-   </properties>
-   <polyline points="0,0 -16,16 -16,176 -32,192 -128,192 -144,176 -144,16 -160,0 -320,0 -336,-16 -336,-176"/>
-  </object>
-  <object id="11" type="Path" x="544" y="432">
-   <properties>
-    <property name="id" type="int" value="14"/>
-   </properties>
-   <polyline points="0,0 0,-64 -16,-80 -112,-80 -128,-96 -128,-192 -112,-208 -16,-208 0,-224 0,-352"/>
-  </object>
-  <object id="12" type="Path" x="544" y="432">
-   <properties>
-    <property name="id" type="int" value="15"/>
-   </properties>
-   <polyline points="0,0 0,-64 16,-80 112,-80 128,-96 128,-192 112,-208 16,-208 0,-224 0,-352"/>
-  </object>
-  <object id="13" type="Path" x="544" y="960">
+  <object id="2" type="Path" x="512" y="992">
    <properties>
     <property name="id" type="int" value="2"/>
    </properties>
-   <polyline points="0,0 0,-144 -16,-160 -112,-160 -128,-144 -128,-48 -144,-32 -240,-32 -256,-48 -256,-144"/>
+   <polyline points="0,0 -16,0 -32,16 -32,48 -48,64 -272,64 -288,48 -288,16 -304,0 -464,0 -480,-16 -480,-240 -464,-256 -432,-256 -416,-272 -416,-368 -400,-384 -304,-384 -288,-368 -288,-208 -272,-192 -176,-192 -160,-208 -160,-368 -144,-384 16,-384 32,-400 32,-624 16,-640 -80,-640 -96,-656 -96,-752 -80,-768 16,-768 32,-784 32,-912"/>
   </object>
-  <object id="14" type="Path" x="544" y="960">
+  <object id="3" type="Path" x="512" y="992">
    <properties>
     <property name="id" type="int" value="3"/>
    </properties>
-   <polyline points="0,0 0,-144 16,-160 112,-160 128,-144 128,-48 144,-32 240,-32 256,-48 256,-144"/>
+   <polyline points="0,0 -16,0 -32,16 -32,48 -48,64 -272,64 -288,48 -288,16 -304,0 -464,0 -480,-16 -480,-240 -464,-256 -432,-256 -416,-272 -416,-368 -400,-384 -304,-384 -288,-368 -288,-208 -272,-192 -176,-192 -160,-208 -160,-368 -144,-384 16,-384 32,-400 32,-624 48,-640 144,-640 160,-656 160,-752 144,-768 48,-768 32,-784 32,-912"/>
   </object>
-  <object id="15" type="Path" x="544" y="432">
+  <object id="4" type="Path" x="512" y="992">
+   <properties>
+    <property name="id" type="int" value="4"/>
+   </properties>
+   <polyline points="0,0 -16,0 -32,16 -32,48 -48,64 -272,64 -288,48 -288,16 -304,0 -464,0 -480,-16 -480,-240 -464,-256 -432,-256 -416,-272 -416,-368 -400,-384 -304,-384 -288,-368 -288,-208 -272,-192 -176,-192 -160,-208 -160,-368 -144,-384 16,-384 32,-400 32,-560 48,-576 464,-576 480,-592 480,-688 464,-704 240,-704 224,-720 224,-816 240,-832 400,-832 416,-848 416,-944 400,-960 80,-960"/>
+  </object>
+  <object id="5" type="Path" x="512" y="992">
+   <properties>
+    <property name="id" type="int" value="5"/>
+   </properties>
+   <polyline points="0,0 -16,0 -32,16 -32,48 -48,64 -272,64 -288,48 -288,16 -304,0 -464,0 -480,-16 -480,-240 -464,-256 -432,-256 -416,-272 -416,-368 -400,-384 -304,-384 -288,-400 -288,-432 -272,-448 -176,-448 -160,-432 -160,-400 -144,-384 16,-384 32,-400 32,-560 16,-576 -400,-576 -416,-592 -416,-688 -400,-704 -176,-704 -160,-720 -160,-816 -176,-832 -336,-832 -352,-848 -352,-944 -336,-960 -16,-960"/>
+  </object>
+  <object id="6" type="Path" x="512" y="992">
+   <properties>
+    <property name="id" type="int" value="6"/>
+   </properties>
+   <polyline points="0,0 -16,0 -32,16 -32,48 -48,64 -272,64 -288,48 -288,16 -304,0 -464,0 -480,-16 -480,-240 -464,-256 -432,-256 -416,-272 -416,-368 -400,-384 -304,-384 -288,-400 -288,-432 -272,-448 -176,-448 -160,-432 -160,-400 -144,-384 16,-384 32,-400 32,-624 16,-640 -80,-640 -96,-656 -96,-752 -80,-768 16,-768 32,-784 32,-912"/>
+  </object>
+  <object id="7" type="Path" x="512" y="992">
+   <properties>
+    <property name="id" type="int" value="7"/>
+   </properties>
+   <polyline points="0,0 -16,0 -32,16 -32,48 -48,64 -272,64 -288,48 -288,16 -304,0 -464,0 -480,-16 -480,-240 -464,-256 -432,-256 -416,-272 -416,-368 -400,-384 -304,-384 -288,-400 -288,-432 -272,-448 -176,-448 -160,-432 -160,-400 -144,-384 16,-384 32,-400 32,-624 48,-640 144,-640 160,-656 160,-752 144,-768 48,-768 32,-784 32,-912"/>
+  </object>
+  <object id="8" type="Path" x="512" y="992">
+   <properties>
+    <property name="id" type="int" value="8"/>
+   </properties>
+   <polyline points="0,0 -16,0 -32,16 -32,48 -48,64 -272,64 -288,48 -288,16 -304,0 -464,0 -480,-16 -480,-240 -464,-256 -432,-256 -416,-272 -416,-368 -400,-384 -304,-384 -288,-400 -288,-432 -272,-448 -176,-448 -160,-432 -160,-400 -144,-384 16,-384 32,-400 32,-560 48,-576 464,-576 480,-592 480,-688 464,-704 240,-704 224,-720 224,-816 240,-832 400,-832 416,-848 416,-944 400,-960 80,-960"/>
+  </object>
+  <object id="9" type="Path" x="512" y="992">
+   <properties>
+    <property name="id" type="int" value="9"/>
+   </properties>
+   <polyline points="32,-32 32,-176 16,-192 -80,-192 -96,-176 -96,-80 -112,-64 -208,-64 -224,-80 -224,-176 -240,-192 -272,-192 -288,-208 -288,-432 -272,-448 -176,-448 -160,-432 -160,-400 -144,-384 16,-384 32,-400 32,-560 16,-576 -400,-576 -416,-592 -416,-688 -400,-704 -176,-704 -160,-720 -160,-816 -176,-832 -336,-832 -352,-848 -352,-944 -336,-960 -16,-960"/>
+  </object>
+  <object id="10" type="Path" x="512" y="992">
+   <properties>
+    <property name="id" type="int" value="10"/>
+   </properties>
+   <polyline points="32,-32 32,-176 16,-192 -80,-192 -96,-176 -96,-80 -112,-64 -208,-64 -224,-80 -224,-176 -240,-192 -272,-192 -288,-208 -288,-432 -272,-448 -176,-448 -160,-432 -160,-400 -144,-384 16,-384 32,-400 32,-624 16,-640 -80,-640 -96,-656 -96,-752 -80,-768 16,-768 32,-784 32,-912"/>
+  </object>
+  <object id="11" type="Path" x="512" y="992">
+   <properties>
+    <property name="id" type="int" value="11"/>
+   </properties>
+   <polyline points="32,-32 32,-176 16,-192 -80,-192 -96,-176 -96,-80 -112,-64 -208,-64 -224,-80 -224,-176 -240,-192 -272,-192 -288,-208 -288,-432 -272,-448 -176,-448 -160,-432 -160,-400 -144,-384 16,-384 32,-400 32,-624 48,-640 144,-640 160,-656 160,-752 144,-768 48,-768 32,-784 32,-912"/>
+  </object>
+  <object id="12" type="Path" x="512" y="992">
+   <properties>
+    <property name="id" type="int" value="12"/>
+   </properties>
+   <polyline points="32,-32 32,-176 16,-192 -80,-192 -96,-176 -96,-80 -112,-64 -208,-64 -224,-80 -224,-176 -240,-192 -272,-192 -288,-208 -288,-432 -272,-448 -176,-448 -160,-432 -160,-400 -144,-384 16,-384 32,-400 32,-560 48,-576 464,-576 480,-592 480,-688 464,-704 240,-704 224,-720 224,-816 240,-832 400,-832 416,-848 416,-944 400,-960 80,-960"/>
+  </object>
+  <object id="13" type="Path" x="512" y="992">
    <properties>
     <property name="id" type="int" value="13"/>
    </properties>
-   <polyline points="0,0 -16,-16 -432,-16 -448,-32 -448,-128 -432,-144 -208,-144 -192,-160 -192,-256 -208,-272 -368,-272 -384,-288 -384,-384 -368,-400 -48,-400"/>
+   <polyline points="32,-32 32,-176 16,-192 -80,-192 -96,-176 -96,-80 -112,-64 -208,-64 -224,-80 -224,-176 -208,-192 -176,-192 -160,-208 -160,-368 -144,-384 16,-384 32,-400 32,-560 16,-576 -400,-576 -416,-592 -416,-688 -400,-704 -176,-704 -160,-720 -160,-816 -176,-832 -336,-832 -352,-848 -352,-944 -336,-960 -16,-960"/>
   </object>
-  <object id="16" type="Path" x="544" y="432">
+  <object id="14" type="Path" x="512" y="992">
+   <properties>
+    <property name="id" type="int" value="14"/>
+   </properties>
+   <polyline points="32,-32 32,-176 16,-192 -80,-192 -96,-176 -96,-80 -112,-64 -208,-64 -224,-80 -224,-176 -208,-192 -176,-192 -160,-208 -160,-368 -144,-384 16,-384 32,-400 32,-624 16,-640 -80,-640 -96,-656 -96,-752 -80,-768 16,-768 32,-784 32,-912"/>
+  </object>
+  <object id="15" type="Path" x="512" y="992">
+   <properties>
+    <property name="id" type="int" value="15"/>
+   </properties>
+   <polyline points="32,-32 32,-176 16,-192 -80,-192 -96,-176 -96,-80 -112,-64 -208,-64 -224,-80 -224,-176 -208,-192 -176,-192 -160,-208 -160,-368 -144,-384 16,-384 32,-400 32,-624 48,-640 144,-640 160,-656 160,-752 144,-768 48,-768 32,-784 32,-912"/>
+  </object>
+  <object id="16" type="Path" x="512" y="992">
    <properties>
     <property name="id" type="int" value="16"/>
    </properties>
-   <polyline points="0,0 16,-16 432,-16 448,-32 448,-128 432,-144 208,-144 192,-160 192,-256 208,-272 368,-272 384,-288 384,-384 368,-400 48,-400"/>
+   <polyline points="32,-32 32,-176 16,-192 -80,-192 -96,-176 -96,-80 -112,-64 -208,-64 -224,-80 -224,-176 -208,-192 -176,-192 -160,-208 -160,-368 -144,-384 16,-384 32,-400 32,-560 48,-576 464,-576 480,-592 480,-688 464,-704 240,-704 224,-720 224,-816 240,-832 400,-832 416,-848 416,-944 400,-960 80,-960"/>
   </object>
-  <object id="17" type="Generator" x="512" y="0" width="64" height="64">
+  <object id="17" type="Path" x="576" y="0" rotation="180">
+   <properties>
+    <property name="id" type="int" value="17"/>
+   </properties>
+   <polyline points="32,-960 32,-816 16,-800 -80,-800 -96,-816 -96,-912 -112,-928 -208,-928 -224,-912 -224,-816 -208,-800 -176,-800 -160,-784 -160,-624 -144,-608 16,-608 32,-592 32,-432 16,-416 -400,-416 -416,-400 -416,-304 -400,-288 -176,-288 -160,-272 -160,-176 -176,-160 -336,-160 -352,-144 -352,-48 -336,-32 -16,-32"/>
+  </object>
+  <object id="18" type="Path" x="576" y="48" rotation="180">
+   <properties>
+    <property name="id" type="int" value="18"/>
+   </properties>
+   <polyline points="32,-912 32,-768 16,-752 -80,-752 -96,-768 -96,-864 -112,-880 -208,-880 -224,-864 -224,-768 -208,-752 -176,-752 -160,-736 -160,-576 -144,-560 16,-560 32,-544 32,-320 16,-304 -80,-304 -96,-288 -96,-192 -80,-176 16,-176 32,-160 32,-32"/>
+  </object>
+  <object id="19" type="Path" x="576" y="48" rotation="180">
+   <properties>
+    <property name="id" type="int" value="19"/>
+   </properties>
+   <polyline points="32,-912 32,-768 16,-752 -80,-752 -96,-768 -96,-864 -112,-880 -208,-880 -224,-864 -224,-768 -208,-752 -176,-752 -160,-736 -160,-576 -144,-560 16,-560 32,-544 32,-320 48,-304 144,-304 160,-288 160,-192 144,-176 48,-176 32,-160 32,-32"/>
+  </object>
+  <object id="20" type="Path" x="576" y="0" rotation="180">
+   <properties>
+    <property name="id" type="int" value="20"/>
+   </properties>
+   <polyline points="32,-960 32,-816 16,-800 -80,-800 -96,-816 -96,-912 -112,-928 -208,-928 -224,-912 -224,-816 -208,-800 -176,-800 -160,-784 -160,-624 -144,-608 16,-608 32,-592 32,-432 48,-416 464,-416 480,-400 480,-304 464,-288 240,-288 224,-272 224,-176 240,-160 400,-160 416,-144 416,-48 400,-32 80,-32"/>
+  </object>
+  <object id="21" type="Path" x="576" y="0" rotation="180">
+   <properties>
+    <property name="id" type="int" value="21"/>
+   </properties>
+   <polyline points="32,-960 32,-816 16,-800 -80,-800 -96,-816 -96,-912 -112,-928 -208,-928 -224,-912 -224,-816 -240,-800 -272,-800 -288,-784 -288,-560 -272,-544 -176,-544 -160,-560 -160,-592 -144,-608 16,-608 32,-592 32,-432 16,-416 -400,-416 -416,-400 -416,-304 -400,-288 -176,-288 -160,-272 -160,-176 -176,-160 -336,-160 -352,-144 -352,-48 -336,-32 -16,-32"/>
+  </object>
+  <object id="22" type="Path" x="576" y="48" rotation="180">
+   <properties>
+    <property name="id" type="int" value="22"/>
+   </properties>
+   <polyline points="32,-912 32,-768 16,-752 -80,-752 -96,-768 -96,-864 -112,-880 -208,-880 -224,-864 -224,-768 -240,-752 -272,-752 -288,-736 -288,-512 -272,-496 -176,-496 -160,-512 -160,-544 -144,-560 16,-560 32,-544 32,-320 16,-304 -80,-304 -96,-288 -96,-192 -80,-176 16,-176 32,-160 32,-32"/>
+  </object>
+  <object id="23" type="Path" x="576" y="48" rotation="180">
+   <properties>
+    <property name="id" type="int" value="23"/>
+   </properties>
+   <polyline points="32,-912 32,-768 16,-752 -80,-752 -96,-768 -96,-864 -112,-880 -208,-880 -224,-864 -224,-768 -240,-752 -272,-752 -288,-736 -288,-512 -272,-496 -176,-496 -160,-512 -160,-544 -144,-560 16,-560 32,-544 32,-320 48,-304 144,-304 160,-288 160,-192 144,-176 48,-176 32,-160 32,-32"/>
+  </object>
+  <object id="24" type="Path" x="576" y="0" rotation="180">
+   <properties>
+    <property name="id" type="int" value="24"/>
+   </properties>
+   <polyline points="32,-960 32,-816 16,-800 -80,-800 -96,-816 -96,-912 -112,-928 -208,-928 -224,-912 -224,-816 -240,-800 -272,-800 -288,-784 -288,-560 -272,-544 -176,-544 -160,-560 -160,-592 -144,-608 16,-608 32,-592 32,-432 48,-416 464,-416 480,-400 480,-304 464,-288 240,-288 224,-272 224,-176 240,-160 400,-160 416,-144 416,-48 400,-32 80,-32"/>
+  </object>
+  <object id="25" type="Path" x="576" y="96" rotation="180">
+   <properties>
+    <property name="id" type="int" value="25"/>
+   </properties>
+   <polyline points="0,-896 -16,-896 -32,-912 -32,-944 -48,-960 -272,-960 -288,-944 -288,-912 -304,-896 -464,-896 -480,-880 -480,-656 -464,-640 -432,-640 -416,-624 -416,-528 -400,-512 -304,-512 -288,-496 -288,-464 -272,-448 -176,-448 -160,-464 -160,-496 -144,-512 16,-512 32,-496 32,-336 16,-320 -400,-320 -416,-304 -416,-208 -400,-192 -176,-192 -160,-176 -160,-80 -176,-64 -336,-64 -352,-48 -352,48 -336,64 -16,64"/>
+  </object>
+  <object id="26" type="Path" x="576" y="144" rotation="180">
+   <properties>
+    <property name="id" type="int" value="26"/>
+   </properties>
+   <polyline points="0,-848 -16,-848 -32,-864 -32,-896 -48,-912 -272,-912 -288,-896 -288,-864 -304,-848 -464,-848 -480,-832 -480,-608 -464,-592 -432,-592 -416,-576 -416,-480 -400,-464 -304,-464 -288,-448 -288,-416 -272,-400 -176,-400 -160,-416 -160,-448 -144,-464 16,-464 32,-448 32,-224 16,-208 -80,-208 -96,-192 -96,-96 -80,-80 16,-80 32,-64 32,64"/>
+  </object>
+  <object id="27" type="Path" x="576" y="144" rotation="180">
+   <properties>
+    <property name="id" type="int" value="27"/>
+   </properties>
+   <polyline points="0,-848 -16,-848 -32,-864 -32,-896 -48,-912 -272,-912 -288,-896 -288,-864 -304,-848 -464,-848 -480,-832 -480,-608 -464,-592 -432,-592 -416,-576 -416,-480 -400,-464 -304,-464 -288,-448 -288,-416 -272,-400 -176,-400 -160,-416 -160,-448 -144,-464 16,-464 32,-448 32,-224 48,-208 144,-208 160,-192 160,-96 144,-80 48,-80 32,-64 32,64"/>
+  </object>
+  <object id="28" type="Path" x="576" y="96" rotation="180">
+   <properties>
+    <property name="id" type="int" value="28"/>
+   </properties>
+   <polyline points="0,-896 -16,-896 -32,-912 -32,-944 -48,-960 -272,-960 -288,-944 -288,-912 -304,-896 -464,-896 -480,-880 -480,-656 -464,-640 -432,-640 -416,-624 -416,-528 -400,-512 -304,-512 -288,-496 -288,-464 -272,-448 -176,-448 -160,-464 -160,-496 -144,-512 16,-512 32,-496 32,-336 48,-320 464,-320 480,-304 480,-208 464,-192 240,-192 224,-176 224,-80 240,-64 400,-64 416,-48 416,48 400,64 80,64"/>
+  </object>
+  <object id="29" type="Path" x="576" y="96" rotation="180">
+   <properties>
+    <property name="id" type="int" value="29"/>
+   </properties>
+   <polyline points="0,-896 -16,-896 -32,-912 -32,-944 -48,-960 -272,-960 -288,-944 -288,-912 -304,-896 -464,-896 -480,-880 -480,-656 -464,-640 -432,-640 -416,-624 -416,-528 -400,-512 -304,-512 -288,-528 -288,-688 -272,-704 -176,-704 -160,-688 -160,-528 -144,-512 16,-512 32,-496 32,-336 16,-320 -400,-320 -416,-304 -416,-208 -400,-192 -176,-192 -160,-176 -160,-80 -176,-64 -336,-64 -352,-48 -352,48 -336,64 -16,64"/>
+  </object>
+  <object id="30" type="Path" x="576" y="144" rotation="180">
+   <properties>
+    <property name="id" type="int" value="30"/>
+   </properties>
+   <polyline points="0,-848 -16,-848 -32,-864 -32,-896 -48,-912 -272,-912 -288,-896 -288,-864 -304,-848 -464,-848 -480,-832 -480,-608 -464,-592 -432,-592 -416,-576 -416,-480 -400,-464 -304,-464 -288,-480 -288,-640 -272,-656 -176,-656 -160,-640 -160,-480 -144,-464 16,-464 32,-448 32,-224 16,-208 -80,-208 -96,-192 -96,-96 -80,-80 16,-80 32,-64 32,64"/>
+  </object>
+  <object id="31" type="Path" x="576" y="144" rotation="180">
+   <properties>
+    <property name="id" type="int" value="31"/>
+   </properties>
+   <polyline points="0,-848 -16,-848 -32,-864 -32,-896 -48,-912 -272,-912 -288,-896 -288,-864 -304,-848 -464,-848 -480,-832 -480,-608 -464,-592 -432,-592 -416,-576 -416,-480 -400,-464 -304,-464 -288,-480 -288,-640 -272,-656 -176,-656 -160,-640 -160,-480 -144,-464 16,-464 32,-448 32,-224 48,-208 144,-208 160,-192 160,-96 144,-80 48,-80 32,-64 32,64"/>
+  </object>
+  <object id="32" type="Path" x="576" y="96" rotation="180">
+   <properties>
+    <property name="id" type="int" value="32"/>
+   </properties>
+   <polyline points="0,-896 -16,-896 -32,-912 -32,-944 -48,-960 -272,-960 -288,-944 -288,-912 -304,-896 -464,-896 -480,-880 -480,-656 -464,-640 -432,-640 -416,-624 -416,-528 -400,-512 -304,-512 -288,-528 -288,-688 -272,-704 -176,-704 -160,-688 -160,-528 -144,-512 16,-512 32,-496 32,-336 48,-320 464,-320 480,-304 480,-208 464,-192 240,-192 224,-176 224,-80 240,-64 400,-64 416,-48 416,48 400,64 80,64"/>
+  </object>
+  <object id="33" type="Generator" x="512" y="0" width="64" height="64">
    <ellipse/>
   </object>
  </objectgroup>
  <objectgroup name="Buildable">
-  <object id="18" type="Buildable" x="64" y="1008">
+  <object id="34" type="Buildable" x="64" y="1008">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,80 160,80 160,64 144,64 144,0"/>
   </object>
-  <object id="19" type="Buildable" x="880" y="1008">
+  <object id="35" type="Buildable" x="880" y="1008">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 144,0 144,80 -16,80 -16,64 0,64"/>
   </object>
-  <object id="20" type="Buildable" x="48" y="752">
+  <object id="36" type="Buildable" x="48" y="752">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,176 176,176 176,224 192,224 192,240 416,240 416,224 432,224 432,176 480,176 480,64 432,64 432,112 384,112 384,192 224,192 224,112 128,112 128,128 96,128 96,112 48,112 48,0"/>
   </object>
-  <object id="21" type="Buildable" x="560" y="816">
+  <object id="37" type="Buildable" x="560" y="816">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,112 48,112 48,160 64,160 64,176 288,176 288,160 304,160 304,112 480,112 480,-64 432,-64 432,48 256,48 256,128 96,128 96,48 48,48 48,0"/>
   </object>
-  <object id="22" type="Buildable" x="304" y="864">
+  <object id="38" type="Buildable" x="304" y="864">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,48 96,48 96,0"/>
   </object>
-  <object id="23" type="Buildable" x="688" y="864">
+  <object id="39" type="Buildable" x="688" y="864">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,48 96,48 96,0"/>
   </object>
-  <object id="24" type="Buildable" x="240" y="560">
+  <object id="40" type="Buildable" x="240" y="560">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,224 96,224 96,0"/>
   </object>
-  <object id="25" type="Buildable" x="752" y="560">
+  <object id="41" type="Buildable" x="752" y="560">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,224 96,224 96,0"/>
   </object>
-  <object id="26" type="Buildable" x="480" y="624">
+  <object id="42" type="Buildable" x="480" y="624">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,160 128,160 128,144 96,144 96,80 128,80 128,0"/>
   </object>
-  <object id="27" type="Buildable" x="32" y="224">
+  <object id="43" type="Buildable" x="32" y="224">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,496 48,496 48,368 64,368 64,256 176,256 176,224 208,224 208,256 320,256 320,208 48,208 48,48 304,48 304,0"/>
   </object>
-  <object id="28" type="Buildable" x="112" y="304">
+  <object id="44" type="Buildable" x="112" y="304">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,96 240,96 240,0"/>
   </object>
-  <object id="29" type="Buildable" x="480" y="432">
+  <object id="45" type="Buildable" x="480" y="432">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,160 48,160 48,0"/>
   </object>
-  <object id="30" type="Buildable" x="416" y="368">
+  <object id="46" type="Buildable" x="416" y="368">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,32 112,32 112,0"/>
   </object>
-  <object id="31" type="Buildable" x="560" y="432">
+  <object id="47" type="Buildable" x="560" y="432">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,160 48,160 48,0"/>
   </object>
-  <object id="32" type="Buildable" x="560" y="368">
+  <object id="48" type="Buildable" x="560" y="368">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,32 112,32 112,0"/>
   </object>
-  <object id="33" type="Buildable" x="752" y="224">
+  <object id="49" type="Buildable" x="752" y="224">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,48 256,48 256,208 -16,208 -16,256 32,256 32,224 64,224 64,256 240,256 240,368 256,368 256,496 304,496 304,0"/>
   </object>
-  <object id="34" type="Buildable" x="736" y="304">
+  <object id="50" type="Buildable" x="736" y="304">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,96 240,96 240,0"/>
   </object>
-  <object id="35" type="Buildable" x="432" y="240">
+  <object id="51" type="Buildable" x="432" y="240">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,96 224,96 224,0"/>
   </object>
-  <object id="36" type="Buildable" x="96" y="32">
+  <object id="52" type="Buildable" x="96" y="32">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,128 48,128 48,0"/>
   </object>
-  <object id="37" type="Buildable" x="176" y="48">
+  <object id="53" type="Buildable" x="176" y="48">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,96 176,96 176,48 240,48 240,112 304,112 304,160 352,160 352,16 336,16 336,0"/>
   </object>
-  <object id="38" type="Buildable" x="576" y="48">
+  <object id="54" type="Buildable" x="576" y="48">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 336,0 336,96 160,96 160,48 96,48 96,112 32,112 32,160 -16,160 -16,16 0,16"/>
   </object>
-  <object id="39" type="Buildable" x="944" y="32">
+  <object id="55" type="Buildable" x="944" y="32">
    <properties>
     <property name="onPath" type="bool" value="false"/>
    </properties>
    <polygon points="0,0 0,128 48,128 48,0"/>
   </object>
-  <object id="40" type="Buildable" x="144" y="16">
+  <object id="56" type="Buildable" x="144" y="16">
    <properties>
     <property name="onPath" type="bool" value="true"/>
    </properties>
    <polygon points="0,0 368,0 368,32 32,32 32,128 224,128 224,288 -32,288 -32,384 384,384 384,416 -64,416 -64,256 192,256 192,160 0,160"/>
   </object>
-  <object id="41" type="Buildable" x="576" y="16">
+  <object id="57" type="Buildable" x="576" y="16">
    <properties>
     <property name="onPath" type="bool" value="true"/>
    </properties>
    <polygon points="0,0 368,0 368,160 176,160 176,256 432,256 432,416 -16,416 -16,384 400,384 400,288 144,288 144,128 336,128 336,32 0,32"/>
   </object>
-  <object id="42" type="Buildable" x="528" y="336">
+  <object id="58" type="Buildable" x="528" y="336">
    <properties>
     <property name="onPath" type="bool" value="true"/>
    </properties>
    <polygon points="0,0 0,256 -160,256 -160,192 -320,192 -320,256 -448,256 -448,384 -512,384 -512,672 -320,672 -320,736 -64,736 -64,704 -288,704 -288,640 -480,640 -480,416 -416,416 -416,288 -288,288 -288,224 -192,224 -192,288 224,288 224,224 320,224 320,288 448,288 448,416 512,416 512,640 320,640 320,704 96,704 96,736 352,736 352,672 544,672 544,384 480,384 480,256 352,256 352,192 192,192 192,256 32,256 32,0"/>
   </object>
-  <object id="43" type="Buildable" x="208" y="624">
+  <object id="59" type="Buildable" x="208" y="624">
    <properties>
     <property name="onPath" type="bool" value="true"/>
    </properties>
    <polygon points="0,0 0,192 64,192 64,320 224,320 224,192 320,192 320,304 352,304 352,192 448,192 448,320 608,320 608,192 672,192 672,0 640,0 640,160 544,160 544,0 512,0 512,192 576,192 576,288 480,288 480,160 192,160 192,288 96,288 96,192 160,192 160,0 128,0 128,160 32,160 32,0"/>
   </object>
-  <object id="44" type="Buildable" x="528" y="64">
+  <object id="60" type="Buildable" x="528" y="64">
    <properties>
     <property name="onPath" type="bool" value="true"/>
    </properties>

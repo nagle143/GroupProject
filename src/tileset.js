@@ -1,3 +1,5 @@
+/* tileset.js */
+
 export default class Tileset {
   /** @constructor
    *  Constructs a new tileset.

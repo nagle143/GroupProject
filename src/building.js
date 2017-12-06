@@ -1,3 +1,5 @@
+/* building.js */
+
 export default class Building {
   /** @constructor
    *  Constructs a new building.

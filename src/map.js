@@ -1,3 +1,5 @@
+/* map.js */
+
 export default class Map {
   /** @constructor
    *  Constructs a new map.
