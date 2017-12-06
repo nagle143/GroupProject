@@ -2,7 +2,7 @@ import Monster from './monster.js';
 
 export default class Energizer extends Monster
 {
-    constructor()
+    constructor(x, y, color, level, path)
     {
         super(x, y, color, level);
         this.MHP = 5; //* (level * increase percentage) max health regular health and increase times the level
@@ -30,6 +30,6 @@ export default class Energizer extends Monster
 
     recharge()
     {
-
+        
     }
 }

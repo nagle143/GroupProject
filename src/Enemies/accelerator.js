@@ -2,9 +2,9 @@ import Monster from './monster.js';
 
 export default class Accelerator extends Monster
 {
-    constructor()
+    constructor(x, y, color, level, path)
     {
-        super(x, y, color, level);
+        super(x, y, color, level, path);
         this.MHP = 5; //* (level * increase percentage) max health regular health and increase times the level
         this.CHP = MHP; // current health
         this.MS = (MHP * .2);  // max shield 20% of total health

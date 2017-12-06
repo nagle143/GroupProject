@@ -2,7 +2,7 @@
 //Monster super class
 export defualt class Monster
 {
-    constructor(x, y,color,level)
+    constructor(x, y, color, level, path)
     {
         this.level = level 
         this.x = x;
@@ -18,12 +18,18 @@ export defualt class Monster
         this.bounty = 1;
         this.lives = 0;
         this.statusEffect[] = null;
+        this.ePath[] = null;
+        for (var i = 0; i < path.length; i++)
+        {
+            ePath[i] = path[i];
+        }
     }
 
     update()
     {
         applyStatus(); //see if status effects need to be applied
         march(); // move foward in the path
+        render();
     }
 
     render()
@@ -36,25 +42,31 @@ export defualt class Monster
 
     }
 
-    die(eX, eY, energy) // coded wrong i think energy not by refrence
+    dieByHealth() // tells game if monster needs to be deleted because of death
     {
         if (CHP <= 0 && lives <= 0) // if tower kills monster
         {
-            energy = energy + bounty;// add bounty to energy
             return true// tell game to delete monster
         }
-
         if (CHP <= 0 && lives > 0)
         {
             this.lies = this.lives - 1;
             this.CHP = this.MHP;
             return false;
         }
-        
-        if (eX == this.x && eY == this.y) //if endpoint reached 
+        return false;        
+    }
+
+    reachedEnd(energy) // tells game to kill monster if it reaches the end
+    {
+        if (energy.x == this.x && energy.y == this.y) //if endpoint reached 
         {
-            energy = energy - bounty; // take away energy from player based on bounty
             return true;//delete monster
+        }
+
+        else
+        {
+            return false;
         }
     }
 
@@ -71,33 +83,36 @@ export defualt class Monster
 
 
 
-    ApplyStatus() // not done just coppied some stuff
+    ApplyStatus() //apply effects of status
     {
-        switch (color) {
-            case "red":
-                burn(time);
-                break;
-            case "cyan":
-                slow(time);
-                break;
-            case "yellow":
-                stun(time);
-                break;
-            case "green":
-                shredArmor();
-                break;
-            case "blue":
-                energyGain();
-                break;
-            case "magenta":
-                Charm(time);
-                break;
-            default:
-                break;
+
+        for (var i = 0; i < statusEffect.length; i++) // go through status array to see what needs to be applied
+        {
+            switch (statusEffect[i])
+            {
+                case "red":
+                    burn(time);
+                    break;
+                case "cyan":
+                    slow(time);
+                    break;
+                case "yellow":
+                    stun(time);
+                    break;
+                case "green":
+                    shredArmor();
+                    break;
+                case "blue":
+                    energyGain();
+                    break;
+                case "magenta":
+                    Charm(time);
+                    break;
+                default:
+                    break;
+            }
         }
     }
-
-    // all status effects only apply if shields at 0
 
     burn(time) // damage over time
     {
