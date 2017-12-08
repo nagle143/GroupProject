@@ -16,8 +16,15 @@ export default class Chameleon extends Monster
 
     update()
     {
+        if (this.time = 60)
+        {
+            if (cooldown != 0)
+            {
+                cooldown--;
+            }
+            this.time = 0;
+        }
         colorChange();
-        cooldown--;
         super.update(); // do as all enemies do
     }
 
@@ -53,6 +60,8 @@ export default class Chameleon extends Monster
                     default:
                         break;               
             }
+
+            this.cooldown = 5;
         }
     }
 }

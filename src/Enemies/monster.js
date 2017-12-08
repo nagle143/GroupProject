@@ -17,6 +17,10 @@ export defualt class Monster
         this.armor = 0;
         this.bounty = 1;
         this.lives = 0;
+        this.Time = 0;
+        this.healthScale = .50; // increae health by 50%
+        this.shieldScale = .50; // inccrease shields by 50%
+
         this.statusEffect[] = null;
         this.ePath[] = null;
         for (var i = 0; i < path.length; i++)

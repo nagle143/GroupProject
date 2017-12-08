@@ -10,6 +10,7 @@ export default class Accelerator extends Monster
         this.MS = (MHP * .2);  // max shield 20% of total health
         this.CS = MS; // current shield
         this.armor = 7; // damage reduction
+        this.orgSpeed = 10;
         this.currentSpeed = this.ogSpeed; // current speed
         this.bounty = 8; // * (level * increase percentage) how much you earn
         this.aura = 5; // how big the buff temp
@@ -18,7 +19,6 @@ export default class Accelerator extends Monster
 
     update()
     {
-        speedBoost();// increse speed if in aura for all monster in aura
         super.update(); // do as all enemies do
     }
 
@@ -27,8 +27,4 @@ export default class Accelerator extends Monster
 
     }
 
-    speedBoost()
-    {
-
-    }
 }

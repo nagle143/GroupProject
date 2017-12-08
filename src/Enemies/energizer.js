@@ -12,14 +12,18 @@ export default class Energizer extends Monster
         this.armor = 7; // damage reduction
         this.currentSpeed = this.ogSpeed; // current speed
         this.bounty = 12; // * (level * increase percentage) how much you earn
-        this.SPS = 5; //temp shield gained per second
-        this.aura = 5; // range of radius shield increasing
+        this.SPS = MS * .98; //temp shield gained per second
 
     }
 
     update()
     {
-        recharge();// if in range recharge shields by SPS up to max + 20%
+        if (this.time = 60)
+        {
+            recharge();// recharge shields
+            this.time = 0;
+        }
+        this.time++;
         super.update(); // do as all enemies do
     }
 
@@ -30,6 +34,13 @@ export default class Energizer extends Monster
 
     recharge()
     {
-        
+        if (this.CS < this.MS)
+        {
+            if (this.CS + this.SPS > this.MS)
+            {
+                this.CS = this.MS;
+            }
+            this.CS = this.CS + this.SPS;
+        }
     }
 }

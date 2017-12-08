@@ -12,13 +12,17 @@ export default class NanoBot extends Monster
         this.armor = 7; // damage reduction
         this.currentSpeed = this.ogSpeed; // current speed
         this.bounty = 12; // * (level * increase percentage) how much you earn
-        this.HPS = 5; //temp heals per second
-        this.aura = 5; //temp radius of range of heal
+        this.HPS = MHP * .98; // heal for 2% of max health per second
     }
 
     update()
     {
-        healAura();// if in range of aura heal those inside up to max health 
+        if (this.time = 60)
+        {
+            heal();// heal self
+            this.time = 0;
+        }
+        this.time++;
         super.update(); // do as all enemies do
     }
 
@@ -27,9 +31,16 @@ export default class NanoBot extends Monster
 
     }
 
-    healAura()
+    heal()
     {
-
+        if (this.CHP < this.MHP)
+        {
+            if (this.CHP + this.HPS > this.MHP)
+            {
+                CHP = MHP;
+            }
+            CHP = CHP + HPS;
+        }
     }
 
 }

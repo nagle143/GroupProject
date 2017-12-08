@@ -33,4 +33,6 @@ export default class EMPbot extends Monster
     {
 
     }
+
+    // unused
 }
