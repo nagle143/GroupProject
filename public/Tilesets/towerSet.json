@@ -1,0 +1,12 @@
+{ "columns":8,
+ "image":"towerSet.png",
+ "imageheight":128,
+ "imagewidth":256,
+ "margin":0,
+ "name":"towerSet",
+ "spacing":0,
+ "tilecount":32,
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset"
+}
