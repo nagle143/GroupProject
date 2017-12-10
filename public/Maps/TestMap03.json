@@ -6977,6 +6977,14 @@
         }],
  "nextobjectid":61,
  "orientation":"orthogonal",
+ "properties":
+    {
+     "paths":32
+    },
+ "propertytypes":
+    {
+     "paths":"int"
+    },
  "renderorder":"right-down",
  "templategroups":[],
  "tiledversion":"2017.09.27",
