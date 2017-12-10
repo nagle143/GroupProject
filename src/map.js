@@ -121,8 +121,11 @@ export default class Map {
    *  Renders all the tiles on the map.
    *  @param  {Context} ctx The canvas context for rendering the map.
    */
-  render(ctx) {
+  render(ctx, width, height) {
     let tileIndex, tile, frame;
+
+    ctx.save();
+    ctx.scale(this.mapWidth * this.tileWidth / width, this.mapHeight * this.tileHeight / height);
 
     this.tileLayers.forEach((layer) => {
       if (layer.visible) {
@@ -158,5 +161,8 @@ export default class Map {
         }
       }
     });
+    
+    ctx.scale(width / (this.mapWidth * this.tileWidth), height / (this.mapHeight * this.tileHeight));
+    ctx.restore();
   }
 }
