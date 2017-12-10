@@ -14,8 +14,8 @@ export default class Tileset {
     this.default = new Image();
 
     // Save the tileset's image
-    this.image.src = '../Public/Tilesets/' + tilesetData.image;
-    this.default.src = '../Public/Tilesets/' + tilesetData.image;
+    this.image.src = 'Tilesets/' + tilesetData.image;
+    this.default.src = 'Tilesets/' + tilesetData.image;
 
     // Create tiles from the image
     for(let id = 1; id <= tilesetData.tilecount; id++) {

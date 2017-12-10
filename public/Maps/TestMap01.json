@@ -993,6 +993,14 @@
         }],
  "nextobjectid":8,
  "orientation":"orthogonal",
+ "properties":
+    {
+     "paths":1
+    },
+ "propertytypes":
+    {
+     "paths":"int"
+    },
  "renderorder":"right-down",
  "templategroups":[],
  "tiledversion":"2017.09.27",
