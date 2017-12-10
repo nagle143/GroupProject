@@ -20,7 +20,7 @@ export defualt class Monster
         this.time = 0;
         this.statusTime = 0;
         this.healthScale = .50; // percentage scaling
-        this.healthWidth = 20;
+        this.barWidth = 20;
         this.barHeight = 10;
 
         this.statusEffect[] = null;
