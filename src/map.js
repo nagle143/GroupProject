@@ -67,7 +67,7 @@ export default class Map {
                 obj.points = object.polygon;
                 tx = 0;
                 ty = 0;
-                object.polygon.foreach(point => {
+                object.polygon.forEach(point => {
                   tx += point.x;
                   ty += point.y;
                 });
@@ -129,6 +129,7 @@ export default class Map {
 
     this.tileLayers.forEach((layer) => {
       if (layer.visible) {
+        console.log(layer);
         for(let y = 0; y < this.mapHeight; y++) {
           for(let x = 0; x < this.mapWidth; x++) {
             tileIndex = layer.data[y * this.mapWidth + x];
@@ -137,18 +138,20 @@ export default class Map {
             if(tileIndex === 0)
               continue;
             tile = this.tileset.tiles[tileIndex];
-
             // Don't draw a non-existant image
             if (!tile.image)
               continue;
-            frame = tile.frames[this.animations[tileIndex].frame];
 
+            frame = tile.frames[this.animations[tileIndex].frame];
+            console.log(this.animations[tileIndex]);
+            console.log(frame);
+            console.log(tile.image);
             ctx.drawImage(
               // The source image
               tile.image,
               // The portion of the source image to draw
-              frame.x,
-              frame.y,
+              frame.x * this.tileWidth,
+              frame.y * this.tileHeight,
               this.tileWidth,
               this.tileHeight,
               // Where to draw the tile on-screen
@@ -161,7 +164,7 @@ export default class Map {
         }
       }
     });
-    
+
     ctx.scale(width / (this.mapWidth * this.tileWidth), height / (this.mapHeight * this.tileHeight));
     ctx.restore();
   }

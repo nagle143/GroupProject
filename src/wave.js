@@ -1,6 +1,6 @@
 /* wave.js */
 
-export default class Wave() {
+export default class Wave {
   /** @constructor
    *  Constructs a new wave of units.
    */

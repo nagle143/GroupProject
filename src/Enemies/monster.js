@@ -1,10 +1,10 @@
 
 //Monster super class
-export defualt class Monster
+export default class Monster
 {
     constructor(x, y, color, level, path)
     {
-        this.level = level 
+        this.level = level
         this.x = x;
         this.y = y;
         this.MHP = 1; //max health
@@ -38,7 +38,7 @@ export defualt class Monster
 
     render()
     {
-    
+
     }
 
     march() // move along the path
@@ -58,12 +58,12 @@ export defualt class Monster
             this.CHP = this.MHP;
             return false;
         }
-        return false;        
+        return false;
     }
 
     reachedEnd(energy) // tells game to kill monster if it reaches the end
     {
-        if (energy.x == this.x && energy.y == this.y) //if endpoint reached 
+        if (energy.x == this.x && energy.y == this.y) //if endpoint reached
         {
             return true;//delete monster
         }
@@ -79,7 +79,7 @@ export defualt class Monster
     {
         if (this.CS == 0)
         {
-          statusEffect.push(color);                
+          statusEffect.push(color);
         }
     }
 
@@ -121,7 +121,7 @@ export defualt class Monster
     burn(time) // damage over time
     {
         var damage = CHP * 0.98; // deal 2% of max health
-        //deal this damage based on the time 
+        //deal this damage based on the time
     }
 
     slow(time) // slow based on percentage
@@ -130,7 +130,7 @@ export defualt class Monster
         this.currentSpeed = this.currentSpeed * 0.25; // slow by 25%
     }
 
-    stun(time) // stun 
+    stun(time) // stun
     {
         this.currentSpeed = 0; // stop moving
     }
@@ -150,7 +150,7 @@ export defualt class Monster
 
     }
 
-    
+
 }
 
 

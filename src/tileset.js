@@ -6,7 +6,7 @@ export default class Tileset {
    *  @param  {[type]} tilesetData  The object containing data for the tileset.
    */
   constructor(tilesetData) {
-    let frames = [], tile, id = 1, x;
+    let frames = [], tile, id = 1, x, y;
 
     // Initialize the properties
     this.tiles = [];
@@ -14,41 +14,49 @@ export default class Tileset {
     this.default = new Image();
 
     // Save the tileset's image
-    this.image.src = 'Tilesets/' + tilesetData.image;
-    this.default.src = 'Tilesets/' + tilesetData.image;
+    this.image.src = './Tilesets/' + tilesetData.image;
+    this.default.src = './Tilesets/' + tilesetData.image;
 
     // Create tiles from the image
     for(let id = 1; id <= tilesetData.tilecount; id++) {
+      frames = [];
       tile = toString(id - 1);
       x = (id - 1) % tilesetData.columns;
       y = (id - x - 1) / tilesetData.columns;
 
       // Create the frames for animations, otherwise create single frame for tile
-      if (tilesetData.tiles.hasOwnProperty(tile)) {
-        if (tilesetData.tiles[tile].hasOwnProperty('animation')) {
-          tilesetData.tiles[tile].animation.forEach(frame => {
-            // Get location of frame
-            x = (frame.tileid - 1) % tilesetData.columns;
-            y = (frame.tileid - x - 1) / tilesetData.columns;
+      if(tilesetData.hasOwnProperty('tiles')) {
+        if (tilesetData.tiles.hasOwnProperty(tile)) {
+          if (tilesetData.tiles[tile].hasOwnProperty('animation')) {
+            tilesetData.tiles[tile].animation.forEach(frame => {
+              // Get location of frame
+              x = (frame.tileid - 1) % tilesetData.columns;
+              y = (frame.tileid - x - 1) / tilesetData.columns;
 
-            // Add frame to animation
-            frames.push({
-              dur: frame.duration,
-              x: x,
-              y: y
+              // Add frame to animation
+              frames.push({
+                dur: frame.duration,
+                x: x,
+                y: y
+              });
             });
-          });
+          } else
+            frames.push({dur: 0, x: x, y: y});
         } else
           frames.push({dur: 0, x: x, y: y});
-      } else
+      }
+      else
         frames.push({dur: 0, x: x, y: y});
-
       this.tiles[id] = {
         image: this.image,
         default: this.default,
         frames: frames
       };
     }
+  }
+
+  load() {
+
   }
 
   /** @function reset

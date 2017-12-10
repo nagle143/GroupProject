@@ -30,7 +30,7 @@ export default class Tower {
   * @param {string} color - the name of the color to be initialized, can be null
   * Notes - struct or color can be null, but not both. Color should R,G, or Blue but can support any color
   */
-  constructor(x, y, struct, color) {
+  constructor(x, y, struct, color, width, height) {
     this.x = x;
     this.y = y;
     this.color = null;
@@ -39,6 +39,8 @@ export default class Tower {
     this.projectiles = [];
     //Rate of fire variable, will be calculated later
     this.rate = 0.0;
+    this.width = width;
+    this.height = height;
     //Only initialzes the ones that are not null
     if(color) {
       this.addColor(color);
