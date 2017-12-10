@@ -1,12 +1,15 @@
-import Maps from './maps.js';
-//Import monster subclasses
 
+import Tileset from './tileset.js';
+import Maps from './maps.js';
 import Tower from './Tower/tower.js';
 import Color from './Tower/colorComponents.js';
 import Powers from './powers.js';
 import Energy from './energy.js';
 import Building from './building.js';
 import Monster from './Enemies/monster.js';
+import Wave from './wave.js';
+
+/* Math Modifications */
 
 /** @function Math.randomBetween()
   * Math prototype function built to easily create ranom floats
@@ -28,10 +31,11 @@ Math.randomInt = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-
+/* Game Class */
 
 export default class Game {
   constructor() {
+
     this.activePowers = [];
     this.powers = ["Bombardment, Nanites, Freeze"];
     this.powerTimers = [600, 2400, 1200];
