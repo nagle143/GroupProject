@@ -2,14 +2,14 @@ import Monster from './monster.js';
 
 export default class Chameleon extends Monster
 {
-    constructor(x, y, color, level, path)
+    constructor(x, y, color, level, path, tileset)
     {
-        super(x, y, color, level, path);
+        super(x, y, color, level, path, tileset);
         this.MHP = 30 + (this.healthScale * this.level);
         this.CHP = MHP; // current health
         this.armor = 7; // damage reduction
         this.currentSpeed = this.ogSpeed; // current speed
-        this.bounty = 15; // * (level * increase percentage) how much you earn
+        this.bounty = 15 + (this.level * bountyScale);
         this.originalColor = Monster.color;
         this.cooldown = 5; // temp time before next change;
     }
@@ -26,11 +26,6 @@ export default class Chameleon extends Monster
         }
         colorChange();
         super.update(); // do as all enemies do
-    }
-
-    render()
-    {
-
     }
 
     colorChange() // if cooldown done change to next color

@@ -2,16 +2,16 @@ import Monster from './monster.js';
 
 export default class Energizer extends Monster
 {
-    constructor(x, y, color, level, path)
+    constructor(x, y, color, level, path, tileset)
     {
-        super(x, y, color, level);
+        super(x, y, color, level, tileset);
         this.MHP = 5 + (this.healthScale * this.level);
         this.CHP = MHP; // current health
         this.MS = (MHP * 2);  // max shield 200% of total health
         this.CS = MS; // current shield
         this.armor = 7; // damage reduction
         this.currentSpeed = this.ogSpeed; // current speed
-        this.bounty = 12; // * (level * increase percentage) how much you earn
+        this.bounty = 12 + (this.level * bountyScale);
         this.SPS = MS * .98; //temp shield gained per second
 
     }
@@ -25,11 +25,6 @@ export default class Energizer extends Monster
         }
         this.time++;
         super.update(); // do as all enemies do
-    }
-
-    render()
-    {
-
     }
 
     recharge()

@@ -2,7 +2,7 @@
 //Monster super class
 export defualt class Monster
 {
-    constructor(x, y, color, level, path)
+    constructor(x, y, color, level, path,tileset)
     {
         this.level = level 
         this.x = x;
@@ -24,6 +24,11 @@ export defualt class Monster
         this.barHeight = 10;
         this.energyEarned = 0;
         this.direction = "forward";
+        this.tileset = tileset;
+        this.tileIndex = 0;
+        this.frameIndex = 0;
+        this.lastPoint = 0;
+        this.nextPoint = 1;
 
         this.statusEffect = [];
         this.ePath = [];
@@ -40,29 +45,86 @@ export defualt class Monster
         render();
     }
   
-    render(ctx)
+    render(ctx,scaleWidth, scaleHeight)
     {
-      //render sprite
-        
+        ctx.save();
+        //render sprite
+        ctx.scale(scaleWidth, scaleHeight);
+        var tile = this.tileset.tiles[this.tileIndex];
+        var frame = tile.frames[frameIndex];
+        ctx.drawImage(tile.image, frame.x, frame.y, this.tileset.tileWidth, this.tileset.tileHeight, this.x - (this.tileset.tileWidth/2),this.y - (7 * this.tileset.tileHeight/8));
+
+
+        ctx.scale(1 / scaleWidth, 1 / scaleHeight);
+        ctx.restore();
 
 
 
 
       //health bars
-      ctx.save();
       ctx.fillStyle = 'red';
-      ctx.strokeRect(this.x, this.y + 20, this.barWidth * (this.CHP/this.MHP), this.barHeight);
-      ctx.fillRect(this.x, this.y + 20, this.barWidth * (this.CHP / this.MHP), this.barHeight);
+      ctx.strokeRect(this.x, this.y + 10, this.barWidth * (this.CHP/this.MHP), this.barHeight);
+      ctx.fillRect(this.x, this.y + 10, this.barWidth * (this.CHP / this.MHP), this.barHeight);
       ctx.fillStyle = 'blue';
-      ctx.fillRect(this.x, this.y + 30, this.barWidth * (this.CS / this.MS), this.barHeight);
-      ctx.strokeRect(this.x, this.y + 30, this.barWidth * (this.CS / this.MS), this.barHeight);
+      ctx.fillRect(this.x, this.y + 20, this.barWidth * (this.CS / this.MS), this.barHeight);
+      ctx.strokeRect(this.x, this.y + 20, this.barWidth * (this.CS / this.MS), this.barHeight);
       ctx.restore();
         }
     
 
     march(path) // move along the path
     {
-        var direction = Math.getDirection(this.x,this.y,path[i].x,path[i].y) 
+        /**
+        if (direction == "forward")
+        {
+            if (this.x < ePath[nextPoint].x && this.y == ePath[nextPoint].y) // the next point is to the right of the monster
+            {
+                this.x++;
+            }
+            if (this.x > ePath[nextPoint].x && this.y == ePath[nextPoint].y) // the next point is to the left of the monster
+            {
+                this.x--;
+            }
+            if (this.y > ePath[nextPoint].y && this.x == ePath[nextPoint].x) // the next point is below of the monster
+            {
+                this.y--;
+            }
+            if (this.x > ePath[nextPoint].x && this.x == ePath[nextPoint].x) // the next point is above the monster
+            {
+                this.y++;
+            }
+        }
+        else
+        {
+            if (this.x < ePath[nextPoint].x && this.y == ePath[nextPoint].y) // the next point is to the right of the monster
+            {
+                this.x--;
+            }
+            if (this.x > ePath[nextPoint].x && this.y == ePath[nextPoint].y) // the next point is to the left of the monster
+            {
+                this.x++;
+            }
+            if (this.y > ePath[nextPoint].y && this.x == ePath[nextPoint].x) // the next point is below of the monster
+            {
+                this.y++;
+            }
+            if (this.x > ePath[nextPoint].x && this.x == ePath[nextPoint].x) // the next point is above the monster
+            {
+                this.x--;
+            }
+        }
+        if (this.y == ePath[nextPoint].y && this.x == ePath[nextPoint].x)
+        {
+            nextPoint++
+            lastPoint++;
+        }
+        if (this.y == ePath[lastPoint].y && this.x == ePath[lastPoint].x)
+        {
+            nextPoint--
+            lastPoint--;
+        }
+        **/
+       // var direction = Math.getDirection(this.x,this.y,path[i].x,path[i].y) 
     }
 
     dieByHealth() // tells game if monster needs to be deleted because of death
@@ -112,7 +174,16 @@ export defualt class Monster
             }
             else
             {
+                if (projectile.color == "green" && this.armor == 0)
+                {
+                    return false; // no need to get rid of armor
+                }
+                else
+                {
                     statusEffect.push(projectile);
+                    return true;
+                }
+
             }
             return true; // pushed status
         }
@@ -188,6 +259,8 @@ export defualt class Monster
             this.CHP = this.CHP - base;
             return true;
         }
+        if (time % 60 == 0)
+            this.CHP = this.CHP - base;
         return false;
     }
 
@@ -198,7 +271,7 @@ export defualt class Monster
             this.currentSpeed = this.ogSpeed;
             return true;
         }
-        this.currentSpeed = this.currentSpeed * base; // slow by 25%
+        this.currentSpeed = this.ogSpeed * base; 
         return false;
     }
 
@@ -218,7 +291,9 @@ export defualt class Monster
         {
             return true;           
         }
-        this.armor = (1 - base) * this.armor;
+        if (time % 60 == 0)
+            this.armor = (1 - base) * this.armor;
+        return false;
 
     }
 

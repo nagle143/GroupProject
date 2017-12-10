@@ -2,9 +2,9 @@ import Monster from './monster.js';
 
 export default class NanoBot extends Monster
 {
-    constructor(x, y, color, level, path)
+    constructor(x, y, color, level, path, tileset)
     {
-        super(x, y, color, level, path);
+        super(x, y, color, level, path, tileset);
         this.MHP = 20 + (this.healthScale * this.level);
         this.CHP = MHP; // current health
         this.MS = (MHP *.2);  // max shield 20% of total health
@@ -25,12 +25,6 @@ export default class NanoBot extends Monster
         this.time++;
         super.update(); // do as all enemies do
     }
-
-    render()
-    {
-
-    }
-
     heal()
     {
         if (this.CHP < this.MHP)

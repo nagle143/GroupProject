@@ -2,9 +2,9 @@ import Monster from './monster.js';
 
 export default class Reformer extends Monster
 {
-    constructor(x, y, color, level, path)
+    constructor(x, y, color, level, path, tileset)
     {
-        super(x, y, color, level, path);
+        super(x, y, color, level, path, tileset);
         this.MHP = 10 + (this.healthScale * this.level);
         this.CHP = MHP; // current health
         this.armor = 5; // damage reduction
@@ -17,12 +17,5 @@ export default class Reformer extends Monster
     {
         super.update(); // do as all enemies do
     }
-
-    render()
-    {
-
-    }
-
-    
 
 }
