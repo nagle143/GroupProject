@@ -5,7 +5,7 @@ export default class Accelerator extends Monster
     constructor(x, y, color, level, path)
     {
         super(x, y, color, level, path);
-        this.MHP = 5; //* (level * increase percentage) max health regular health and increase times the level
+        this.MHP = 5 + (this.healthScale * this.level);
         this.CHP = MHP; // current health
         this.MS = (MHP * .2);  // max shield 20% of total health
         this.CS = MS; // current shield
@@ -13,8 +13,6 @@ export default class Accelerator extends Monster
         this.orgSpeed = 10;
         this.currentSpeed = this.ogSpeed; // current speed
         this.bounty = 8; // * (level * increase percentage) how much you earn
-        this.aura = 5; // how big the buff temp
-        this.buffSpeed = 5;// extra speed
     }
 
     update()

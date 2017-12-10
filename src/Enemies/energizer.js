@@ -5,7 +5,7 @@ export default class Energizer extends Monster
     constructor(x, y, color, level, path)
     {
         super(x, y, color, level);
-        this.MHP = 5; //* (level * increase percentage) max health regular health and increase times the level
+        this.MHP = 5 + (this.healthScale * this.level);
         this.CHP = MHP; // current health
         this.MS = (MHP * 2);  // max shield 200% of total health
         this.CS = MS; // current shield

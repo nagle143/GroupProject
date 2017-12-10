@@ -17,9 +17,11 @@ export defualt class Monster
         this.armor = 0;
         this.bounty = 1;
         this.lives = 0;
-        this.Time = 0;
-        this.healthScale = .50; // increae health by 50%
-        this.shieldScale = .50; // inccrease shields by 50%
+        this.time = 0;
+        this.statusTime = 0;
+        this.healthScale = .50; // percentage scaling
+        this.healthWidth = 20;
+        this.barHeight = 10;
 
         this.statusEffect[] = null;
         this.ePath[] = null;
@@ -38,7 +40,14 @@ export defualt class Monster
 
     render()
     {
-    
+        render(ctx)
+        {
+            ctx.save();
+            ctx.fillStyle = 'red';
+            ctx.fillRect(this.x, this.y + 20, this.barWidth, this.barHeight);
+            ctx.strokeRect(this.x, this.y + 20, this.barWidth, this.barHeight);
+            ctx.restore();
+        }
     }
 
     march() // move along the path
@@ -75,11 +84,11 @@ export defualt class Monster
     }
 
 
-    status(color) // handles status effects from tower // this is wrong need to fix
+    status(projectile) // handles status effects from tower // this is wrong need to fix
     {
         if (this.CS == 0)
         {
-          statusEffect.push(color);                
+            statusEffect.push(projectile);                
         }
     }
 
@@ -92,46 +101,81 @@ export defualt class Monster
 
         for (var i = 0; i < statusEffect.length; i++) // go through status array to see what needs to be applied
         {
-            switch (statusEffect[i])
+            switch (statusEffect[i].color)
             {
                 case "red":
-                    burn(time);
+                    if (burn(statusEffect[i].time) == true)
+                    {
+                        statusEffect.slice(i, 1);
+                    }
                     break;
                 case "cyan":
-                    slow(time);
+                    if (slow(statusEffect[i].time) == true)
+                    {
+                        statusEffect.slice(i, 1);
+                    }
                     break;
                 case "yellow":
-                    stun(time);
+                    if(stun(statusEffect[i].time))
+                    {
+                        statusEffect.slice(i, 1);
+                    }
                     break;
                 case "green":
                     shredArmor();
+                    statusEffect.slice(i, 1);
                     break;
                 case "blue":
-                    energyGain();
+                    if (energyGain() == true)
+                    {
+                        statusEffect.slice(i, 1);
+                    }
                     break;
                 case "magenta":
-                    Charm(time);
+                    if(Charm(statusEffect[i].time) == true)
+                    {
+                        statusEffect.slice(i, 1);
+                    }
                     break;
                 default:
                     break;
             }
+
+
         }
     }
 
     burn(time) // damage over time
     {
-        var damage = CHP * 0.98; // deal 2% of max health
-        //deal this damage based on the time 
+        if (time >= (2 * 60))
+        {
+            
+            var damage = CHP * 0.98; // deal 2% of max health
+            if (damage < 1) damage = 1;
+            this.CHP = this.CHP - damage;
+            return true;
+        }
+        return false;
     }
 
-    slow(time) // slow based on percentage
-    {
-
+    slow(time) // slow based on percentage for 3 seconds
+    {   
+        if (time >= (3 * 60))
+        {
+            this.currentSpeed = this.ogSpeed;
+            return true;
+        }
         this.currentSpeed = this.currentSpeed * 0.25; // slow by 25%
+        return false;
     }
 
-    stun(time) // stun 
+    stun(time) // stun for 2 seconds
     {
+        if (time >= (2 * 60))
+        {
+            this.currentSpeed = this.ogSpeed;
+            return true;
+        }
         this.currentSpeed = 0; // stop moving
     }
 
@@ -148,9 +192,7 @@ export defualt class Monster
     Charm(time) // walk backwards in path
     {
 
-    }
-
-    
+    }    
 }
 
 

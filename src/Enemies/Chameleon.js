@@ -5,7 +5,7 @@ export default class Chameleon extends Monster
     constructor(x, y, color, level, path)
     {
         super(x, y, color, level, path);
-        this.MHP = 30; //* (level * increase percentage) max health regular health and increase times the level
+        this.MHP = 30 + (this.healthScale * this.level);
         this.CHP = MHP; // current health
         this.armor = 7; // damage reduction
         this.currentSpeed = this.ogSpeed; // current speed

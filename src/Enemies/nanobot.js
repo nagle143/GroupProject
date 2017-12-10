@@ -5,7 +5,7 @@ export default class NanoBot extends Monster
     constructor(x, y, color, level, path)
     {
         super(x, y, color, level, path);
-        this.MHP = 20; //* (level * increase percentage) max health regular health and increase times the level
+        this.MHP = 20 + (this.healthScale * this.level);
         this.CHP = MHP; // current health
         this.MS = (MHP *.2);  // max shield 20% of total health
         this.CS = MS; // current shield
