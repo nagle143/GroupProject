@@ -5,15 +5,27 @@ export default class Tileset {
    *  Constructs a new tileset.
    *  @param  {[type]} tilesetData  The object containing data for the tileset.
    */
-  constructor(tilesetData) {
+  constructor() {
+    // Initialize the properties
+    this.tiles;
+    this.tileWidth;
+    this.tileHeight;
+    this.image;
+    this.default;
+  }
+
+  load(tilesetData, fun) {
     let frames = [], tile, id = 1, x, y;
 
-    // Initialize the properties
     this.tiles = [];
-    this.image = new Image();
-    this.default = new Image();
     this.tileWidth = tilesetData.tilewidth;
     this.tileHeight = tilesetData.tileheight;
+
+    this.image = new Image();
+    this.default = new Image();
+
+    this.image.onload = fun;
+    this.default.onload = fun;
 
     // Save the tileset's image
     this.image.src = './Tilesets/' + tilesetData.image;
@@ -55,10 +67,6 @@ export default class Tileset {
         frames: frames
       };
     }
-  }
-
-  load() {
-
   }
 
   /** @function reset
