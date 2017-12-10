@@ -5,16 +5,7 @@ export default class Tileset {
    *  Constructs a new tileset.
    *  @param  {[type]} tilesetData  The object containing data for the tileset.
    */
-  constructor() {
-    // Initialize the properties
-    this.tiles;
-    this.tileWidth;
-    this.tileHeight;
-    this.image;
-    this.default;
-  }
-
-  load(tilesetData, fun) {
+  constructor(tilesetData, fun) {
     let frames = [], tile, id = 1, x, y;
 
     this.tiles = [];
