@@ -1,14 +1,13 @@
 //Projectile super class
 
 export default class Projectile {
-  constructor(x, y, damage, direction, range, color, target, special, dominance) {
+  constructor(x, y, damage, direction, range, color, target, special) {
     this.x = x;
     this.y = y;
     this.direction = direction;
     this.damage = damage;
     this.range = range;
     this.color = color;
-    this.dominance = dominance;
     this.special = special;
     this.radius = 10;
     this.mag = 5;

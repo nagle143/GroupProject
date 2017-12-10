@@ -1,6 +1,8 @@
 
 import Tileset from './tileset.js';
+import tilesetFiles from 'Tilesets/index.js';
 import Maps from './maps.js';
+import mapFiles from 'Maps/index.js';
 import Tower from './Tower/tower.js';
 import Color from './Tower/colorComponents.js';
 import Powers from './powers.js';
@@ -8,6 +10,15 @@ import Energy from './energy.js';
 import Building from './building.js';
 import Monster from './Enemies/monster.js';
 import Wave from './wave.js';
+
+//Import Projectiles
+import Plasma from './Projectiles/plasma.js';
+import Grenade from './Projectiles/grenade.js';
+import Rail from './Projectiles/rail.js';
+import Light from './Projectiles/light.js';
+import AOE from './Projectiles/aoe.js';
+import Beam from './Projectiles/beam.js';
+import ChainShot from './Projectiles/chainshot.js';
 
 /* Math Modifications */
 
@@ -21,7 +32,7 @@ Math.randomBetween = function (min, max) {
   return Math.random() * (max - min) + min;
 };
 
-/** @function Math.randomBetween()
+/** @function Math.randomInt()
   * Math prototype function built to easily create ranom integers
   * @param float min - the lowest number you want
   * @param float max - the highest number you want (I beleive it is non-inclusive)
@@ -36,65 +47,20 @@ Math.randomInt = function (min, max) {
 export default class Game {
   constructor() {
 
+    //Still testing these power variables
     this.activePowers = [];
     this.powers = ["Bombardment, Nanites, Freeze"];
     this.powerTimers = [600, 2400, 1200];
+    //This is the energy objects, needs the location from the map
     this.energy = new Energy(900, 900, 500);
+    //All of the Tower objects
     this.towers = [];
-    this.towers.push(new Tower(500, 500, null, 'green'));
-    this.towers[0].addStruct("Launcher");
-    this.towers.push(new Tower(500, 700, null, 'red'));
-    this.towers[1].addStruct("PlasmaGun");
-    this.towers[1].color.combine(this.towers[1].color);
-    this.towers[1].color.combine(this.towers[1].color);
-    this.towers[1].color.combine(this.towers[1].color);
-    this.towers[1].color.combine(this.towers[1].color);
-    this.towers[1].upgrade();
-    this.towers[1].upgrade();
-    this.towers[1].upgrade();
-    this.towers[1].upgrade();
-    this.towers[1].upgrade();
-    this.towers[1].upgrade();
-    this.towers[1].upgrade();
-    this.towers.push(new Tower(600, 500, null, 'cyan'));
-    this.towers[2].addStruct("RailGun");
-    this.towers.push(new Tower(400, 500, null, 'yellow'));
-    this.towers[3].addStruct("LightGun");
-    this.towers[3].color.combine(this.towers[3].color);
-    this.towers[3].color.combine(this.towers[3].color);
-    this.towers[3].color.combine(this.towers[3].color);
-    this.towers[3].color.combine(this.towers[3].color);
-    this.towers[3].color.combine(this.towers[3].color);
-    this.towers[3].color.combine(this.towers[3].color);
-    this.towers.push(new Tower(600, 550, "Pulse", null));
-    this.towers[4].addColor("magenta");
-    this.towers[4].color.combine(this.towers[4].color);
-    this.towers[4].color.combine(this.towers[4].color);
-    this.towers[4].color.combine(this.towers[4].color);
-    this.towers[4].color.combine(this.towers[4].color);
-    this.towers[4].color.combine(this.towers[4].color);
-    this.towers.push(new Tower(400, 550, "Multishot", null));
-    this.towers[5].addColor("blue");
-    this.towers[5].upgrade();
-    this.towers[5].upgrade();
-    this.towers[5].upgrade();
-    this.towers[5].upgrade();
-    this.towers[5].upgrade();
-    this.towers[5].upgrade();
-    this.towers.push(new Tower(400, 450, "Chain", null));
-    this.towers[6].addColor("white");
-    this.towers[6].upgrade();
-    this.towers[6].upgrade();
-    this.towers[6].upgrade();
-    this.towers[6].upgrade();
-    this.towers[6].upgrade();
-    this.monsters =[];
-    this.monsters.push(new Monster(800, 600));
-    this.monsters.push(new Monster(900, 450));
-    this.monsters.push(new Monster(800, 400));
-    this.monsters.push(new Monster(900, 750));
+    //Sotres all the currently rendered projectiles
+    this.projectiles = [];
+    this.nextWave = new Wave();
+    this.currWave = new Wave();
+    this.maps = [];
 
-    console.log(this.towers);
 
     //Back Buffer
     this.backBufferCanvas = document.getElementById("canvas");
@@ -190,6 +156,14 @@ export default class Game {
     }
   }
 
+  createTilesets(file) {
+    return new Tileset(JSON.parse(file));
+  }
+
+  createMaps(file, tileset) {
+    return new Map(JSON.parse(file), tileset);
+  }
+
   update() {
     this.energy.update();
 
@@ -247,6 +221,7 @@ export default class Game {
     this.towers.forEach(tower => {
       if(tower.targets.length > 0) {
         this.createProjectile(tower);
+      }
     });
   }
 

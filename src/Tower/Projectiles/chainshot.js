@@ -1,8 +1,8 @@
 import Projectile from './projectile.js';
 
 export default class ChainShot extends Projectile {
-  constructor(x, y, damage, direction, range, color,  target, special, dominance) {
-    super(x, y, damage, direction, range, color,  target, special, dominance);
+  constructor(x, y, damage, direction, range, color,  target, special) {
+    super(x, y, damage, direction, range, color,  target, special);
     this.life = 150;
     this.mag = 5;
     super.initSpeed();
