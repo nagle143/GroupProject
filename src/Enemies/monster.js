@@ -22,9 +22,11 @@ export defualt class Monster
         this.healthScale = .50; // percentage scaling
         this.barWidth = 20;
         this.barHeight = 10;
+        this.energyEarned = 0;
+        this.direction = "forward";
 
-        this.statusEffect[] = null;
-        this.ePath[] = null;
+        this.statusEffect = [];
+        this.ePath = [];
         for (var i = 0; i < path.length; i++)
         {
             ePath[i] = path[i];
@@ -34,25 +36,33 @@ export defualt class Monster
     update()
     {
         applyStatus(); //see if status effects need to be applied
-        march(); // move foward in the path
+        march(path); // move foward in the path
         render();
     }
-
-    render()
+  
+    render(ctx)
     {
-        render(ctx)
-        {
-            ctx.save();
-            ctx.fillStyle = 'red';
-            ctx.fillRect(this.x, this.y + 20, this.barWidth, this.barHeight);
-            ctx.strokeRect(this.x, this.y + 20, this.barWidth, this.barHeight);
-            ctx.restore();
+      //render sprite
+        
+
+
+
+
+      //health bars
+      ctx.save();
+      ctx.fillStyle = 'red';
+      ctx.strokeRect(this.x, this.y + 20, this.barWidth * (this.CHP/this.MHP), this.barHeight);
+      ctx.fillRect(this.x, this.y + 20, this.barWidth * (this.CHP / this.MHP), this.barHeight);
+      ctx.fillStyle = 'blue';
+      ctx.fillRect(this.x, this.y + 30, this.barWidth * (this.CS / this.MS), this.barHeight);
+      ctx.strokeRect(this.x, this.y + 30, this.barWidth * (this.CS / this.MS), this.barHeight);
+      ctx.restore();
         }
-    }
+    
 
-    march() // move along the path
+    march(path) // move along the path
     {
-
+        var direction = Math.getDirection(this.x,this.y,path[i].x,path[i].y) 
     }
 
     dieByHealth() // tells game if monster needs to be deleted because of death
@@ -88,9 +98,27 @@ export defualt class Monster
     {
         if (this.CS == 0)
         {
-            statusEffect.push(projectile);                
+            for (var i = 0; i < statusEffect.length; i++) // check for repeats
+            {
+                if (statusEffect[i] == projectile.color)
+                {
+                    return false // has a repeat
+                }
+            }                     
+            if (projectile.color == "magenta")
+            {
+              if ((Math.floor(Math.random() * 5) + 1) == 1) // 20% chance of succses if magenta
+                 statusEffect.push(projectile);
+            }
+            else
+            {
+                    statusEffect.push(projectile);
+            }
+            return true; // pushed status
         }
+        return false;         
     }
+    
 
 
 
@@ -104,34 +132,42 @@ export defualt class Monster
             switch (statusEffect[i].color)
             {
                 case "red":
-                    if (burn(statusEffect[i].time) == true)
+                    statusEffect[i].time--;
+                    if (burn(statusEffect[i].time, statusEffect[i].base) == true)
                     {
                         statusEffect.slice(i, 1);
                     }
                     break;
                 case "cyan":
-                    if (slow(statusEffect[i].time) == true)
+                    statusEffect[i].time--;
+                    if (slow(statusEffect[i].time, statusEffect[i].base) == true)
                     {
                         statusEffect.slice(i, 1);
                     }
                     break;
                 case "yellow":
+                    statusEffect[i].time--;
                     if(stun(statusEffect[i].time))
                     {
                         statusEffect.slice(i, 1);
                     }
                     break;
-                case "green":
-                    shredArmor();
-                    statusEffect.slice(i, 1);
-                    break;
                 case "blue":
-                    if (energyGain() == true)
+                    statusEffect[i].time--;
+                    if (energyGain(statusEffect[i].base,60) == true)
+                    {
+                        statusEffect.slice(i, 1);
+                    }
+                    break;
+                case "green":
+                    statusEffect[i].time--;
+                    if (shredArmor(, statusEffect[i].time, statusEffect[i].base) == true)
                     {
                         statusEffect.slice(i, 1);
                     }
                     break;
                 case "magenta":
+                    statusEffect[i].time--;
                     if(Charm(statusEffect[i].time) == true)
                     {
                         statusEffect.slice(i, 1);
@@ -145,33 +181,30 @@ export defualt class Monster
         }
     }
 
-    burn(time) // damage over time
+    burn(time,base) // damage over time
     {
-        if (time >= (2 * 60))
+        if (time <= 0)
         {
-            
-            var damage = CHP * 0.98; // deal 2% of max health
-            if (damage < 1) damage = 1;
-            this.CHP = this.CHP - damage;
+            this.CHP = this.CHP - base;
             return true;
         }
         return false;
     }
 
-    slow(time) // slow based on percentage for 3 seconds
+    slow(time,base) // slow based on percentage for 3 seconds
     {   
-        if (time >= (3 * 60))
+        if (time <= 0)
         {
             this.currentSpeed = this.ogSpeed;
             return true;
         }
-        this.currentSpeed = this.currentSpeed * 0.25; // slow by 25%
+        this.currentSpeed = this.currentSpeed * base; // slow by 25%
         return false;
     }
 
     stun(time) // stun for 2 seconds
     {
-        if (time >= (2 * 60))
+        if (time <= 0)
         {
             this.currentSpeed = this.ogSpeed;
             return true;
@@ -179,20 +212,54 @@ export defualt class Monster
         this.currentSpeed = 0; // stop moving
     }
 
-    shredArmor() // destroy armor
+    shredArmor(time,base) // destroy armor
     {
-        this.armor = this.armor * 0.90; // destroys 10 % of armor
+        if (time <= 0)
+        {
+            return true;           
+        }
+        this.armor = (1 - base) * this.armor;
+
     }
 
-    energyGain() // gain more money based on a dot
+    energyGain(base,time) // gain more money based on a dot
     {
+        if (time >= (1 * 60))
+        {
+            if (Math.floor(MHP * (1-base)) < 1)
+            {
+                energyEarned = energyEarned + 1;
+            }
+            else
+            {
+                energyEarned = energyEarned + Math.floor(MHP * .98);
+            }
+        }
+        else
+        {            
+            return false;
+        }
 
     }
 
     Charm(time) // walk backwards in path
     {
-
+        if (time <= 0)
+        {
+            this.direction = "forward";
+            return true;
+        }
+        this.direction = "reverse";
+        return false;
+       
     }    
+
+    giveEnergy()
+    {
+        var give = this.energyEarned;
+        energyEarned = 0;
+        return give;
+    }
 }
 
 
