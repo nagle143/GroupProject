@@ -1,8 +1,8 @@
 import Projectile from './projectile.js';
 
 export default class Beam extends Projectile {
-  constructor(x, y, damage, direction, range, color, target) {
-    super(x, y, damage, direction, range, color, target);
+  constructor(x, y, damage, direction, range, color, target, special) {
+    super(x, y, damage, direction, range, color, target, special);
     this.target = target;
     this.opacity = 0.70;
   }

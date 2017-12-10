@@ -1,10 +1,10 @@
 import Projectile from './projectile.js';
 
-export default class Chain extends Projectile {
-  constructor(x, y, damage, direction, range, color,  target) {
-    super(x, y, damage, direction, range, color,  target);
+export default class ChainShot extends Projectile {
+  constructor(x, y, damage, direction, range, color,  target, special) {
+    super(x, y, damage, direction, range, color,  target, special);
     this.life = 150;
-    this.mag = 3;
+    this.mag = 5;
     super.initSpeed();
     this.target = target;
   }
@@ -28,6 +28,11 @@ export default class Chain extends Projectile {
   update() {
     this.seek();
     super.update();
+    this.life--;
+    if(this.life <= 0) {
+      return true;
+    }
+    return false;
   }
 
   render(ctx) {
