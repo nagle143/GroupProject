@@ -12,6 +12,8 @@ export default class Tileset {
     this.tiles = [];
     this.image = new Image();
     this.default = new Image();
+    this.tileWidth = tilesetData.tilewidth;
+    this.tileHeight = tilesetData.tileheight;
 
     // Save the tileset's image
     this.image.src = './Tilesets/' + tilesetData.image;
