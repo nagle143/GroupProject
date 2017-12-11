@@ -64,15 +64,14 @@ export default class Game {
     // Create the tilesets used by the other assets
     this.tilesets = [];
     tilesetFiles.forEach(file => {
-      console.log(file);
-      this.tilesets.push(new Tileset(file));
+      this.tilesets.push(new Tileset());
     });
     this.bool=true;
-    this. ButtonsRec={x:560,y:580,width:140,height:120};
-    this. inventoryRec={x:566,y:184,width:126,height:224}
-    this. firstCombineSlot={x:570 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot1',gemId:null};
-    this. secondCombineSlot={x:610 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot2',gemId:null};
-    this. initialX=null;
+    this.ButtonsRec={x:560,y:580,width:140,height:120};
+    this.inventoryRec={x:566,y:184,width:126,height:224}
+    this.firstCombineSlot={x:570 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot1',gemId:null};
+    this.secondCombineSlot={x:610 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot2',gemId:null};
+    this.initialX=null;
     this.initialY=null;
     //console.log(this.tilesets);
 
@@ -95,9 +94,6 @@ export default class Game {
     this.GemInventory = [];
     //Sotres all the currently rendered projectiles
     this.projectiles = [];
-    console.log(mapFiles);
-    this.map = new Map(mapFiles[0], this.tilesets[2]);
-    this.energy = new Energy(this.map.target.cx, this.map.target.cy, 900);
     this.nextWave = new Wave();
     this.currWave = new Wave();
 
@@ -117,8 +113,8 @@ export default class Game {
     //Binders
     this.loop = this.loop.bind(this);
     this.render = this.render.bind(this);
+    this.setup = this.setup.bind(this);
     //60fps
-    this.interval = setInterval(this.loop, 1000/60);
     //this.createInv(7,4,17,17,0,570,170);
   }
 ///creating gems functions
@@ -419,8 +415,26 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
     }
   }
 
-  createMap(file, tileset) {
-    return new Map(JSON.parse(file), tileset);
+  loadImages() {
+    var loading = this.tilesets.length;
+    var fun = function(setup) {
+      loading--;
+      console.log(loading);
+      if (!loading) {
+        alert('loaded');
+        setup();
+      }
+    }
+
+    for (let i = 0; i < this.tilesets.length; i++) {
+      this.tilesets[i].load(tilesetFiles[i], fun(this.setup));
+    }
+  }
+
+  setup() {
+    this.map = new Map(mapFiles[0], this.tilesets[2]);
+    this.energy = new Energy(this.map.target.cx, this.map.target.cy, 900);
+    this.interval = setInterval(this.loop, 1000/60);
   }
 
   update() {
@@ -579,6 +593,7 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
     //console.log(this.tilesets[2].image);
     this.backBufferContext.fillStyle = 'green';
     this.backBufferContext.fillRect(0, 0, 1000, 1000);
+    console.log(this.tilesets[2].image);
     this.backBufferContext.drawImage(this.tilesets[2].image, 0, 0);
     //this.map.render(this.backBufferContext, 1000, 1000);
     /*this.activePowers.forEach(power => {
