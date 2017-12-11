@@ -19,7 +19,7 @@ import Light from './Tower/Projectiles/light.js';
 import AOE from './Tower/Projectiles/aoe.js';
 import Beam from './Tower/Projectiles/beam.js';
 import ChainShot from './Tower/Projectiles/chainshot.js';
-//import {} from './Tilesets/tileSet01.png';
+import Test from './Tilesets/tileSet01.png';
 
 /* Math Modifications */
 
@@ -43,8 +43,8 @@ Math.randomInt = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-/** @function Math.
-*
+/** @function Math.getDirection
+* Function to get a direction between one object and another
 */
 Math.getDirection = function(x, y, x2, y2) {
   let dx = x - x2;
@@ -61,21 +61,15 @@ Math.getDirection = function(x, y, x2, y2) {
 
 export default class Game {
   constructor() {
-    // Create the tilesets used by the other assets
-    this.tilesets = [];
-    tilesetFiles.forEach(file => {
-      console.log(file);
-      this.tilesets.push(new Tileset(file));
-    });
-    this.bool=true;
-    this. ButtonsRec={x:560,y:580,width:140,height:120};
-    this. inventoryRec={x:566,y:184,width:126,height:224}
-    this. firstCombineSlot={x:570 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot1',gemId:null};
-    this. secondCombineSlot={x:610 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot2',gemId:null};
-    this. initialX=null;
-    this.initialY=null;
-    //console.log(this.tilesets);
 
+    this.bool=true;
+    this.ButtonsRec={x:560,y:580,width:140,height:120};
+    this.inventoryRec={x:566,y:184,width:126,height:224}
+    this.firstCombineSlot={x:570 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot1',gemId:null};
+    this.secondCombineSlot={x:610 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot2',gemId:null};
+    this.initialX=null;
+    this.initialY=null;
+    this.Buildings=[];
     //Still testing these power variables
     /*
     this.activePowers = [];
@@ -86,7 +80,7 @@ export default class Game {
     /*this.var buttonsFunctions=[
                         [(index)=>CreateGreenGem(index),(index)=>CreateBlueGem(index)],
                         [(index)=>CreateRedGem(index),(index)=>CombineButton()],
-                        [()=>CreateRedGem(),"sixth"]
+                        [()=>CreateBuilding,"sixth"]
                       ];
                       */
     this.energy = new Energy(900, 900, 500);
@@ -95,11 +89,12 @@ export default class Game {
     this.GemInventory = [];
     //Sotres all the currently rendered projectiles
     this.projectiles = [];
-    console.log(mapFiles);
-    this.map = new Map(mapFiles[0], this.tilesets[2]);
-    this.energy = new Energy(this.map.target.cx, this.map.target.cy, 900);
-    this.nextWave = new Wave();
-    this.currWave = new Wave();
+
+    //Need the parameters
+    //this.map = new Map();
+    this.energy = new Energy(800, 800, 900);
+    //this.nextWave = new Wave();
+    //this.currWave = new Wave();
 
     //Back Buffer
     this.backBufferCanvas = document.getElementById("canvas");
@@ -123,6 +118,10 @@ export default class Game {
   }
 ///creating gems functions
 /*
+  CreateBuilding(xCord,yCord){
+  Buildings.push(new Building{xCord,yCord,17,17});
+
+}
   CreateCombinedGem(gem1Id,gem2Id,gemInventoryIndex){
 
 
@@ -303,6 +302,7 @@ console.log(index);
 }
 
 function handleMouseClick(event){
+  var EffectState
   var index;
   for(var i=0;i<this.GemInventory.length;i++){
     if(this.GemInventory[i].Taken===false){index=i;break;};
@@ -424,21 +424,23 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
   }
 
   update() {
-    /*
+
     this.energy.update();
+    /*
     for(let i = 0; i < this.powerTimers; i++) {
       this.powerTimers[i]--;
       if(this.powerTimers[i]) {
         this.activePowers.push(new Power(500, 500, this.powers, this.energy.multipler));
       }
-    }
+    }*/
 
     this.towers.forEach(tower => {
       tower.update();
     });
+    /*
     this.monsters.forEach(monster => {
       monster.update();
-    });
+    });*/
     this.towers.forEach(tower => {
       for(let i = 0; i < this.monsters.length; i++) {
         if(tower.structural.name !== "Multishot") {
@@ -482,7 +484,7 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
         this.createProjectile(tower);
       }
     });
-
+  /*
    dragOver(event){
     var sucessfulDragBool=false;
     bool= true;
@@ -570,28 +572,23 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
       render(context);
     }
     */
-    this.map.update();
+    //this.map.update();
   }
 
   render() {
-    //this.backBufferContext.fillstyle = 'black';
-    //this.backBufferContext.fillRect(0, 0, 1000, 1000);
-    //console.log(this.tilesets[2].image);
-    this.backBufferContext.fillStyle = 'green';
+    this.backBufferContext.fillstyle = 'black';
     this.backBufferContext.fillRect(0, 0, 1000, 1000);
-    this.backBufferContext.drawImage(this.tilesets[2].image, 0, 0);
     //this.map.render(this.backBufferContext, 1000, 1000);
     /*this.activePowers.forEach(power => {
       power.render(this.backBufferContext);
-    });
+    });*/
     this.energy.render(this.backBufferContext);
-    this.monsters.forEach(monster => {
+    /*this.monsters.forEach(monster => {
       monster.render(this.backBufferContext);
-    });
+    });*/
     this.towers.forEach(tower => {
       tower.render(this.backBufferContext);
     });
-    */
     //Bit blit the back buffer onto the screen
     this.screenBufferContext.drawImage(this.backBufferCanvas, 0, 0);
   }
