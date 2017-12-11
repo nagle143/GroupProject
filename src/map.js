@@ -124,7 +124,6 @@ export default class Map {
    */
   render(ctx, scaleWidth, scaleHeight) {
     ctx.save();
-
     // this.tileLayers.forEach((layer) => {
     //   if (layer.visible) {
     //     for(let y = 0; y < this.mapHeight; y++) {
@@ -158,6 +157,10 @@ export default class Map {
     //     }
     //   }
     // });
+    //
+    ctx.strokeStyle = "White";
+    ctx.fillstyle = "Green";
+
     this.paths.forEach(path => {
       ctx.beginPath();
       for (let i = 0; i < path.steps; i++) {
@@ -167,6 +170,18 @@ export default class Map {
           ctx.moveTo(path.steps[i].x * scaleWidth, path.steps[i].y * scaleHeight);
       }
       ctx.stroke();
+    });
+
+    this.buildable.forEach(build => {
+      ctx.beginPath();
+      for (let i = 0; i < path.steps; i++) {
+        if (i)
+          ctx.lineTo(path.steps[i].x * scaleWidth, path.steps[i].y * scaleHeight);
+        else
+          ctx.moveTo(path.steps[i].x * scaleWidth, path.steps[i].y * scaleHeight);
+      }
+      ctx.closePath();
+      ctx.fill();
     });
 
     ctx.restore();

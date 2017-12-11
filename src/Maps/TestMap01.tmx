@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.09.27" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="64" tileheight="64" infinite="0" nextobjectid="8">
+<map version="1.0" tiledversion="2017.09.27" orientation="orthogonal" renderorder="right-down" width="15" height="13" tilewidth="64" tileheight="64" infinite="0" nextobjectid="35">
  <properties>
   <property name="paths" type="int" value="1"/>
  </properties>
@@ -50,18 +50,6 @@
   </object>
  </objectgroup>
  <objectgroup name="Buildable">
-  <object id="3" type="Buildable" x="32" y="64">
-   <properties>
-    <property name="onPath" type="bool" value="false"/>
-   </properties>
-   <polygon points="0,0 48,0 48,176 208,176 208,48 304,48 304,272 48,272 48,432 304,432 304,528 48,528 48,688 464,688 464,48 624,48 624,144 496,144 496,304 624,304 624,400 496,400 496,688 848,688 848,528 720,528 720,432 848,432 848,272 784,272 784,176 848,176 848,160 896,160 896,736 0,736"/>
-  </object>
-  <object id="4" type="Buildable" x="112" y="64">
-   <properties>
-    <property name="onPath" type="bool" value="false"/>
-   </properties>
-   <polygon points="0,0 48,0 48,-32 624,-32 624,160 672,160 672,304 736,304 736,400 608,400 608,560 736,560 736,656 448,656 448,432 576,432 576,272 448,272 448,176 576,176 576,16 352,16 352,656 0,656 0,560 256,560 256,400 0,400 0,304 256,304 256,16 96,16 96,144 0,144"/>
-  </object>
   <object id="5" type="Buildable" x="800" y="64">
    <properties>
     <property name="onPath" type="bool" value="false"/>
@@ -74,11 +62,74 @@
    </properties>
    <polygon points="0,0 0,64 48,64 48,0"/>
   </object>
-  <object id="7" type="Buildable" x="80" y="64">
-   <properties>
-    <property name="onPath" type="bool" value="true"/>
-   </properties>
-   <polygon points="0,0 0,176 160,176 160,48 256,48 256,272 0,272 0,432 256,432 256,528 0,528 0,688 416,688 416,48 576,48 576,144 448,144 448,304 576,304 576,400 448,400 448,688 800,688 800,528 672,528 672,432 800,432 800,272 736,272 736,176 800,176 800,0 768,0 768,144 704,144 704,304 768,304 768,400 640,400 640,560 768,560 768,656 480,656 480,432 608,432 608,272 480,272 480,176 608,176 608,16 384,16 368,656 32,656 32,560 288,560 288,400 32,400 32,304 288,304 288,16 128,16 128,144 32,144 32,0"/>
+  <object id="9" x="32" y="64">
+   <polygon points="0,0 48,0 48,736 0,736"/>
+  </object>
+  <object id="10" x="160" y="32">
+   <polygon points="0,0 576,0 576,48 0,48"/>
+  </object>
+  <object id="11" x="112" y="80">
+   <polygon points="0,0 96,0 96,128 0,128"/>
+  </object>
+  <object id="12" x="368" y="80">
+   <polygon points="0,0 96,0 96,640 0,640"/>
+  </object>
+  <object id="13" x="880" y="224">
+   <polygon points="0,0 48,0 48,576 0,576"/>
+  </object>
+  <object id="14" x="80" y="752">
+   <polygon points="0,0 800,0 800,48 0,48"/>
+  </object>
+  <object id="16" x="688" y="80">
+   <polygon points="0,0 48,0 48,160 0,160"/>
+  </object>
+  <object id="18" x="784" y="368">
+   <polygon points="0,0 64,0 64,96 0,96"/>
+  </object>
+  <object id="19" x="560" y="496">
+   <polygon points="0,0 160,0 160,224 0,224"/>
+  </object>
+  <object id="20" x="720" y="624">
+   <polygon points="0,0 128,0 128,96 0,96"/>
+  </object>
+  <object id="21" x="688" y="464">
+   <polygon points="0,0 32,0 32,32 0,32"/>
+  </object>
+  <object id="22" x="496" y="112">
+   <polygon points="0,0 32,0 32,640 0,640"/>
+  </object>
+  <object id="23" x="752" y="496">
+   <polygon points="0,0 128,0 128,96 0,96"/>
+  </object>
+  <object id="24" x="816" y="240">
+   <polygon points="0,0 64,0 64,96 0,96"/>
+  </object>
+  <object id="25" x="112" y="624">
+   <polygon points="0,0 256,0 256,96 0,96"/>
+  </object>
+  <object id="26" x="80" y="496">
+   <polygon points="0,0 256,0 256,96 0,96"/>
+  </object>
+  <object id="27" x="112" y="368">
+   <polygon points="0,0 256,0 256,96 0,96"/>
+  </object>
+  <object id="28" x="240" y="112">
+   <polygon points="0,0 96,0 96,224 0,224"/>
+  </object>
+  <object id="29" x="80" y="240">
+   <polygon points="0,0 160,0 160,96 0,96"/>
+  </object>
+  <object id="30" x="528" y="112">
+   <polygon points="0,0 128,0 128,96 0,96"/>
+  </object>
+  <object id="31" x="528" y="368">
+   <polygon points="0,0 128,0 128,96 0,96"/>
+  </object>
+  <object id="33" x="688" y="240">
+   <polygon points="0,0 96,0 96,224 0,224"/>
+  </object>
+  <object id="34" x="560" y="240">
+   <polygon points="0,0 128,0 128,96 0,96"/>
   </object>
  </objectgroup>
 </map>
