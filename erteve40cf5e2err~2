@@ -1,0 +1,265 @@
+[33mcommit f0fd226475f9b1d41705d90a79ce6bb1a721b6f7[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 22:08:02 2017 -0600
+
+    life isjkdjfs
+
+[33mcommit f40c321e1f4d3babc450a3ee59e9947cb833d8e2[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 21:47:15 2017 -0600
+
+    jdsbfjkabdkj
+
+[33mcommit 6ebba73fb751ea1432384bb7db9916adf2f2c44b[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 21:35:44 2017 -0600
+
+    polygons is a fuck, born to die 4 trillion dead cops
+
+[33mcommit 22ed5ac466ea53b65c66e1af6aad24026747ffab[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 21:01:25 2017 -0600
+
+    map is shit
+
+[33mcommit 25e700d5a305ce6acaadd8be7ebd45befa2447d7[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 20:44:32 2017 -0600
+
+    map
+
+[33mcommit d1a8bccd417a08afe8e71b209959bc0ae8280042[m
+Author: Dakota Lange <koty@ksu.edu>
+Date:   Sun Dec 10 20:34:38 2017 -0600
+
+    ready for testing
+
+[33mcommit a9cc450905eea377d8737bd3873bd8f59a045830[m
+Merge: 33f5017 43b7ce5
+Author: nagleTroy <naglet@ksu.edu>
+Date:   Sun Dec 10 20:24:58 2017 -0600
+
+    Merge branch 'master' of https://github.com/nagle143/GroupProject
+
+[33mcommit 33f5017081f3316c11229ef2c737df677a0e510d[m
+Author: nagleTroy <naglet@ksu.edu>
+Date:   Sun Dec 10 20:24:16 2017 -0600
+
+    WHY
+
+[33mcommit 43b7ce52b4cd51de456f8662a36cb8e2f36fee7e[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 20:23:14 2017 -0600
+
+    update
+
+[33mcommit 1cb625674f1d9bdc1dec743c47a6d75ab7ce2c84[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 20:21:58 2017 -0600
+
+    update
+
+[33mcommit f3c85bc56957f7679dd42a0f204ed24a681c4745[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 20:20:11 2017 -0600
+
+    get scale from map
+
+[33mcommit 4863271b9b3b8eab3fc0ef944c92bb5a82e648c0[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 20:17:28 2017 -0600
+
+    canvas graphics
+
+[33mcommit aee13935a3b9b7b583414cd81e6ac64727def76c[m
+Author: Dakota Lange <koty@ksu.edu>
+Date:   Sun Dec 10 20:06:18 2017 -0600
+
+    rendering done ready for testing
+
+[33mcommit 6ccb853c599015ba01f6a14f1710aee95baece3a[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 17:50:45 2017 -0600
+
+    fuck
+
+[33mcommit 483ff32fbb63a16ac0ae035ef224cf7de0efedd5[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 17:44:44 2017 -0600
+
+    whatever
+
+[33mcommit 6cb9791278fe3ba14fc7fa00849816e93fba7a04[m
+Merge: 96d5b7a ce7c6d4
+Author: nagleTroy <naglet@ksu.edu>
+Date:   Sun Dec 10 17:36:36 2017 -0600
+
+    trying to render map
+
+[33mcommit 96d5b7af0aba72bfeca63638987410ba90a5c88b[m
+Author: nagleTroy <naglet@ksu.edu>
+Date:   Sun Dec 10 17:34:30 2017 -0600
+
+    Trying to render the map
+
+[33mcommit d7aaf74b323206c37b22ef0d9e92b83490a76fbe[m
+Author: nagleTroy <naglet@ksu.edu>
+Date:   Sun Dec 10 17:32:42 2017 -0600
+
+    Trying to get the map to render
+
+[33mcommit ce7c6d48ab9ef6714ebf78941a1786cc467ba398[m
+Author: Dakota Lange <koty@ksu.edu>
+Date:   Sun Dec 10 16:45:07 2017 -0600
+
+    everything upto date but render
+
+[33mcommit ee74ba1cabced127874e06e5eb352e410f6dca54[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 15:56:04 2017 -0600
+
+    added tile dimensions to tileset
+
+[33mcommit 4f023f3df45eede44079762e01cfe9f88c8ee4c3[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 15:40:58 2017 -0600
+
+    added y to tilesets
+
+[33mcommit f735321b703f6285f7db0e51d61f6dd064d36c4f[m
+Author: Dakota Lange <koty@ksu.edu>
+Date:   Sun Dec 10 15:31:50 2017 -0600
+
+    made some changes to super
+
+[33mcommit c36d237181a95c874eabcd9fed1f0a0fe1587f21[m
+Merge: 71ed57a f932949
+Author: Dakota Lange <koty@ksu.edu>
+Date:   Sun Dec 10 15:31:22 2017 -0600
+
+    Merge branch 'master' of https://github.com/nagle143/GroupProject
+
+[33mcommit cae2fc3ed2b92f597602402aab7c18b7a228f012[m
+Merge: aa3efe5 f932949
+Author: nagleTroy <naglet@ksu.edu>
+Date:   Sun Dec 10 15:23:45 2017 -0600
+
+    Merge branch 'master' of https://github.com/nagle143/GroupProject
+
+[33mcommit f9329498fe47aac9ae1593eee8a4c891f135fe3f[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 15:03:26 2017 -0600
+
+    minor changes for implementation compatability 2
+
+[33mcommit aa3efe5231422b12803c2e023de8edb2ec702be9[m
+Author: nagleTroy <naglet@ksu.edu>
+Date:   Sun Dec 10 14:21:25 2017 -0600
+
+    Minor changes
+
+[33mcommit 9874f6c6b36ee3d8799dd16851f00df56a1bd285[m
+Merge: 4ae9ed5 31bb6a8
+Author: nagleTroy <naglet@ksu.edu>
+Date:   Sun Dec 10 14:20:44 2017 -0600
+
+    Merge branch 'master' of https://github.com/nagle143/GroupProject
+
+[33mcommit 31bb6a8c5a8378fc2f855526c8380282e0bded5c[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 14:19:29 2017 -0600
+
+    minor changes for implementation compatability
+
+[33mcommit 71ed57af98bfb1b674dc0e610b56170f6afde2a5[m
+Merge: c1c3950 2fdb72f
+Author: Dakota Lange <koty@ksu.edu>
+Date:   Sun Dec 10 13:36:54 2017 -0600
+
+    Merge branch 'master' of https://github.com/nagle143/GroupProject
+
+[33mcommit c1c3950b26ea7ab33fee87f4a1e5338fdede3d4c[m
+Author: Dakota Lange <koty@ksu.edu>
+Date:   Sun Dec 10 13:36:10 2017 -0600
+
+    changed some stuff
+
+[33mcommit 5ec8121d7b2338fdd92165293bf14f2d0b3ff09b[m
+Author: Dakota Lange <koty@ksu.edu>
+Date:   Sun Dec 10 13:34:20 2017 -0600
+
+    all that is left is pathing rendering and status effect charm and energy gain
+
+[33mcommit 4ae9ed51d393a81a5a839888443b2f804d673496[m
+Author: nagleTroy <naglet@ksu.edu>
+Date:   Sun Dec 10 13:28:17 2017 -0600
+
+    Before Teletype
+
+[33mcommit 2fdb72fa7123d2b31b06d03c0dd7a2b6cce599d4[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sun Dec 10 13:08:02 2017 -0600
+
+    tileset and map changes
+
+[33mcommit 1dad434a8e139ba13ee3685bb993921393e37323[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Sat Dec 9 17:37:32 2017 -0600
+
+    Added sprites for the towers which are half-sized, and an unfinished winter varient of the map tileset. Switching the address for the image of the tileset in any tileset object should switch all the tiles' images for that object. This can be used to quickly change a map's appearance.
+
+[33mcommit 21fff79db9dac6345dc46fe98386092fa813a3f4[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Fri Dec 8 15:35:48 2017 -0600
+
+    created sprites, tilesets, and animations for robot enemies
+
+[33mcommit 4eaa311c80f0b6504ad331ef570cbc3951474ed3[m
+Author: Dakota Lange <koty@ksu.edu>
+Date:   Fri Dec 8 11:21:22 2017 -0600
+
+    all classes done except for rendering super class needs path and status finsishing
+
+[33mcommit bab138f1750a26f2bd5c30b7da6bd87d1d7a2184[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Wed Dec 6 12:22:53 2017 -0600
+
+    created the wave data stucture and altered 3rd map.
+
+[33mcommit aac5641d9074bb0cb68e7f7a3335fdf7e44dc147[m
+Author: Dakota Lange <koty@ksu.edu>
+Date:   Wed Dec 6 11:20:30 2017 -0600
+
+    added more properties and built a little more on status
+
+[33mcommit 6f18ae0481dcce13f77def38cdee320b94ebc6d9[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Wed Dec 6 09:30:23 2017 -0600
+
+    Documented and cleaned code and assets
+
+[33mcommit 3a3fa4f030246aef0f6a0a3ffe78baeb031f28ac[m
+Author: Dakota Lange <koty@ksu.edu>
+Date:   Mon Dec 4 11:19:44 2017 -0600
+
+    added some more status stuff
+
+[33mcommit d1cfc5fdf93d725817acae9adf49520d4bf35959[m
+Author: Dakota Lange <koty@ksu.edu>
+Date:   Mon Dec 4 11:10:15 2017 -0600
+
+    added more methods and fixed a few things
+
+[33mcommit 8a7ef5eca3cc5f23b5feb612fc1400a554eda215[m
+Author: Anthony Atkinson <anth.mich.atki@gmail.com>
+Date:   Fri Dec 1 21:16:02 2017 -0600
+
+    Cleaned some stuff, only map 2 is in the correct format.
+
+[33mcommit a01821e547256412c1606231103c19e849a2a32e[m
+Author: Dakota Lange <koty@ksu.edu>
+Date:   Fri Dec 1 11:20:07 2017 -0600
+
+    added some more stuff to the super class needs reorginizing
+
+[33mcommit ae4b

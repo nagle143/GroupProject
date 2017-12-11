@@ -83,7 +83,6 @@ export default class Game {
                         [()=>CreateBuilding,"sixth"]
                       ];
                       */
-    this.energy = new Energy(900, 900, 500);
     //All of the Tower objects
     this.towers = [];
     this.GemInventory = [];
@@ -91,8 +90,9 @@ export default class Game {
     this.projectiles = [];
 
     //Need the parameters
-    //this.map = new Map();
-    this.energy = new Energy(800, 800, 900);
+    this.map = new Map(mapFiles[0]);
+    this.energy = new Energy(this.map.target.cx, this.map.target.cy, 900);
+    this.scaleFactor = this.map.getScaleFactor(1000, 1000);
     //this.nextWave = new Wave();
     //this.currWave = new Wave();
 
@@ -588,9 +588,9 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
   }
 
   render() {
-    this.backBufferContext.fillstyle = 'black';
-    this.backBufferContext.fillRect(0, 0, 1000, 1000);
-    //this.map.render(this.backBufferContext, 1000, 1000);
+    //this.backBufferContext.fillstyle = 'black';
+    //this.backBufferContext.fillRect(0, 0, 1000, 1000);
+    this.map.render(this.backBufferContext, this.scaleFactor.width, this.scaleFactor.height);
     /*this.activePowers.forEach(power => {
       power.render(this.backBufferContext);
     });*/
