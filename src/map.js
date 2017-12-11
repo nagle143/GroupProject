@@ -90,7 +90,18 @@ export default class Map {
   }
 
   getScaleFactor(width, height) {
-    return { width: width / (this.mapWidth * this.tileWidth), height: height / (this.mapHeight * this.tileHeight)};
+    //Scale the path as well
+    let scaledWidth = width / (this.mapWidth * this.tileWidth);
+    let scaledHeight = height / (this.mapHeight * this.tileHeight);
+
+    this.paths.forEach(path => {
+      for (let i = 0; i < path.steps.length; i++) {
+        path.steps[i].x = 65 + path.steps[i].x * scaledWidth;
+        path.steps[i].y = path.steps[i].y * scaledHeight;
+      }
+    });
+
+    return { width: scaledWidth, height: scaledHeight};
   }
 
   /** @function update
@@ -159,11 +170,10 @@ export default class Map {
     this.paths.forEach(path => {
       ctx.beginPath();
       for (let i = 0; i < path.steps.length; i++) {
-        //Might just add 65 to each checkpoint before hand? Would simplfy monster pathing
         if (i)
-          ctx.lineTo(65 + path.steps[i].x * scaleWidth, path.steps[i].y * scaleHeight);
+          ctx.lineTo(path.steps[i].x, path.steps[i].y);
         else
-          ctx.moveTo(65 + path.steps[i].x * scaleWidth, path.steps[i].y * scaleHeight);
+          ctx.moveTo(path.steps[i].x, path.steps[i].y);
       }
       ctx.stroke();
     });
