@@ -6,13 +6,13 @@ export default class Energizer extends Monster
     {
         super(x, y, color, level, path);
         this.MHP = 5 + (this.healthScale * this.level);
-        this.CHP = MHP; // current health
-        this.MS = (MHP * 2);  // max shield 200% of total health
-        this.CS = MS; // current shield
+        this.CHP = this.MHP; // current health
+        this.MS = (this.MHP * 2);  // max shield 200% of total health
+        this.CS = this.MS; // current shield
         this.armor = 7; // damage reduction
         this.currentSpeed = this.ogSpeed; // current speed
-        this.bounty = 12 + (this.level * bountyScale);
-        this.SPS = MS * .98; //temp shield gained per second 
+        this.bounty = 12 + Math.round(this.level * 1.10);
+        this.SPS =this. MS * .98; //temp shield gained per second
 
     }
 
@@ -20,7 +20,7 @@ export default class Energizer extends Monster
     {
         if (this.time = 60)
         {
-            recharge();// recharge shields
+            this.recharge();// recharge shields
             this.time = 0;
         }
         this.time++;

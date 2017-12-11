@@ -6,34 +6,34 @@ export default class Chameleon extends Monster
     {
         super(x, y, color, level, path);
         this.MHP = 30 + (this.healthScale * this.level);
-        this.CHP = MHP; // current health
+        this.CHP = this.MHP; // current health
         this.armor = 7; // damage reduction
         this.currentSpeed = this.ogSpeed; // current speed
-        this.bounty = 15 + (this.level * bountyScale);
-        this.originalColor = Monster.color;
-        this.cooldown = 5; // temp time before next change; 
+        this.bounty = 15 + Math.round(this.level * 1.10);
+        this.originalColor = this.HealthColor;
+        this.cooldown = 5; // temp time before next change;
     }
 
     update()
     {
         if (this.time = 60)
         {
-            if (cooldown != 0)
+            if (this.cooldown != 0)
             {
-                cooldown--;
+                this.cooldown--;
             }
             this.time = 0;
         }
-        colorChange();
+        this.colorChange();
         super.update(); // do as all enemies do
     }
 
     colorChange() // if cooldown done change to next color
     {
-        if (cooldown == 0)
+        if (this.cooldown == 0)
         {
-            switch (color)
-            {             
+            switch (this.HealthColor)
+            {
                     case "red":
                         this.color = "cyan";
                         break;
@@ -53,7 +53,7 @@ export default class Chameleon extends Monster
                         this.color = "red";
                         break;
                     default:
-                        break;               
+                        break;
             }
 
             this.cooldown = 5;

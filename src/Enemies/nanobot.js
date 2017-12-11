@@ -6,20 +6,20 @@ export default class NanoBot extends Monster
     {
         super(x, y, color, level, path);
         this.MHP = 20 + (this.healthScale * this.level);
-        this.CHP = MHP; // current health
-        this.MS = (MHP *.2);  // max shield 20% of total health
-        this.CS = MS; // current shield
+        this.CHP = this.MHP; // current health
+        this.MS = (this.MHP *.2);  // max shield 20% of total health
+        this.CS = this.MS; // current shield
         this.armor = 7; // damage reduction
         this.currentSpeed = this.ogSpeed; // current speed
-        this.bounty = 12; // * (level * increase percentage) how much you earn 
-        this.HPS = MHP * .98; // heal for 2% of max health per second
+        this.bounty = 12; // * (level * increase percentage) how much you earn
+        this.HPS = this.MHP * .98; // heal for 2% of max health per second
     }
 
     update()
     {
         if (this.time = 60)
         {
-            heal();// heal self
+            super.heal();// heal self
             this.time = 0;
         }
         this.time++;
@@ -31,9 +31,9 @@ export default class NanoBot extends Monster
         {
             if (this.CHP + this.HPS > this.MHP)
             {
-                CHP = MHP;
+                this.CHP = this.MHP;
             }
-            CHP = CHP + HPS;
+            this.CHP = this.CHP + this.HPS;
         }
     }
 

@@ -21,6 +21,14 @@ import Beam from './Tower/Projectiles/beam.js';
 import ChainShot from './Tower/Projectiles/chainshot.js';
 import Test from './Tilesets/tileSet01.png';
 
+//Import Monsters
+import Robot from './Enemies/robot.js';
+import Accelerator from './Enemies/accelerator.js';
+import Chameleon from './Enemies/Chameleon.js';
+import Energizer from './Enemies/energizer.js';
+import NanoBot from './Enemies/nanobot.js';
+import Reformer from './Enemies/reformer.js';
+
 /* Math Modifications */
 
 /** @function Math.randomBetween()
@@ -69,7 +77,6 @@ export default class Game {
     this.secondCombineSlot={x:610 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot2',gemId:null};
     this.initialX=null;
     this.initialY=null;
-    this.Buildings = [];
     //Still testing these power variables
     /*
     this.activePowers = [];
@@ -83,16 +90,21 @@ export default class Game {
                         [()=>CreateBuilding,"sixth"]
                       ];
                       */
-    //All of the Tower objects
-    this.towers = [];
+    //Array of inventory slots
     this.GemInventory = [];
     //Sotres all the currently rendered projectiles
-    this.projectiles = [];
 
-    //Need the parameters
+    //Key game objects
+    //Map object
     this.map = new Map(mapFiles[0]);
-    this.energy = new Energy(this.map.target.cx, this.map.target.cy, 900);
+    //Energy object, money & end goal of the monsters
+    this.energy = new Energy(this.map.target.cx + 1, this.map.target.cy + 6, 900);
     this.scaleFactor = this.map.getScaleFactor(1000, 1000);
+    this.projectiles = [];
+    //Building Objects, the objects that hold tower objects.
+    this.Buildings = [];
+    //The towers themselves, can be color component by itself or structural component by itself. If it has both types of components it is a fully functional tower.
+    this.towers = [];
     //this.nextWave = new Wave();
     //this.currWave = new Wave();
 
@@ -458,7 +470,7 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
       {
       //kill enemy
       //subtact energy
-      }             
+      }
     });*/
     this.towers.forEach(tower => {
       for(let i = 0; i < this.monsters.length; i++) {

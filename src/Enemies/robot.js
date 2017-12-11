@@ -6,9 +6,9 @@ export default class Robot extends Monster
     {
         super(x, y, color, level, path);
         this.MHP = 10 + (this.healthScale * this.level);
-        this.CHP = MHP; // current health
+        this.CHP = this.MHP; // current health
         this.currentSpeed = this.ogSpeed; // current speed
-        this.bounty = 5 + (this.level * bountyScale); 
+        this.bounty = 5 + Math.round(this.level * 1.10);
 
     }
 

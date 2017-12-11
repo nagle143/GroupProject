@@ -1,10 +1,10 @@
 
 //Monster super class
-export defualt class Monster
+export default class Monster
 {
     constructor(x, y, color, level, path)
     {
-        this.level = level 
+        this.level = level
         this.x = x;
         this.y = y;
         this.radius = 20;
@@ -17,7 +17,10 @@ export defualt class Monster
         this.currentSpeed = 0; // current speed of a monster
         this.armor = 0;
         this.bounty = 1;
-        this.lives = 0;
+
+        //What is this?
+        //this.lives = 0;
+
         this.time = 0;
 
         this.healthScale = 0.50; // percentage scaling
@@ -34,22 +37,16 @@ export defualt class Monster
        // this.frameIndex = 0;
         this.lastPoint = 0;
         this.nextPoint = 1;
-
         this.statusEffect = [];
-        this.ePath = [];
-        for (var i = 0; i < path.length; i++)
-        {
-            ePath[i] = path[i];
-        }
+        this.path = path;
     }
 
     update()
     {
-        applyStatus(); //see if status effects need to be applied
-        march(path); // move foward in the path
-        render();
+        this.applyStatus(); //see if status effects need to be applied
+        this.march(this.path); // move foward in the path
     }
-  
+
     render(ctx)
     {
         ctx.save();
@@ -57,8 +54,8 @@ export defualt class Monster
         ctx.beginPath();
         ctx.fillStyle = this.HealthColor;
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fill();
         ctx.closePath();
+        ctx.fill();
 
         //health bars
         ctx.fillStyle = 'red';
@@ -69,81 +66,33 @@ export defualt class Monster
         ctx.strokeRect(this.x, this.y + 10, this.barWidth * (this.CS / this.MS), this.barHeight);
         ctx.restore();
     }
-    
+
 
     march(path) // move along the path
     {
-
-        if (direction == "forward")
-        {
-            if (this.x < ePath[nextPoint].x && this.y == ePath[nextPoint].y) // the next point is to the right of the monster
-            {
-                this.x++;
-            }
-            if (this.x > ePath[nextPoint].x && this.y == ePath[nextPoint].y) // the next point is to the left of the monster
-            {
-                this.x--;
-            }
-            if (this.y > ePath[nextPoint].y && this.x == ePath[nextPoint].x) // the next point is below of the monster
-            {
-                this.y--;
-            }
-            if (this.x > ePath[nextPoint].x && this.x == ePath[nextPoint].x) // the next point is above the monster
-            {
-                this.y++;
-            }
-        }
-        else
-        {
-            if (this.x < ePath[nextPoint].x && this.y == ePath[nextPoint].y) // the next point is to the right of the monster
-            {
-                this.x--;
-            }
-            if (this.x > ePath[nextPoint].x && this.y == ePath[nextPoint].y) // the next point is to the left of the monster
-            {
-                this.x++;
-            }
-            if (this.y > ePath[nextPoint].y && this.x == ePath[nextPoint].x) // the next point is below of the monster
-            {
-                this.y++;
-            }
-            if (this.x > ePath[nextPoint].x && this.x == ePath[nextPoint].x) // the next point is above the monster
-            {
-                this.x--;
-            }
-        }
-        if (this.y == ePath[nextPoint].y && this.x == ePath[nextPoint].x)
-        {
-            nextPoint++
-            lastPoint++;
-        }
-        if (this.y == ePath[lastPoint].y && this.x == ePath[lastPoint].x)
-        {
-            nextPoint--
-            lastPoint--;
-        }
-
-       // var direction = Math.getDirection(this.x,this.y,path[i].x,path[i].y) 
+        this.direction = Math.getDirection(this.x, this.y, this.path[this.nextPoint].x, this.path[this.nextPoint].y)
     }
 
+    /* This can be done elsewhere
     dieByHealth() // tells game if monster needs to be deleted because of death
     {
-        if (CHP <= 0 && lives <= 0) // if tower kills monster 
+        if (this.CHP <= 0) // if tower kills monster
         {
             return true// tell game to delete monster
         }
-        if (CHP <= 0 && lives > 0)
+        if (this.CHP <= 0)
         {
             this.lies = this.lives - 1;
             this.CHP = this.MHP;
             return false;
         }
-        return false;        
-    }
+        return false;
+    }*/
 
+    /* This should be done by the game
     reachedEnd(energy) // tells game to kill monster if it reaches the end
     {
-        if (energy.x == this.x && energy.y == this.y) //if endpoint reached 
+        if (energy.x == this.x && energy.y == this.y) //if endpoint reached
         {
             return true;//delete monster
         }
@@ -152,23 +101,24 @@ export defualt class Monster
         {
             return false;
         }
-    }
+    } */
 
+    //Why return anything?
     status(projectile) // handles status effects from tower // this is wrong need to fix
     {
         if (this.CS == 0)
         {
-            for (var i = 0; i < statusEffect.length; i++) // check for repeats
+            for (var i = 0; i < this.statusEffect.length; i++) // check for repeats
             {
-                if (statusEffect[i] == projectile.color)
+                if (this.statusEffect[i] == projectile.color)
                 {
                     return false // has a repeat
                 }
-            }                     
+            }
             if (projectile.color == "magenta")
             {
-              if ((Math.floor(Math.random() * 5) + 1) == 1) // 20% chance of succses if magenta
-                 statusEffect.push(projectile);
+              if (Math.random() <= 0.20) // 20% chance of succses if magenta
+                this.statusEffect.push(projectile);
             }
             else
             {
@@ -178,16 +128,16 @@ export defualt class Monster
                 }
                 else
                 {
-                    statusEffect.push(projectile);
+                    this.statusEffect.push(projectile);
                     return true;
                 }
 
             }
             return true; // pushed status
         }
-        return false;         
+        return false;
     }
-    
+
 
 
 
@@ -196,50 +146,50 @@ export defualt class Monster
     ApplyStatus() //apply effects of status
     {
 
-        for (var i = 0; i < statusEffect.length; i++) // go through status array to see what needs to be applied
+        for (var i = 0; i < this.statusEffect.length; i++) // go through status array to see what needs to be applied
         {
-            switch (statusEffect[i].color)
+            switch (this.statusEffect[i].color)
             {
                 case "red":
-                    statusEffect[i].time--;
-                    if (burn(statusEffect[i].time, statusEffect[i].base) == true)
+                    this.statusEffect[i].time--;
+                    if (this.burn(this.statusEffect[i].time, this.statusEffect[i].base) == true)
                     {
-                        statusEffect.slice(i, 1);
+                        this.statusEffect.slice(i, 1);
                     }
                     break;
                 case "cyan":
-                    statusEffect[i].time--;
-                    if (slow(statusEffect[i].time, statusEffect[i].base) == true)
+                    this.statusEffect[i].time--;
+                    if (this.slow(this.statusEffect[i].time, this.statusEffect[i].base) == true)
                     {
-                        statusEffect.slice(i, 1);
+                        this.statusEffect.slice(i, 1);
                     }
                     break;
                 case "yellow":
-                    statusEffect[i].time--;
-                    if(stun(statusEffect[i].time))
+                    this.statusEffect[i].time--;
+                    if(this.stun(this.statusEffect[i].time))
                     {
-                        statusEffect.slice(i, 1);
+                        this.statusEffect.slice(i, 1);
                     }
                     break;
                 case "blue":
-                    statusEffect[i].time--;
-                    if (energyGain(statusEffect[i].base,60) == true)
+                    this.statusEffect[i].time--;
+                    if (this.energyGain(this.statusEffect[i].base,60) == true)
                     {
-                        statusEffect.slice(i, 1);
+                        this.statusEffect.slice(i, 1);
                     }
                     break;
                 case "green":
-                    statusEffect[i].time--;
-                    if (shredArmor(, statusEffect[i].time, statusEffect[i].base) == true)
+                    this.statusEffect[i].time--;
+                    if (this.shredArmor(this.statusEffect[i].time, this.statusEffect[i].base) == true)
                     {
-                        statusEffect.slice(i, 1);
+                        this.statusEffect.slice(i, 1);
                     }
                     break;
                 case "magenta":
-                    statusEffect[i].time--;
-                    if(Charm(statusEffect[i].time) == true)
+                    this.statusEffect[i].time--;
+                    if(this.Charm(this.statusEffect[i].time) == true)
                     {
-                        statusEffect.slice(i, 1);
+                        this.statusEffect.slice(i, 1);
                     }
                     break;
                 default:
@@ -263,13 +213,13 @@ export defualt class Monster
     }
 
     slow(time,base) // slow based on percentage for 3 seconds
-    {   
+    {
         if (time <= 0)
         {
             this.currentSpeed = this.ogSpeed;
             return true;
         }
-        this.currentSpeed = this.ogSpeed * base; 
+        this.currentSpeed = this.ogSpeed * base;
         return false;
     }
 
@@ -287,7 +237,7 @@ export defualt class Monster
     {
         if (time <= 0)
         {
-            return true;           
+            return true;
         }
         if (time % 60 == 0)
             this.armor = (1 - base) * this.armor;
@@ -299,17 +249,17 @@ export defualt class Monster
     {
         if (time >= (1 * 60))
         {
-            if (Math.floor(MHP * (1-base)) < 1)
+            if (Math.floor(this.MHP * (1-base)) < 1)
             {
-                energyEarned = energyEarned + 1;
+                this.energyEarned = this.energyEarned + 1;
             }
             else
             {
-                energyEarned = energyEarned + Math.floor(MHP * .98);
+                this.energyEarned = this.energyEarned + Math.floor(this.MHP * .98);
             }
         }
         else
-        {            
+        {
             return false;
         }
 
@@ -324,13 +274,13 @@ export defualt class Monster
         }
         this.direction = "reverse";
         return false;
-       
-    }    
+
+    }
 
     giveEnergy()
     {
         var give = this.energyEarned;
-        energyEarned = 0;
+        this.energyEarned = 0;
         return give;
     }
 }
