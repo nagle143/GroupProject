@@ -14,6 +14,8 @@ export default class Map {
     this.mapHeight = tilemapData.height;
     this.tileWidth = tilemapData.tilewidth;
     this.tileHeight = tilemapData.tileheight;
+    this.stWidth = this.tileWidth;
+    this.stHeight = this.tileHeight;
     this.paths = [];
     this.buildable = [];
     this.target = undefined;
@@ -51,7 +53,11 @@ export default class Map {
             switch (object.type) {
               case 'Path':
                 obj.id = object.properties.id - 1;
-                obj.steps = object.polyline;
+                obj.steps = object.polyline.map(point => {
+                  point.x += object.x;
+                  point.y += object.y;
+                  return point;
+                });
                 this.paths[obj.id] = obj;
                 break;
               case 'Generator':
@@ -94,20 +100,26 @@ export default class Map {
     let scaledWidth = width / (this.mapWidth * this.tileWidth);
     let scaledHeight = height / (this.mapHeight * this.tileHeight);
 
+    this.stWidth = this.tileWidth * scaledWidth;
+    this.stHeight = this.tileHeight * scaledHeight;
+
     this.paths.forEach(path => {
       for (let i = 0; i < path.steps.length; i++) {
-        path.steps[i].x = 65 + path.steps[i].x * scaledWidth;
-        path.steps[i].y = path.steps[i].y * scaledHeight;
+        path.steps[i].x *= scaledWidth;
+        path.steps[i].y *= scaledHeight;
       }
     });
 
     this.buildable.forEach(build => {
-      build.x = build.x * scaledWidth - 25;
-      build.y = build.y * scaledHeight - 25;
-      build.w = build.w * scaledWidth;
-      build.h = build.h * scaledHeight;
+      build.x *= scaledWidth;
+      build.y *= scaledHeight;
+      build.w *= scaledWidth;
+      build.h *= scaledHeight;
     });
-    
+
+    this.target.cx *= scaledWidth;
+    this.target.xy *= scaledHeight;
+
     return { width: scaledWidth, height: scaledHeight};
   }
 
@@ -172,7 +184,7 @@ export default class Map {
     ctx.save();
 
     ctx.strokeStyle = "White";
-    ctx.fillStyle = "Green";
+    ctx.fillStyle = "rgb(0, 32, 0)";
 
     this.paths.forEach(path => {
       ctx.beginPath();
@@ -185,12 +197,9 @@ export default class Map {
       ctx.stroke();
     });
 
-    ctx.save();
-    ctx.globalAlpha = 0.20;
     this.buildable.forEach(build => {
-      ctx.fillRect(build.x, build.y, build.w, build.h);
+      ctx.fillRect(build.x, build.y, build.w + this.stWidth / 4, build.h + this.stHeight / 4);
     });
-    ctx.restore();
     ctx.restore();
   }
 }

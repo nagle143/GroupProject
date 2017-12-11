@@ -97,9 +97,9 @@ export default class Game {
     //Key game objects
     //Map object
     this.map = new Map(mapFiles[0]);
-    //Energy object, money & end goal of the monsters
-    this.energy = new Energy(this.map.target.cx + 1, this.map.target.cy + 6, 900);
     this.scaleFactor = this.map.getScaleFactor(1000, 1000);
+    //Energy object, money & end goal of the monsters
+    this.energy = new Energy(this.map.target.cx, this.map.target.cy, 900);
     this.projectiles = [];
     //Building Objects, the objects that hold tower objects.
     this.Buildings = [];
