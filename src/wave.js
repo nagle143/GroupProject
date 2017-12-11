@@ -14,11 +14,14 @@ export default class Wave {
    *  @param  {Robot} unit    The unit to add to the wave.
    *  @param  {Integer} time  The time to wait from reaching the front of the queue to spawning.
    */
-  enqueue(unit, time) {
-    this.queue.push({
-      unit: unit,
-      time: time
+  enqueue(list) {
+    list.forEach(element => {
+        this.queue.push({
+        unit: element.unit,
+        time: element.time
+        });
     });
+    console.log(this);
   }
 
   /** @function kill
@@ -33,14 +36,18 @@ export default class Wave {
    *  Updates all units on the board, and decrements the counter of the next unit in queue, if it hits 0 that unit is spawned.
    */
   update() {
-    this.board.forEach(unit => {
-      unit.update();
-    });
+    for(let i = 0; i < this.board.length; i++) {
+      if(this.board[i].update()) {
+        this.kill(i);
+      }
+    }
 
-    if (this.queue[0].time)
-      this.queue[0].time--;
-    else
-      this.board.push(this.queue.shift().unit);
+    if(this.queue.length > 0) {
+      if (this.queue[0].time)
+        this.queue[0].time--;
+      else
+        this.board.push(this.queue.shift().unit);
+    }
   }
 
   /** @function render

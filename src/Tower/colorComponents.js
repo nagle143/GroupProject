@@ -22,7 +22,7 @@ export default class Color {
     //I beleive 60 = 1 second
     this.rateOfFire = 60;
     this.range = 100;
-    this.radius = 25;
+    this.radius = 5;
   }
 
   /** @function initDamageColor
@@ -283,6 +283,7 @@ export default class Color {
     ctx.lineTo(0, this.radius);
     ctx.lineTo(-this.radius, 0);
     ctx.closePath();
+    ctx.stroke();
     ctx.restore();
   }
 }

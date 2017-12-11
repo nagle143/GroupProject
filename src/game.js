@@ -105,9 +105,9 @@ export default class Game {
     this.Buildings = [];
     //The towers themselves, can be color component by itself or structural component by itself. If it has both types of components it is a fully functional tower.
     this.towers = [];
-    this.towers.push(new Tower(500, 500, null, 'green'));
+    this.towers.push(new Tower(525, 475, null, 'green'));
     this.towers[0].addStruct("Launcher");
-    this.towers.push(new Tower(500, 700, null, 'red'));
+    this.towers.push(new Tower(600, 700, null, 'red'));
     this.towers[1].addStruct("PlasmaGun");
     this.towers[1].color.combine(this.towers[1].color);
     this.towers[1].color.combine(this.towers[1].color);
@@ -120,7 +120,7 @@ export default class Game {
     this.towers[1].upgrade();
     this.towers[1].upgrade();
     this.towers[1].upgrade();
-    this.towers.push(new Tower(600, 500, null, 'cyan'));
+    this.towers.push(new Tower(600, 475, null, 'cyan'));
     this.towers[2].addStruct("RailGun");
     this.towers.push(new Tower(400, 500, null, 'yellow'));
     this.towers[3].addStruct("LightGun");
@@ -130,14 +130,17 @@ export default class Game {
     this.towers[3].color.combine(this.towers[3].color);
     this.towers[3].color.combine(this.towers[3].color);
     this.towers[3].color.combine(this.towers[3].color);
-    this.towers.push(new Tower(600, 550, "Pulse", null));
+    this.towers.push(new Tower(250, 300, "Pulse", null));
     this.towers[4].addColor("magenta");
-    this.towers[4].color.combine(this.towers[4].color);
-    this.towers[4].color.combine(this.towers[4].color);
-    this.towers[4].color.combine(this.towers[4].color);
-    this.towers[4].color.combine(this.towers[4].color);
-    this.towers[4].color.combine(this.towers[4].color);
-    this.towers.push(new Tower(400, 550, "Multishot", null));
+    this.towers[4].upgrade();
+    this.towers[4].upgrade();
+    this.towers[4].upgrade();
+    this.towers[4].upgrade();
+    this.towers[4].upgrade();
+    this.towers[4].upgrade();
+    this.towers[4].upgrade();
+    this.towers[4].upgrade();
+    this.towers.push(new Tower(200, 625, "Multishot", null));
     this.towers[5].addColor("blue");
     this.towers[5].upgrade();
     this.towers[5].upgrade();
@@ -154,10 +157,16 @@ export default class Game {
     this.towers[6].upgrade();
     console.log(this.towers);
     //Active Monsters
-    this.monsters = [];
-    this.monsters.push(new Robot(this.map.paths[0].steps[0].x, this.map.paths[0].steps[0].y, 'red', 1, this.map.paths[0].steps));
+    this.queue = [];
+    this.queue.push({unit: new Robot(this.map.paths[0].steps[0].x, this.map.paths[0].steps[0].y, 'red', 1, this.map.paths[0].steps), time: 60});
+    this.queue.push({unit: new Accelerator(this.map.paths[0].steps[0].x, this.map.paths[0].steps[0].y, 'blue', 1, this.map.paths[0].steps), time: 60});
+    this.queue.push({unit: new Chameleon(this.map.paths[0].steps[0].x, this.map.paths[0].steps[0].y, 'blue', 1, this.map.paths[0].steps), time: 60});
+    this.queue.push({unit: new Energizer(this.map.paths[0].steps[0].x, this.map.paths[0].steps[0].y, 'blue', 1, this.map.paths[0].steps), time: 60});
+    this.queue.push({unit: new NanoBot(this.map.paths[0].steps[0].x, this.map.paths[0].steps[0].y, 'magenta', 1, this.map.paths[0].steps), time: 60});
+    this.queue.push({unit: new Reformer(this.map.paths[0].steps[0].x, this.map.paths[0].steps[0].y, 'magenta', 1, this.map.paths[0].steps), time: 60});
     //this.nextWave = new Wave();
-    //this.currWave = new Wave();
+    this.currWave = new Wave();
+    this.currWave.enqueue(this.queue);
 
     //Back Buffer
     this.backBufferCanvas = document.getElementById("canvas");
@@ -509,6 +518,8 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
       }
     }*/
 
+    this.currWave.update();
+
     this.towers.forEach(tower => {
       tower.update();
     });
@@ -526,14 +537,6 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
       }
     }
 
-    for(let i = 0; i < this.monsters.length; i++) {
-      //Monster's update returns true if it needs to die
-      if(this.monsters[i].update()) {
-        console.log('i am here');
-        this.monsters.splice(i, 1);
-      }
-    }
-
     /*
     this.monsters.forEach(monster => {
       monster.update();
@@ -546,36 +549,35 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
       }
     });*/
     this.towers.forEach(tower => {
-      for(let i = 0; i < this.monsters.length; i++) {
+      for(let i = 0; i < this.currWave.board.length; i++) {
         if(tower.structural.name !== "Multishot") {
-          if(this.circleCollisionDetection(tower.x, tower.y, tower.range, this.monsters[i].x, this.monsters[i].y, 15)) {
+          if(this.circleCollisionDetection(tower.x, tower.y, tower.range, this.currWave.board[i].x, this.currWave.board[i].y, 15)) {
             if(tower.targets.length < 1) {
-              console.log('target pushed');
-              tower.targets.push(this.monsters[i]);
+              tower.targets.push(this.currWave.board[i]);
             }
             break;
           }
-          else if(tower.targets[0] === this.monsters[i]) {
+          else if(tower.targets[0] === this.currWave.board[i]) {
             tower.targets.splice(0, 1);
           }
         }
         else {
-          if(this.circleCollisionDetection(tower.x, tower.y, tower.range, this.monsters[i].x, this.monsters[i].y, 15)) {
+          if(this.circleCollisionDetection(tower.x, tower.y, tower.range, this.currWave.board[i].x, this.currWave.board[i].y, 15)) {
             if(tower.targets.length < 3) {
               let check = false;
               for(let j = 0; j < tower.targets.length; j ++) {
-                if(tower.targets[j] === this.monsters[i]) {
+                if(tower.targets[j] === this.currWave.board[i]) {
                   check = true;
                 }
               }
               if(!check) {
-                tower.targets.push(this.monsters[i]);
+                tower.targets.push(this.currWave.board[i]);
               }
             }
           }
           else {
             for(let j = 0; j < tower.targets.length; j ++) {
-              if(tower.targets[j] === this.monsters[i]) {
+              if(tower.targets[j] === this.currWave.board[i]) {
                 tower.targets.splice(j, 1);
               }
             }
@@ -683,9 +685,7 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
       power.render(this.backBufferContext);
     });*/
     this.energy.render(this.backBufferContext);
-    this.monsters.forEach(monster => {
-      monster.render(this.backBufferContext);
-    });
+    this.currWave.render(this.backBufferContext);
     this.towers.forEach(tower => {
       tower.render(this.backBufferContext);
     });

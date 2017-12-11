@@ -101,6 +101,13 @@ export default class Map {
       }
     });
 
+    this.buildable.forEach(build => {
+      build.x = build.x * scaledWidth - 25;
+      build.y = build.y * scaledHeight - 25;
+      build.w = build.w * scaledWidth;
+      build.h = build.h * scaledHeight;
+    });
+    
     return { width: scaledWidth, height: scaledHeight};
   }
 
@@ -181,7 +188,7 @@ export default class Map {
     ctx.save();
     ctx.globalAlpha = 0.20;
     this.buildable.forEach(build => {
-      ctx.fillRect(build.x * scaleWidth - 25, build.y * scaleHeight - 25, build.w * scaleWidth, build.h * scaleHeight);
+      ctx.fillRect(build.x, build.y, build.w, build.h);
     });
     ctx.restore();
     ctx.restore();

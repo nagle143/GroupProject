@@ -38,28 +38,28 @@ export default class Chameleon extends Monster
             switch (this.HealthColor)
             {
                     case "red":
-                        this.color = "cyan";
+                        this.HealthColor = "cyan";
                         break;
                     case "cyan":
-                        this.color = "yellow";
+                        this.HealthColor = "yellow";
                         break;
                     case "yellow":
-                        this.color = "green";
+                        this.HealthColor = "green";
                         break;
                     case "green":
-                        this.color = "blue";
+                        this.HealthColor = "blue";
                         break;
                     case "blue":
-                        this.color = "magenta";
+                        this.HealthColor = "magenta";
                         break;
                     case "magenta":
-                        this.color = "red";
+                        this.HealthColor = "red";
                         break;
                     default:
                         break;
             }
 
-            this.cooldown = 5;
+            this.cooldown = 240;
         }
     }
 }

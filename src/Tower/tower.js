@@ -265,10 +265,15 @@ export default class Tower {
     ctx.save();
     ctx.strokeStyle = 'white';
     ctx.strokeRect(this.x - 15, this.y - 15, 30, 30);
+    /*
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.range, 0, Math.PI * 2);
     ctx.closePath();
     ctx.stroke();
+    */
     ctx.restore();
+    if(this.color) {
+      this.color.render(ctx);
+    }
   }
 }

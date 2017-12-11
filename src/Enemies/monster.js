@@ -30,9 +30,9 @@ export default class Monster
 
 
         this.barWidth = 40;
-        this.barHeight = 10;
+        this.barHeight = 5;
         this.energyEarned = 0;
-        this.direction = "forward";
+        this.direction = 0.0;
         //this.tileset = tileset;
        // this.tileIndex = 0;
        // this.frameIndex = 0;
@@ -40,9 +40,6 @@ export default class Monster
         this.nextPoint = 1;
         this.statusEffect = [];
         this.path = path;
-        console.log(this.path);
-        console.log(this.x);
-        console.log(this.y);
     }
 
     update()
@@ -54,7 +51,6 @@ export default class Monster
         this.y += this.speed.y;
         if(this.checkPoint(this.path[this.nextPoint])) {
           if(this.nextPoint >= this.path.length - 1) {
-            console.log("end");
             return true;
           }
           else {
@@ -80,8 +76,8 @@ export default class Monster
         ctx.strokeRect(this.x - this.radius, this.y - Math.round(this.radius * 1.40), this.barWidth * (this.CHP/this.MHP), this.barHeight);
         ctx.fillRect(this.x - this.radius, this.y - Math.round(this.radius * 1.40), this.barWidth * (this.CHP / this.MHP), this.barHeight);
         ctx.fillStyle = 'blue';
-        ctx.fillRect(this.x - this.radius, this.y - Math.round(this.radius * 1.50), this.barWidth * (this.CS / this.MS), this.barHeight);
-        ctx.strokeRect(this.x - this.radius, this.y - Math.round(this.radius * 1.50), this.barWidth * (this.CS / this.MS), this.barHeight);
+        ctx.fillRect(this.x - this.radius, this.y - Math.round(this.radius * 1.60), this.barWidth * (this.CS / this.MS), this.barHeight);
+        ctx.strokeRect(this.x - this.radius, this.y - Math.round(this.radius * 1.60), this.barWidth * (this.CS / this.MS), this.barHeight);
         ctx.restore();
     }
 
@@ -95,7 +91,6 @@ export default class Monster
       let dy = this.y - point.y;
       let dist = Math.sqrt(dx * dx + dy * dy);
       if(dist <= this.radius * 0.5) {
-        console.log('checkPoint found');
         return true;
       }
       return false;
