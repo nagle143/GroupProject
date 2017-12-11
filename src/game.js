@@ -302,6 +302,7 @@ console.log(index);
 }
 
 function handleMouseClick(event){
+  var EffectState
   var index;
   for(var i=0;i<this.GemInventory.length;i++){
     if(this.GemInventory[i].Taken===false){index=i;break;};
