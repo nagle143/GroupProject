@@ -128,7 +128,7 @@ export defualt class Monster
 
     dieByHealth() // tells game if monster needs to be deleted because of death
     {
-        if (CHP <= 0 && lives <= 0) // if tower kills monster
+        if (CHP <= 0 && lives <= 0) // if tower kills monster 
         {
             return true// tell game to delete monster
         }

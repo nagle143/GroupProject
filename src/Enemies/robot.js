@@ -8,7 +8,7 @@ export default class Robot extends Monster
         this.MHP = 10 + (this.healthScale * this.level);
         this.CHP = MHP; // current health
         this.currentSpeed = this.ogSpeed; // current speed
-        this.bounty = 5 + (this.level * bountyScale);
+        this.bounty = 5 + (this.level * bountyScale); 
 
     }
 
