@@ -19,8 +19,12 @@ export defualt class Monster
         this.bounty = 1;
         this.lives = 0;
         this.time = 0;
-        this.statusTime = 0;
-        this.healthScale = .50; // percentage scaling
+
+        this.healthScale = 0.50; // percentage scaling
+        this.armorScale = 0.50;
+        this.bountyScale = 0.50;
+
+
         this.barWidth = 40;
         this.barHeight = 10;
         this.energyEarned = 0;
@@ -149,7 +153,6 @@ export defualt class Monster
             return false;
         }
     }
-
 
     status(projectile) // handles status effects from tower // this is wrong need to fix
     {
