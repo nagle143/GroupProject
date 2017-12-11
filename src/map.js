@@ -90,7 +90,7 @@ export default class Map {
   }
 
   getScaleFactor(width, height) {
-    return { width: this.mapWidth * this.tileWidth / width, height: this.mapHeight * this.tileHeight / height };
+    return { width: width / (this.mapWidth * this.tileWidth), height: height / (this.mapHeight * this.tileHeight) };
   }
 
   /** @function update
@@ -153,12 +153,13 @@ export default class Map {
     //
     ctx.save();
 
+    ctx.lineWidth = 2;
     ctx.strokeStyle = "White";
-    ctx.fillstyle = "Green";
+    ctx.fillStyle = "Green";
 
     this.paths.forEach(path => {
       ctx.beginPath();
-      for (let i = 0; i < path.steps; i++) {
+      for (let i = 0; i < path.steps.length; i++) {
         if (i)
           ctx.lineTo(path.steps[i].x * scaleWidth, path.steps[i].y * scaleHeight);
         else
@@ -168,7 +169,7 @@ export default class Map {
     });
 
     this.buildable.forEach(build => {
-      ctx.fillRect(build.x * scaleWidth, build.y * scaleHeight, build.w * scaleWidth, build.h * scaleHeight);
+      ctx.fillRect(build.x * scaleWidth, build.y * scaleHeight, (build.w + 16) * scaleWidth, (build.h + 16) * scaleHeight);
     });
 
     ctx.restore();
