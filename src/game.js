@@ -1,6 +1,5 @@
-
 import Tileset from './tileset.js';
-import {tilesetFiles} from './Tilesets/index.js';
+import {tilesetFiles, imageFiles} from './Tilesets/index.js';
 import Map from './map.js';
 import {mapFiles} from './Maps/index.js';
 import Tower from './Tower/tower.js';
@@ -97,9 +96,9 @@ export default class Game {
     //Key game objects
     //Map object
     this.map = new Map(mapFiles[0]);
-    //Energy object, money & end goal of the monsters
-    this.energy = new Energy(this.map.target.cx + 1, this.map.target.cy + 6, 900);
     this.scaleFactor = this.map.getScaleFactor(1000, 1000);
+    //Energy object, money & end goal of the monsters
+    this.energy = new Energy(this.map.target.cx, this.map.target.cy, 900);
     this.projectiles = [];
     //Building Objects, the objects that hold tower objects.
     this.Buildings = [];
@@ -363,6 +362,7 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
 //  render(context);
 }
 */
+
   /** @function circleCollisionDetection
   * Function to handle collisions between circles
   * @param {float} x1 - x postion of object 1
@@ -441,10 +441,6 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
       default:
         console.log("ERROR IN PROJECTILE CREATION");
     }
-  }
-
-  createMap(file, tileset) {
-    return new Map(JSON.parse(file), tileset);
   }
 
   update() {
@@ -609,7 +605,7 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
   render() {
     //this.backBufferContext.fillstyle = 'black';
     //this.backBufferContext.fillRect(0, 0, 1000, 1000);
-    this.map.render(this.backBufferContext, this.scaleFactor.width, this.scaleFactor.height);
+    this.map.render(this.backBufferContext);
     /*this.activePowers.forEach(power => {
       power.render(this.backBufferContext);
     });*/

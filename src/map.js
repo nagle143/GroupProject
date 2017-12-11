@@ -51,7 +51,11 @@ export default class Map {
             switch (object.type) {
               case 'Path':
                 obj.id = object.properties.id - 1;
-                obj.steps = object.polyline;
+                obj.steps = object.polyline.map(point => {
+                  point.x += object.x;
+                  point.y += object.y;
+                  return point;
+                });
                 this.paths[obj.id] = obj;
                 break;
               case 'Generator':
@@ -94,12 +98,25 @@ export default class Map {
     let scaledWidth = width / (this.mapWidth * this.tileWidth);
     let scaledHeight = height / (this.mapHeight * this.tileHeight);
 
+    this.tileWidth *= scaledWidth;
+    this.tileHeight *= scaledHeight;
+
     this.paths.forEach(path => {
       for (let i = 0; i < path.steps.length; i++) {
-        path.steps[i].x = 65 + path.steps[i].x * scaledWidth;
-        path.steps[i].y = path.steps[i].y * scaledHeight;
+        path.steps[i].x *= scaledWidth;
+        path.steps[i].y *= scaledHeight;
       }
     });
+
+    this.buildable.forEach(build => {
+      build.x *= scaledWidth;
+      build.y *= scaledHeight;
+      build.w *= scaledWidth;
+      build.h *= scaledHeight;
+    });
+
+    this.target.cx *= scaledWidth;
+    this.target.cy *= scaledHeight;
 
     return { width: scaledWidth, height: scaledHeight};
   }
@@ -127,7 +144,7 @@ export default class Map {
    *  Renders all the tiles on the map.
    *  @param  {Context} ctx The canvas context for rendering the map.
    */
-  render(ctx, scaleWidth, scaleHeight) {
+  render(ctx) {
     // this.tileLayers.forEach((layer) => {
     //   if (layer.visible) {
     //     for(let y = 0; y < this.mapHeight; y++) {
@@ -181,7 +198,7 @@ export default class Map {
     ctx.save();
     ctx.globalAlpha = 0.20;
     this.buildable.forEach(build => {
-      ctx.fillRect(build.x * scaleWidth - 25, build.y * scaleHeight - 25, build.w * scaleWidth, build.h * scaleHeight);
+      ctx.fillRect(build.x, build.y, build.w + this.tileWidth / 4, build.h + this.tileHeight / 4);
     });
     ctx.restore();
     ctx.restore();
