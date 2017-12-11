@@ -7,7 +7,7 @@ export default class Map {
    *  @param  {Tileset} tileset     A functional tileset object.
    */
   constructor(tilemapData) {
-    let data, obj, tx, ty;
+    let data, obj, mix, miy, max, may;
 
     // Initialize the properies
     this.mapWidth = tilemapData.width;
@@ -60,16 +60,21 @@ export default class Map {
                 this.target = obj;
                 break;
               case 'Buildable':
-                obj.onPath = object.properties.onPath;
                 obj.points = object.polygon;
-                tx = 0;
-                ty = 0;
+                mix = object.polygon[0].x;
+                miy = object.polygon[0].y;
+                max = mix;
+                may = miy;
                 object.polygon.forEach(point => {
-                  tx += point.x;
-                  ty += point.y;
+                  if (point.x < mix) mix = point.x;
+                  if (point.x > max) max = point.x;
+                  if (point.y < miy) miy = point.y;
+                  if (point.y > may) may = point.y;
                 });
-                obj.cx = tx / object.polygon.length;
-                obj.cy = ty / object.polygon.length;
+                obj.x = mix;
+                obj.y = mit;
+                obj.w = max - mix;
+                obj.h = may - miy;
                 this.buildable.push(obj);
                 break;
               default:
@@ -173,15 +178,7 @@ export default class Map {
     });
 
     this.buildable.forEach(build => {
-      ctx.beginPath();
-      for (let i = 0; i < path.steps; i++) {
-        if (i)
-          ctx.lineTo(path.steps[i].x * scaleWidth, path.steps[i].y * scaleHeight);
-        else
-          ctx.moveTo(path.steps[i].x * scaleWidth, path.steps[i].y * scaleHeight);
-      }
-      ctx.closePath();
-      ctx.fill();
+      ctx.fillRect(build.x * scaleWidth, build.y * scaleHeight, build.w * scaleWidth, build.h * scaleHeight);
     });
 
     ctx.restore();
