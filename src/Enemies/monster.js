@@ -2,11 +2,12 @@
 //Monster super class
 export defualt class Monster
 {
-    constructor(x, y, color, level, path,tileset)
+    constructor(x, y, color, level, path)
     {
         this.level = level 
         this.x = x;
         this.y = y;
+        this.radius = 20;
         this.MHP = 1; //max health
         this.CHP = 1; // current health
         this.MS = 0;  // max shield
@@ -24,9 +25,9 @@ export defualt class Monster
         this.barHeight = 10;
         this.energyEarned = 0;
         this.direction = "forward";
-        this.tileset = tileset;
-        this.tileIndex = 0;
-        this.frameIndex = 0;
+        //this.tileset = tileset;
+       // this.tileIndex = 0;
+       // this.frameIndex = 0;
         this.lastPoint = 0;
         this.nextPoint = 1;
 
@@ -45,36 +46,30 @@ export defualt class Monster
         render();
     }
   
-    render(ctx,scaleWidth, scaleHeight)
+    render(ctx)
     {
         ctx.save();
-        //render sprite
-        ctx.scale(scaleWidth, scaleHeight);
-        var tile = this.tileset.tiles[this.tileIndex];
-        var frame = tile.frames[frameIndex];
-        ctx.drawImage(tile.image, frame.x, frame.y, this.tileset.tileWidth, this.tileset.tileHeight, this.x - (this.tileset.tileWidth/2),this.y - (7 * this.tileset.tileHeight/8));
+        //render  stuff
+        ctx.beginPath();
+        ctx.fillStyle = this.HealthColor;
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.closePath();
 
-
-        ctx.scale(1 / scaleWidth, 1 / scaleHeight);
+        //health bars
+        ctx.fillStyle = 'red';
+        ctx.strokeRect(this.x, this.y + 10, this.barWidth * (this.CHP/this.MHP), this.barHeight);
+        ctx.fillRect(this.x, this.y + 10, this.barWidth * (this.CHP / this.MHP), this.barHeight);
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(this.x, this.y + 20, this.barWidth * (this.CS / this.MS), this.barHeight);
+        ctx.strokeRect(this.x, this.y + 20, this.barWidth * (this.CS / this.MS), this.barHeight);
         ctx.restore();
-
-
-
-
-      //health bars
-      ctx.fillStyle = 'red';
-      ctx.strokeRect(this.x, this.y + 10, this.barWidth * (this.CHP/this.MHP), this.barHeight);
-      ctx.fillRect(this.x, this.y + 10, this.barWidth * (this.CHP / this.MHP), this.barHeight);
-      ctx.fillStyle = 'blue';
-      ctx.fillRect(this.x, this.y + 20, this.barWidth * (this.CS / this.MS), this.barHeight);
-      ctx.strokeRect(this.x, this.y + 20, this.barWidth * (this.CS / this.MS), this.barHeight);
-      ctx.restore();
-        }
+    }
     
 
     march(path) // move along the path
     {
-        /**
+
         if (direction == "forward")
         {
             if (this.x < ePath[nextPoint].x && this.y == ePath[nextPoint].y) // the next point is to the right of the monster
@@ -123,7 +118,7 @@ export defualt class Monster
             nextPoint--
             lastPoint--;
         }
-        **/
+
        // var direction = Math.getDirection(this.x,this.y,path[i].x,path[i].y) 
     }
 

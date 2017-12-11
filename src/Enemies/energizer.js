@@ -2,9 +2,9 @@ import Monster from './monster.js';
 
 export default class Energizer extends Monster
 {
-    constructor(x, y, color, level, path, tileset)
+    constructor(x, y, color, level, path)
     {
-        super(x, y, color, level, tileset);
+        super(x, y, color, level, path);
         this.MHP = 5 + (this.healthScale * this.level);
         this.CHP = MHP; // current health
         this.MS = (MHP * 2);  // max shield 200% of total health
