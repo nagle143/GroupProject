@@ -7,7 +7,7 @@ export default class Map {
    *  @param  {Tileset} tileset     A functional tileset object.
    */
   constructor(tilemapData) {
-    let data, obj, mix, miy, max, may;
+    let data, obj;
 
     // Initialize the properies
     this.mapWidth = tilemapData.width;
@@ -60,21 +60,10 @@ export default class Map {
                 this.target = obj;
                 break;
               case 'Buildable':
-                obj.points = object.polygon;
-                mix = object.polygon[0].x;
-                miy = object.polygon[0].y;
-                max = mix;
-                may = miy;
-                object.polygon.forEach(point => {
-                  if (point.x < mix) mix = point.x;
-                  if (point.x > max) max = point.x;
-                  if (point.y < miy) miy = point.y;
-                  if (point.y > may) may = point.y;
-                });
-                obj.x = mix;
-                obj.y = mit;
-                obj.w = max - mix;
-                obj.h = may - miy;
+                obj.x = object.x;
+                obj.y = object.y;
+                obj.w = object.width;
+                obj.h = object.height;
                 this.buildable.push(obj);
                 break;
               default:
@@ -128,7 +117,6 @@ export default class Map {
    *  @param  {Context} ctx The canvas context for rendering the map.
    */
   render(ctx, scaleWidth, scaleHeight) {
-    ctx.save();
     // this.tileLayers.forEach((layer) => {
     //   if (layer.visible) {
     //     for(let y = 0; y < this.mapHeight; y++) {
@@ -163,6 +151,8 @@ export default class Map {
     //   }
     // });
     //
+    ctx.save();
+
     ctx.strokeStyle = "White";
     ctx.fillstyle = "Green";
 
