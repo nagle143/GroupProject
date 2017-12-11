@@ -118,7 +118,7 @@ export default class Map {
     });
 
     this.target.cx *= scaledWidth;
-    this.target.xy *= scaledHeight;
+    this.target.cy *= scaledHeight;
 
     return { width: scaledWidth, height: scaledHeight};
   }
