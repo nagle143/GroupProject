@@ -14,14 +14,11 @@ export default class Wave {
    *  @param  {Robot} unit    The unit to add to the wave.
    *  @param  {Integer} time  The time to wait from reaching the front of the queue to spawning.
    */
-  enqueue(list) {
-    list.forEach(element => {
-        this.queue.push({
-        unit: element.unit,
-        time: element.time
-        });
+  enqueue(unit, time) {
+    this.queue.push({
+      unit: unit,
+      time: time
     });
-    console.log(this);
   }
 
   /** @function kill
@@ -30,6 +27,10 @@ export default class Wave {
    */
   kill(id) {
     this.board.splice(id, 1);
+    if (!(this.board.length || this.queue.length))
+      return true;
+    else
+      return false;
   }
 
   /** @function update
