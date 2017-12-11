@@ -95,6 +95,10 @@ export default class Map {
     // });
   }
 
+  getScaleFactor(width, height) {
+    return { width: this.mapWidth * this.tileWidth / width, height: this.mapHeight * this.tileHeight / height };
+  }
+
   /** @function update
    *  Updates all the animations in the map.
    */
