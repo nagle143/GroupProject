@@ -5,17 +5,11 @@ export default class Building {
    *  Constructs a new building.
    *  @param  {Integer} x     The x coordinate.
    *  @param  {Integer} y     The y coordinate.
-   *  @param  {Object} tile   The tile to display for the building.
-   *  @param  {Integer} tw    The width of the tile.
-   *  @param  {Integer} th    The height of the tile.
    */
-  constructor(x, y, tile, tw, th) {
+  constructor(x, y) {
     this.x = x;
     this.y = y;
     this.coolDown = 0;
-    this.tile = tile;
-    this.tileWidth = tw;
-    this.tileHeight = th;
   }
 
   /** @function change
@@ -41,20 +35,10 @@ export default class Building {
    *  Render the building on the canvas.
    *  @param  {Context} ctx   The canvas context to render on.
    */
-  render(ctx) {
-    ctx.drawImage(
-      // The source image
-      this.tile.image,
-      // The portion of the source image to draw
-      this.tile.frames[0].x,
-      this.tile.frames[0].y,
-      this.tileWidth,
-      this.tileHeight,
-      // Where to draw the tile on-screen
-      this.x,
-      this.y,
-      this.tileWidth,
-      this.tileHeight
-    );
+  render(ctx, scaleWidth, scaleHeight) {
+    ctx.save();
+    ctx.strokeStyle = "White";
+    ctx.strokeRect(this.x, this.y, scaleWidth * 48, scaleHeight * 48);
+    ctx.restore();
   }
 }

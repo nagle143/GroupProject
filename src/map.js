@@ -6,7 +6,7 @@ export default class Map {
    *  @param  {Object} tilemapData  The object containing data for the map.
    *  @param  {Tileset} tileset     A functional tileset object.
    */
-  constructor(tilemapData, tileset) {
+  constructor(tilemapData) {
     let data, obj, tx, ty;
 
     // Initialize the properies
@@ -14,9 +14,6 @@ export default class Map {
     this.mapHeight = tilemapData.height;
     this.tileWidth = tilemapData.tilewidth;
     this.tileHeight = tilemapData.tileheight;
-    this.tileset = tileset;
-    this.tileLayers = [];
-    this.animations = [];
     this.paths = [];
     this.buildable = [];
     this.target = undefined;
@@ -25,23 +22,23 @@ export default class Map {
     tilemapData.layers.forEach((layer) => {
       switch (layer.type) {
         case 'tilelayer':
-          // Insert the tile data in a real array
-            data = undefined;
-          if (tileset.tiles.length < 255)
-            data = new Uint8Array(layer.data);
-          else if (tileset.tiles.length < 65535)
-            data = new Uint16Array(layer.data);
-          else if (tileset.tiles.length < 4294967295)
-            data = new Uint32Array(layer.data);
-          else
-            throw "Tile indices too large to store";
-
-          // Add the layer onto the list of tile layers
-          this.tileLayers.push({
-            name: layer.name,
-            visible: layer.visible,
-            data: data
-          });
+          // // Insert the tile data in a real array
+          //   data = undefined;
+          // if (tileset.tiles.length < 255)
+          //   data = new Uint8Array(layer.data);
+          // else if (tileset.tiles.length < 65535)
+          //   data = new Uint16Array(layer.data);
+          // else if (tileset.tiles.length < 4294967295)
+          //   data = new Uint32Array(layer.data);
+          // else
+          //   throw "Tile indices too large to store";
+          //
+          // // Add the layer onto the list of tile layers
+          // this.tileLayers.push({
+          //   name: layer.name,
+          //   visible: layer.visible,
+          //   data: data
+          // });
           break;
         case 'objectgroup':
           layer.objects.forEach((object) => {
@@ -88,84 +85,90 @@ export default class Map {
     });
 
     // Setup all the controllers for the animations
-    tileset.tiles.forEach(tile => {
-      this.animations.push({
-        frame: 0,
-        frameMax: tile.frames.length,
-        count: tile.frames[0].dur,
-        times: tile.frames.map(frame => frame.dur)
-      });
-    });
+    // tileset.tiles.forEach(tile => {
+    //   this.animations.push({
+    //     frame: 0,
+    //     frameMax: tile.frames.length,
+    //     count: tile.frames[0].dur,
+    //     times: tile.frames.map(frame => frame.dur)
+    //   });
+    // });
+  }
+
+  getScaleFactor(width, height) {
+    return { width: this.mapWidth * this.tileWidth / width, height: this.mapHeight * this.tileHeight / height };
   }
 
   /** @function update
    *  Updates all the animations in the map.
    */
   update() {
-    for (let a = 0; a < this.animations.length; a++) {
-      // Don't animate tiles without additional frames
-      if (this.animations[a].frameMax === 1)
-        continue;
-
-      // Decrement the counter, otherwise rollover to next frame.
-      if (this.animations[a].count)
-        this.animations[a].count--;
-      else {
-        this.animations[a].frame = (this.animations[a].frame + 1) % this.animations[a].frameMax;
-        this.animations[a].count = this.animations[a].times[this.animations[a].frame];
-      }
-    }
+    // for (let a = 0; a < this.animations.length; a++) {
+    //   // Don't animate tiles without additional frames
+    //   if (this.animations[a].frameMax === 1)
+    //     continue;
+    //
+    //   // Decrement the counter, otherwise rollover to next frame.
+    //   if (this.animations[a].count)
+    //     this.animations[a].count--;
+    //   else {
+    //     this.animations[a].frame = (this.animations[a].frame + 1) % this.animations[a].frameMax;
+    //     this.animations[a].count = this.animations[a].times[this.animations[a].frame];
+    //   }
+    // }
   }
 
   /** @function render
    *  Renders all the tiles on the map.
    *  @param  {Context} ctx The canvas context for rendering the map.
    */
-  render(ctx, width, height) {
-    let tileIndex, tile, frame;
-
+  render(ctx, scaleWidth, scaleHeight) {
     ctx.save();
-    ctx.scale(this.mapWidth * this.tileWidth / width, this.mapHeight * this.tileHeight / height);
 
-    this.tileLayers.forEach((layer) => {
-      if (layer.visible) {
-        console.log(layer);
-        for(let y = 0; y < this.mapHeight; y++) {
-          for(let x = 0; x < this.mapWidth; x++) {
-            tileIndex = layer.data[y * this.mapWidth + x];
-
-            // Skip non-existant tiles
-            if(tileIndex === 0)
-              continue;
-            tile = this.tileset.tiles[tileIndex];
-            // Don't draw a non-existant image
-            if (!tile.image)
-              continue;
-
-            frame = tile.frames[this.animations[tileIndex].frame];
-            console.log(this.animations[tileIndex]);
-            console.log(frame);
-            console.log(tile.image);
-            ctx.drawImage(
-              // The source image
-              tile.image,
-              // The portion of the source image to draw
-              frame.x * this.tileWidth,
-              frame.y * this.tileHeight,
-              this.tileWidth,
-              this.tileHeight,
-              // Where to draw the tile on-screen
-              x * this.tileWidth,
-              y * this.tileHeight,
-              this.tileWidth,
-              this.tileHeight
-            );
-          }
-        }
+    // this.tileLayers.forEach((layer) => {
+    //   if (layer.visible) {
+    //     for(let y = 0; y < this.mapHeight; y++) {
+    //       for(let x = 0; x < this.mapWidth; x++) {
+    //         tileIndex = layer.data[y * this.mapWidth + x];
+    //
+    //         // Skip non-existant tiles
+    //         if(tileIndex === 0)
+    //           continue;
+    //         tile = this.tileset.tiles[tileIndex];
+    //         // Don't draw a non-existant image
+    //         if (!tile.image)
+    //           continue;
+    //
+    //         frame = tile.frames[this.animations[tileIndex].frame];
+    //         ctx.drawImage(
+    //           // The source image
+    //           tile.image,
+    //           // The portion of the source image to draw
+    //           frame.x * this.tileWidth,
+    //           frame.y * this.tileHeight,
+    //           this.tileWidth,
+    //           this.tileHeight,
+    //           // Where to draw the tile on-screen
+    //           x * this.tileWidth,
+    //           y * this.tileHeight,
+    //           this.tileWidth,
+    //           this.tileHeight
+    //         );
+    //       }
+    //     }
+    //   }
+    // });
+    this.paths.forEach(path => {
+      ctx.beginPath();
+      for (let i = 0; i < path.steps; i++) {
+        if (i)
+          ctx.lineTo(path.steps[i].x * scaleWidth, path.steps[i].y * scaleHeight);
+        else
+          ctx.moveTo(path.steps[i].x * scaleWidth, path.steps[i].y * scaleHeight);
       }
+      ctx.stroke();
     });
 
-    ctx.scale(width / (this.mapWidth * this.tileWidth), height / (this.mapHeight * this.tileHeight));
     ctx.restore();
   }
 }

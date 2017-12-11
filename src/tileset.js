@@ -5,19 +5,25 @@ export default class Tileset {
    *  Constructs a new tileset.
    *  @param  {[type]} tilesetData  The object containing data for the tileset.
    */
-  constructor(tilesetData) {
+  constructor() {
+    this.tiles;
+    this.tileWidth;
+    this.tileHeight;
+    this.image;
+    this.default;
+  }
+
+  load(tilesetData, fun) {
     let frames = [], tile, id = 1, x, y;
 
-    // Initialize the properties
     this.tiles = [];
-    this.image = new Image();
-    this.default = new Image();
     this.tileWidth = tilesetData.tilewidth;
     this.tileHeight = tilesetData.tileheight;
 
-    // Save the tileset's image
+    this.image = new Image();
+    this.image.onload = fun;
     this.image.src = './Tilesets/' + tilesetData.image;
-    this.default.src = './Tilesets/' + tilesetData.image;
+    document.body.appendChild(this.image);
 
     // Create tiles from the image
     for(let id = 1; id <= tilesetData.tilecount; id++) {
@@ -27,9 +33,9 @@ export default class Tileset {
       y = (id - x - 1) / tilesetData.columns;
 
       // Create the frames for animations, otherwise create single frame for tile
-      if(tilesetData.hasOwnProperty('tiles')) {
+      if(tilesetData.tiles) {
         if (tilesetData.tiles.hasOwnProperty(tile)) {
-          if (tilesetData.tiles[tile].hasOwnProperty('animation')) {
+          if (tilesetData.tiles[tile].animation) {
             tilesetData.tiles[tile].animation.forEach(frame => {
               // Get location of frame
               x = (frame.tileid - 1) % tilesetData.columns;
@@ -51,28 +57,8 @@ export default class Tileset {
         frames.push({dur: 0, x: x, y: y});
       this.tiles[id] = {
         image: this.image,
-        default: this.default,
         frames: frames
       };
     }
-  }
-
-  load() {
-
-  }
-
-  /** @function reset
-   *  Resets the image to the default image.
-   */
-  reset() {
-    this.image.src = this.default.src;
-  }
-
-  /** @function changeImage
-   *  Changes the reference image for the tileset.
-   *  @param  {String} path The path to the new image.
-   */
-  changeImage(path) {
-    this.image.src = path;
   }
 }
