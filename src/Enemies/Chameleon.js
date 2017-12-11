@@ -11,7 +11,7 @@ export default class Chameleon extends Monster
         this.currentSpeed = this.ogSpeed; // current speed
         this.bounty = 15 + (this.level * bountyScale);
         this.originalColor = Monster.color;
-        this.cooldown = 5; // temp time before next change;
+        this.cooldown = 5; // temp time before next change; 
     }
 
     update()

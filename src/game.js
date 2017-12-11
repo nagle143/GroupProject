@@ -452,6 +452,13 @@ if(event.y==0 &&event.x==0){}else{event.target.style.top=event.y + 'px';
     /*
     this.monsters.forEach(monster => {
       monster.update();
+      if(dieByHealth() == true)
+        //kill enemy
+      if(reachedEnd(energy) == true)
+      {
+      //kill enemy
+      //subtact energy
+      }             
     });*/
     this.towers.forEach(tower => {
       for(let i = 0; i < this.monsters.length; i++) {

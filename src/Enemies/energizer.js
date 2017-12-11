@@ -12,7 +12,7 @@ export default class Energizer extends Monster
         this.armor = 7; // damage reduction
         this.currentSpeed = this.ogSpeed; // current speed
         this.bounty = 12 + (this.level * bountyScale);
-        this.SPS = MS * .98; //temp shield gained per second
+        this.SPS = MS * .98; //temp shield gained per second 
 
     }
 

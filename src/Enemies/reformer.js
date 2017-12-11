@@ -11,7 +11,7 @@ export default class Reformer extends Monster
         this.currentSpeed = this.ogSpeed; // current speed
         this.bounty = 7; // * (level * increase percentage) how much you earn
         this.lives = 1; // number of times can come back from the dead
-    }
+    } 
 
     update()
     {

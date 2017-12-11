@@ -14,7 +14,7 @@ export default class Accelerator extends Monster
         this.currentSpeed = this.ogSpeed; // current speed
         this.bounty = 8 + (this.level * bountyScale); // * (level * increase percentage) how much you earn
     }
-
+     
     update()
     {
         super.update(); // do as all enemies do

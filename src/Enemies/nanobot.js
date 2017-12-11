@@ -11,7 +11,7 @@ export default class NanoBot extends Monster
         this.CS = MS; // current shield
         this.armor = 7; // damage reduction
         this.currentSpeed = this.ogSpeed; // current speed
-        this.bounty = 12; // * (level * increase percentage) how much you earn
+        this.bounty = 12; // * (level * increase percentage) how much you earn 
         this.HPS = MHP * .98; // heal for 2% of max health per second
     }
 
