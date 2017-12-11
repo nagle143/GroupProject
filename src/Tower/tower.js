@@ -231,7 +231,7 @@ export default class Tower {
       this.structModifier();
       //If it has targets, track them
       if(this.targets.length > 0) {
-        this.track();
+        this.direction = Math.getDirection(this.x, this.y, this.targets[0].x, this.targets[0].y);
         this.structural.update(this.direction);
       }
       //If it is reloading update counter
@@ -243,17 +243,17 @@ export default class Tower {
         }
       }
       //If it is not reloading & has targets, shoot
-      if(!this.reloading && this.targets.length > 0) {
+      /*if(!this.reloading && this.targets.length > 0) {
         this.createProjectile();
         this.reloading = true;
-      }
+      }*/
     }
     //Update projectiles
-    for(let i = 0; i < this.projectiles.length; i++) {
+    /*for(let i = 0; i < this.projectiles.length; i++) {
       if(this.projectiles[i].update()) {
         this.projectiles.splice(i, 1);
       }
-    }
+    }*/
     //Will need to update struct too for spinning
   }
 
@@ -270,9 +270,5 @@ export default class Tower {
     ctx.closePath();
     ctx.stroke();
     ctx.restore();
-    //Render projectiles
-    this.projectiles.forEach(projectile => {
-      projectile.render(ctx);
-    });
   }
 }

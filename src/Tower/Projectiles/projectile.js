@@ -32,10 +32,6 @@ export default class Projectile {
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.closePath();
     ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(this.x, this.y);
-    ctx.lineTo(this.target.x, this.target.y);
-    ctx.stroke();
     ctx.restore();
   }
 }

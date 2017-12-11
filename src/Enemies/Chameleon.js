@@ -25,7 +25,10 @@ export default class Chameleon extends Monster
             this.time = 0;
         }
         this.colorChange();
-        super.update(); // do as all enemies do
+        if(super.update()) {
+          return true;
+        }
+        return false; // do as all enemies do
     }
 
     colorChange() // if cooldown done change to next color

@@ -24,7 +24,10 @@ export default class Energizer extends Monster
             this.time = 0;
         }
         this.time++;
-        super.update(); // do as all enemies do
+        if(super.update()) {
+          return true;
+        }
+        return false; // do as all enemies do
     }
 
     recharge()

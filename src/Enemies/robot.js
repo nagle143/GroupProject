@@ -14,6 +14,9 @@ export default class Robot extends Monster
 
     update()
     {
-      super.update(); // do as all enemies do
+      if(super.update()) {
+        return true;
+      }
+      return false;
     }
 }

@@ -13,8 +13,9 @@ export default class Monster
         this.MS = 0;  // max shield
         this.CS = 0; // current shield
         this.HealthColor = color;
-        this.ogSpeed = 5; // oringal speed of a monster
+        this.ogSpeed = 2; // oringal speed of a monster
         this.currentSpeed = 0; // current speed of a monster
+        this.speed = {x: 0.0, y: 0.0};
         this.armor = 0;
         this.bounty = 1;
 
@@ -39,12 +40,29 @@ export default class Monster
         this.nextPoint = 1;
         this.statusEffect = [];
         this.path = path;
+        console.log(this.path);
+        console.log(this.x);
+        console.log(this.y);
     }
 
     update()
     {
-        this.applyStatus(); //see if status effects need to be applied
-        this.march(this.path); // move foward in the path
+        this.ApplyStatus(); //see if status effects need to be applied
+        this.direction = Math.getDirection(this.x, this.y, this.path[this.nextPoint].x, this.path[this.nextPoint].y);
+        this.setSpeeds();
+        this.x += this.speed.x;
+        this.y += this.speed.y;
+        if(this.checkPoint(this.path[this.nextPoint])) {
+          if(this.nextPoint >= this.path.length - 1) {
+            console.log("end");
+            return true;
+          }
+          else {
+            this.nextPoint++;
+            this.lastPoint++;
+          }
+        }
+        return false;
     }
 
     render(ctx)
@@ -59,18 +77,28 @@ export default class Monster
 
         //health bars
         ctx.fillStyle = 'red';
-        ctx.strokeRect(this.x, this.y + 5, this.barWidth * (this.CHP/this.MHP), this.barHeight);
-        ctx.fillRect(this.x, this.y + 5, this.barWidth * (this.CHP / this.MHP), this.barHeight);
+        ctx.strokeRect(this.x - this.radius, this.y - Math.round(this.radius * 1.40), this.barWidth * (this.CHP/this.MHP), this.barHeight);
+        ctx.fillRect(this.x - this.radius, this.y - Math.round(this.radius * 1.40), this.barWidth * (this.CHP / this.MHP), this.barHeight);
         ctx.fillStyle = 'blue';
-        ctx.fillRect(this.x, this.y + 10, this.barWidth * (this.CS / this.MS), this.barHeight);
-        ctx.strokeRect(this.x, this.y + 10, this.barWidth * (this.CS / this.MS), this.barHeight);
+        ctx.fillRect(this.x - this.radius, this.y - Math.round(this.radius * 1.50), this.barWidth * (this.CS / this.MS), this.barHeight);
+        ctx.strokeRect(this.x - this.radius, this.y - Math.round(this.radius * 1.50), this.barWidth * (this.CS / this.MS), this.barHeight);
         ctx.restore();
     }
 
+    setSpeeds() {
+      this.speed.x = Math.sin(this.direction) * this.currentSpeed;
+      this.speed.y = -Math.cos(this.direction) * this.currentSpeed;
+    }
 
-    march(path) // move along the path
-    {
-        this.direction = Math.getDirection(this.x, this.y, this.path[this.nextPoint].x, this.path[this.nextPoint].y)
+    checkPoint(point) {
+      let dx = this.x - point.x;
+      let dy = this.y - point.y;
+      let dist = Math.sqrt(dx * dx + dy * dy);
+      if(dist <= this.radius * 0.5) {
+        console.log('checkPoint found');
+        return true;
+      }
+      return false;
     }
 
     /* This can be done elsewhere

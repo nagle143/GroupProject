@@ -10,13 +10,16 @@ export default class Accelerator extends Monster
         this.MS = (this.MHP * .2);  // max shield 20% of total health
         this.CS = this.MS; // current shield
         this.armor = 7; // damage reduction
-        this.orgSpeed = 10;
+        this.orgSpeed = 4;
         this.currentSpeed = this.ogSpeed; // current speed
         this.bounty = 8 + Math.round(this.level * 1.10); // * (level * increase percentage) how much you earn
     }
 
     update()
     {
-        super.update(); // do as all enemies do
+      if(super.update()) {
+        return true;
+      }
+      return false; // do as all enemies do
     }
 }

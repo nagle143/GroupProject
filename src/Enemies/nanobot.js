@@ -19,11 +19,14 @@ export default class NanoBot extends Monster
     {
         if (this.time = 60)
         {
-            super.heal();// heal self
+            this.heal();// heal self
             this.time = 0;
         }
         this.time++;
-        super.update(); // do as all enemies do
+        if(super.update()) {
+          return true;
+        }
+        return false; // do as all enemies do
     }
     heal()
     {

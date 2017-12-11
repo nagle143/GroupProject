@@ -13,10 +13,6 @@ export default class Color {
     this.x = x;
     this.y = y;
     this.color = null;
-    //variables to help keep track of component dominance
-    this.components = {first: null, second: null};
-    //Keeps track of how dominant the first component is
-    this.dominance = 0.0;
     //Overall level of the gem
     this.level = 1;
     //Level one Starters
@@ -40,53 +36,36 @@ export default class Color {
         this.minDamage = 5;
         this.maxDamage = 10;
         this.color = 'red';
-        this.components.first = 'red';
-        this.dominance = 1.00;
         break;
       case 'blue':
         this.minDamage = 5;
         this.maxDamage = 10;
         this.color = 'blue';
-        this.components.first = 'blue';
-        this.dominance = 1.00;
         break;
       case 'green':
         this.minDamage = 5;
         this.maxDamage = 10;
         this.color = 'green';
-        this.components.first = 'green';
-        this.dominance = 1.00;
         break;
       case 'cyan':
         this.minDamage = 5;
         this.maxDamage = 10;
         this.color = 'cyan';
-        this.components.first = 'blue';
-        this.components.second = 'green';
-        this.dominance = 0.50;
         break;
       case 'magenta':
         this.minDamage = 5;
         this.maxDamage = 10;
         this.color = 'magenta';
-        this.components.first = 'red';
-        this.components.second = 'blue';
-        this.dominance = 0.50;
         break;
       case 'yellow':
         this.minDamage = 5;
         this.maxDamage = 10;
         this.color = 'yellow';
-        this.components.first = 'red';
-        this.components.second = 'green';
-        this.dominance = 0.50;
         break;
       case 'white':
         this.minDamage = 5;
         this.maxDamage = 10;
         this.color = 'white';
-        this.components.first = 'white';
-        this.dominance = 1.00;
         break;
     }
   }
@@ -156,9 +135,6 @@ export default class Color {
     //If this component is white, it takes on the color of the second component
     if(this.color === 'white') {
       this.color = component.color;
-      this.component.first = component.component.first;
-      this.component.second = component.component.second;
-      this.dominance = component.dominance;
       return;
     }
     /*
@@ -172,29 +148,18 @@ export default class Color {
         switch (component.color) {
           case 'green':
             this.color = 'yellow';
-            this.components.second = 'yellow';
-            this.dominance = 0.5;
             break;
           case 'blue':
             this.color = 'magenta';
-            this.components.second = 'blue';
-            this.dominance = 0.5;
             break;
           case 'magenta':
             this.color = 'magenta';
-            this.components.second = 'blue';
-            this.dominance = +((this.dominance + component.dominance) / 2).toFixed(2);;
             break;
           case 'yellow':
             this.color = 'yellow';
-            this.components.second = 'green';
-            this.dominance = +((this.dominance + component.dominance) / 2).toFixed(2);;
             break;
           case 'cyan':
             this.color = 'white';
-            this.components.first = 'white';
-            this.components.second = null;
-            this.dominance = 1.0;
             break;
         }
         break;
@@ -202,33 +167,18 @@ export default class Color {
         switch (component.color) {
           case 'red':
             this.color = 'yellow';
-            this.components.first = 'red';
-            this.components.second = 'green';
-            this.dominance = 0.5;
             break;
           case 'blue':
             this.color = 'cyan';
-            this.components.first = 'blue';
-            this.components.second = 'green';
-            this.dominance = 0.5;
             break;
           case 'magenta':
             this.color = 'white';
-            this.components.first = 'white';
-            this.components.second = null;
-            this.dominance = 1.0;
             break;
           case 'yellow':
             this.color = 'yellow';
-            this.components.first = 'red';
-            this.components.second = 'green';
-            this.dominance = +(component.dominance / 2).toFixed(2);;
             break;
           case 'cyan':
             this.color = 'cyan';
-            this.components.first = 'blue';
-            this.components.second = 'green';
-            this.dominance = +(component.dominance / 2).toFixed(2);;
             break;
         }
         break;
@@ -236,33 +186,18 @@ export default class Color {
         switch (component.color) {
           case 'red':
             this.color = 'magenta';
-            this.components.first = 'red';
-            this.components.second = 'blue';
-            this.dominance = 0.5;
             break;
           case 'green':
             this.color = 'cyan';
-            this.components.first = 'blue';
-            this.components.second = 'green';
-            this.dominance = 0.5;
             break;
           case 'magenta':
             this.color = 'magenta';
-            this.components.first = 'red';
-            this.components.second = 'blue';
-            this.dominance = +(component.dominance / 2).toFixed(2);;
             break;
           case 'yellow':
             this.color = 'white';
-            this.components.first = 'white';
-            this.components.second = null;
-            this.dominance = 1.0;
             break;
           case 'cyan':
             this.color = 'cyan';
-            this.components.first = 'blue';
-            this.components.second = 'green';
-            this.dominance = +((this.dominance + component.dominance) / 2).toFixed(2);;
             break;
         }
         break;
@@ -270,33 +205,18 @@ export default class Color {
         switch (component.color) {
           case 'red':
             this.color = 'magenta';
-            this.components.first = 'red';
-            this.components.second = 'blue';
-            this.dominance = +((this.dominance + component.dominance) / 2).toFixed(2);;
             break;
           case 'green':
             this.color = 'white';
-            this.components.first = 'white';
-            this.components.second = null;
-            this.dominance = 1.0;
             break;
           case 'blue':
             this.color = 'magenta';
-            this.components.first = 'red';
-            this.components.second = 'blue';
-            this.dominance = +(this.dominance / 2).toFixed(2);;
             break;
           case 'yellow':
             this.color = 'red';
-            this.components.first = 'red';
-            this.components.second = null;
-            this.dominance = 1.0;
             break;
           case 'cyan':
             this.color = 'blue';
-            this.components.first = 'blue';
-            this.components.second = null;
-            this.dominance = 1.0;
             break;
         }
         break;
@@ -304,33 +224,18 @@ export default class Color {
         switch (component.color) {
           case 'red':
             this.color = 'yellow';
-            this.components.first = 'red';
-            this.components.second = 'green';
-            this.dominance = +((this.dominance + component.dominance) / 2).toFixed(2);;
             break;
           case 'green':
             this.color = 'yellow';
-            this.components.first = 'red';
-            this.components.second = 'green';
-            this.dominance = +(this.dominance / 2).toFixed(2);;
             break;
           case 'blue':
             this.color = 'white';
-            this.components.first = 'white';
-            this.components.second = null;
-            this.dominance = 1.0;
             break;
           case 'magenta':
             this.color = 'red';
-            this.components.first = 'red';
-            this.components.second = null;
-            this.dominance = 1.00;
             break;
           case 'cyan':
             this.color = 'blue';
-            this.components.first = 'blue';
-            this.components.second = null;
-            this.dominance = 1.00;
             break;
         }
         break;
@@ -338,33 +243,18 @@ export default class Color {
         switch (component.color) {
           case 'red':
             this.color = 'white';
-            this.components.first = 'white';
-            this.components.second = null;
-            this.dominance = 1.0;
             break;
           case 'green':
             this.color = 'cyan';
-            this.components.first = 'blue';
-            this.components.second = 'green';
-            this.dominance = +(this.dominance / 2).toFixed(2);;
             break;
           case 'blue':
             this.color = 'cyan';
-            this.components.first = 'blue';
-            this.components.second = 'green';
-            this.dominance = +((this.dominance + component.dominance) / 2).toFixed(2);;
             break;
           case 'magenta':
             this.color = 'blue';
-            this.components.first = 'blue';
-            this.components.second = null;
-            this.dominance = 1.0;
             break;
           case 'yellow':
             this.color = 'green';
-            this.components.first = 'green';
-            this.components.second = null;
-            this.dominance = 1.0;
             break;
         }
         break;
