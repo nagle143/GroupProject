@@ -26,11 +26,7 @@ export default class Wave {
    *  @param  {Integer} id  The unit to remove from the board.
    */
   kill(id) {
-    this.board.splice(id, 1);
-    if (!(this.board.length || this.queue.length))
-      return true;
-    else
-      return false;
+    return this.board.splice(id, 1);
   }
 
   /** @function update
@@ -49,6 +45,11 @@ export default class Wave {
       else
         this.board.push(this.queue.shift().unit);
     }
+
+    if (!(this.board.length || this.queue.length))
+      return true;
+    else
+      return false;
   }
 
   /** @function render
