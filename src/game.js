@@ -69,7 +69,7 @@ export default class Game {
     this.secondCombineSlot={x:610 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot2',gemId:null};
     this.initialX=null;
     this.initialY=null;
-    this.Buildings=[];
+    this.Buildings = [];
     //Still testing these power variables
     /*
     this.activePowers = [];
@@ -115,6 +115,18 @@ export default class Game {
     //60fps
     this.interval = setInterval(this.loop, 1000/60);
     //this.createInv(7,4,17,17,0,570,170);
+
+    //sounds
+    var waveStart = new Audio('waveStart.wav');
+    var chain = new Audio('chain.wav');
+    var end = new Audio('end.wav');
+    var launcher = new Audio('launcher.wav');
+    var lightHouse = new Audio('lightHouse.wav');
+    var multiShot = new Audio('multiShot.wav');
+    var plasmaGun = new Audio('plasmaGun.wav');
+    var pulse = new Audio('pulse.wav');
+    var railGun = new Audio('railGun.wav');
+    var robotDeath = new Audio('robotDeath.wav');
   }
 ///creating gems functions
 /*
