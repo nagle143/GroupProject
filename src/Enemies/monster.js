@@ -21,7 +21,7 @@ export defualt class Monster
         this.time = 0;
         this.statusTime = 0;
         this.healthScale = .50; // percentage scaling
-        this.barWidth = 20;
+        this.barWidth = 40;
         this.barHeight = 10;
         this.energyEarned = 0;
         this.direction = "forward";
@@ -58,11 +58,11 @@ export defualt class Monster
 
         //health bars
         ctx.fillStyle = 'red';
-        ctx.strokeRect(this.x, this.y + 10, this.barWidth * (this.CHP/this.MHP), this.barHeight);
-        ctx.fillRect(this.x, this.y + 10, this.barWidth * (this.CHP / this.MHP), this.barHeight);
+        ctx.strokeRect(this.x, this.y + 5, this.barWidth * (this.CHP/this.MHP), this.barHeight);
+        ctx.fillRect(this.x, this.y + 5, this.barWidth * (this.CHP / this.MHP), this.barHeight);
         ctx.fillStyle = 'blue';
-        ctx.fillRect(this.x, this.y + 20, this.barWidth * (this.CS / this.MS), this.barHeight);
-        ctx.strokeRect(this.x, this.y + 20, this.barWidth * (this.CS / this.MS), this.barHeight);
+        ctx.fillRect(this.x, this.y + 10, this.barWidth * (this.CS / this.MS), this.barHeight);
+        ctx.strokeRect(this.x, this.y + 10, this.barWidth * (this.CS / this.MS), this.barHeight);
         ctx.restore();
     }
     
