@@ -63,7 +63,7 @@ export default class Chameleon extends Monster
             this.cooldown = 3;
         }
     }
-
+     
     render(ctx)
     {
         super.render(ctx);

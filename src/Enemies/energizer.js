@@ -42,7 +42,7 @@ export default class Energizer extends Monster
         }
     }
 
-
+     
     render(ctx)
     {
         super.render(ctx);
