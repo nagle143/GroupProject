@@ -25,7 +25,7 @@ export default class Monster
         this.time = 0;
 
         this.healthScale = 1.10; // percentage scaling
-        this.armorScale = 0.50;
+        this.armorScale = 1.10;
         this.bountyScale = 1.10;  
 
         this.barWidth = 40;
@@ -122,35 +122,158 @@ export default class Monster
       return false;
     }
 
-    /* This can be done elsewhere
-    dieByHealth() // tells game if monster needs to be deleted because of death
-    {
-        if (this.CHP <= 0) // if tower kills monster
+
+    hurt(pc, damage) {
+        switch (this.HealthColor)
         {
-            return true// tell game to delete monster
+            case "red":
+                switch (pc)
+                {
+                    case "red":
+                        damage *= .10;
+                        break;
+                    case "cyan":
+                        damage *= 1.10;
+                        break;
+                    case "yellow":
+                    case "magenta":
+                        damage *= .40;
+                        break;
+                    case "blue":
+                    case "green":
+                        damage *= .70;                  
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case "cyan":
+                switch (pc)
+                {
+                    case "red":
+                        damage *= 1.10;
+                        break;
+                    case "cyan":
+                        damage *= .10;
+                        break;
+                    case "yellow":
+                    case "magenta":
+                        damage *= .70;
+                        break;
+                    case "blue":
+                    case "green":
+                        damage *= .40;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case "yellow":
+                switch (pc) {
+                    case "red":
+                    case "green":
+                        damage *= .40;
+                        break;
+                    case "cyan":
+                    case "magenta":
+                        damage *= .70;
+                        break;
+                    case "yellow":
+                        damage *= .10;
+                        break;
+                    case "blue":
+                        damage *= 1.10;
+                        break;
+                    default:
+                        break;
+                }
+
+                break;
+            case "blue":
+                switch (pc) {
+                    case "red":
+                    case "green":
+                        damage *= .70;
+                        break;
+                    case "cyan":
+                    case "magenta":
+                        damage *= .40;
+                        break;
+                    case "yellow":
+                        damage *= 1.10;
+                        break;
+                    case "blue":
+                        damage *= .10;
+                        break;
+                    default:
+                        break;
+                }
+
+                break;
+            case "green":
+                switch (pc) {
+                    case "red":
+                    case "blue":
+                        damage *= .70;
+                        break;
+                    case "cyan":
+                    case "yellow":
+                        damage *= .40;
+                        break;
+                    case "green":
+                        damage *= .10;
+                        break;
+                    case "magenta":
+                        damage *= 1.10;
+                        break;
+                    default:
+                        break;
+                }
+
+                break;
+            case "magenta":
+                switch (pc) {
+                    case "red":
+                    case "blue":
+                        damage *= .40;
+                        break;
+                    case "cyan":
+                    case "yellow":
+                        damage *= .70;
+                        break;
+                    case "green":
+                        damage *= 1.10;
+                        break;
+                    case "magenta":
+                        damage *= .10;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
         }
-        if (this.CHP <= 0)
-        {
-            this.lies = this.lives - 1;
-            this.CHP = this.MHP;
-            return false;
+        this.SH -= damage - this.armor * 3;
+        if (this.CS < 0) {
+            this.CHP -= this.CS;
+            this.CS = 0;
+
+            if (this.CHP <= 0) // if tower kills monster
+            {
+                return true// tell game to delete monster
+            }
+            if (this.CHP <= 0) {
+                this.lies = this.lives - 1;
+                this.CHP = this.MHP;
+                return false;
+            }
         }
         return false;
-    }*/
+    }
 
-    /* This should be done by the game
-    reachedEnd(energy) // tells game to kill monster if it reaches the end
-    {
-        if (energy.x == this.x && energy.y == this.y) //if endpoint reached
-        {
-            return true;//delete monster
-        }
 
-        else
-        {
-            return false;
-        }
-    } */
+
 
     //Why return anything? for testing!
     status(projectile) // handles status effects from tower 
@@ -194,58 +317,55 @@ export default class Monster
 
     ApplyStatus() //apply effects of status
     {
-
+        var deleteArray = [];
         for (var i = 0; i < this.statusEffect.length; i++) // go through status array to see what needs to be applied
         {
-            switch (this.statusEffect[i].color)
-            {
+            switch (this.statusEffect[i].color) {
                 case "red":
                     this.statusEffect[i].time--;
-                    if (this.burn(this.statusEffect[i].time, this.statusEffect[i].base) == true)
-                    {
-                        this.statusEffect.slice(i, 1);
+                    if (this.burn(this.statusEffect[i].time, this.statusEffect[i].base) === true) {
+                        deleteArray.push(i);
                     }
                     break;
                 case "cyan":
                     this.statusEffect[i].time--;
-                    if (this.slow(this.statusEffect[i].time, this.statusEffect[i].base) == true)
-                    {
-                        this.statusEffect.slice(i, 1);
+                    if (this.slow(this.statusEffect[i].time, this.statusEffect[i].base) === true) {
+                        deleteArray.push(i);
                     }
                     break;
                 case "yellow":
                     this.statusEffect[i].time--;
-                    if(this.stun(this.statusEffect[i].time))
-                    {
-                        this.statusEffect.slice(i, 1);
+                    if (this.stun(this.statusEffect[i].time) === true) {
+                        deleteArray.push(i);
                     }
                     break;
                 case "blue":
                     this.statusEffect[i].time--;
-                    if (this.energyGain(this.statusEffect[i].base,60) == true)
-                    {
-                        this.statusEffect.slice(i, 1);
+                    if (this.energyGain(this.statusEffect[i].base, 60) === true) {
+                        deleteArray.push(i);
                     }
                     break;
                 case "green":
                     this.statusEffect[i].time--;
-                    if (this.shredArmor(this.statusEffect[i].time, this.statusEffect[i].base) == true)
-                    {
-                        this.statusEffect.slice(i, 1);
+                    if (this.shredArmor(this.statusEffect[i].time, this.statusEffect[i].base) === true) {
+                        deleteArray.push(i);
                     }
                     break;
                 case "magenta":
                     this.statusEffect[i].time--;
-                    if(this.Charm(this.statusEffect[i].time) == true)
-                    {
-                        this.statusEffect.slice(i, 1);
+                    if (this.Charm(this.statusEffect[i].time) === true) {
+                        deleteArray.push(i);
                     }
                     break;
                 default:
                     break;
             }
+        }
 
-
+        if (deleteArray.length != 0) {
+            for (var j = 0; j < this.deleteArray.length; j++) {
+                this.statusEffect.splice(j, 1);
+            }
         }
     }
 
