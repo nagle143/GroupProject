@@ -44,7 +44,7 @@ export default class Monster
     update() // needs to be updated to go opposite direction incase of charm
     {
         this.ApplyStatus(); //see if status effects need to be applied
-        if (movement == "forward")
+        if (this.movement == "forward")
         {
             this.direction = Math.getDirection(this.x, this.y, this.path[this.nextPoint].x, this.path[this.nextPoint].y);
             this.setSpeeds();
