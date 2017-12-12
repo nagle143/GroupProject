@@ -153,16 +153,8 @@ export default class Game {
     console.log(this.GemInventory);
 
     //sounds
-    var waveStart = new Audio('waveStart.wav');
-    var chain = new Audio('chain.wav');
-    var end = new Audio('end.wav');
-    var launcher = new Audio('launcher.wav');
-    var lightHouse = new Audio('lightHouse.wav');
-    var multiShot = new Audio('multiShot.wav');
-    var plasmaGun = new Audio('plasmaGun.wav');
-    var pulse = new Audio('pulse.wav');
-    var railGun = new Audio('railGun.wav');
-    var robotDeath = new Audio('robotDeath.wav');
+     this.waveStart = new Audio('waveStart.wav');
+     //this.robotDeath = new Audio('robotDeath.wav');
   }
 ///creating gems functions
 
@@ -335,7 +327,7 @@ export default class Game {
         startY=startY+40;
         startX=tempStartingX;
         reset=0;
-      }
+      }//hereno
       else{
         var div=document.createElement('div');
         div.style.width=divWidth+'px';
@@ -345,10 +337,11 @@ export default class Game {
         div.style.left = (startRow*(divWidth+18))+startX + "px";
         reset++;
         startRow++;
+        div.id="Inv"+i;
+        document.body.append(div);
+        this.GemInventory.push({slot:div,Taken:false});
       }
-      div.id="Inv"+i;
-      document.body.append(div);
-      this.GemInventory.push({slot:div,Taken:false});
+
     }
   }
 
@@ -385,7 +378,7 @@ export default class Game {
   }
 
 handleMouseClick(event){
-    console.log(event.x+" space  "+event.y);
+    console.log(this.GemInventory);
   var buildBool=false;
     var index;
     switch(this.EffectState){
@@ -793,6 +786,7 @@ handleMouseClick(event){
     if (this.currWave.update()) {
       console.log("this worked");
       this.switchWave();
+      this.waveStart.play();
       this.wave++;
       if (this.wave < this.mWaves.length) {
         console.log(this.mWaves[this.wave]);

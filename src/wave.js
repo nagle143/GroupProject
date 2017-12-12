@@ -30,7 +30,8 @@ export default class Wave {
   }
 
   hurtMonster(color, damage, ID) {
-    if(this.board[ID].hurt(color, damage)) {
+    if(this.board[ID].hurt(color, damage))
+    {
       this.kill(ID);
     }
   }

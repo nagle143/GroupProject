@@ -130,7 +130,7 @@ export default class Monster
                 switch (pc)
                 {
                     case "red":
-                        damage *= .10;
+                        damage *= .20;
                         break;
                     case "cyan":
                         damage *= 1.10;
@@ -154,7 +154,7 @@ export default class Monster
                         damage *= 1.10;
                         break;
                     case "cyan":
-                        damage *= .10;
+                        damage *= .20;
                         break;
                     case "yellow":
                     case "magenta":
@@ -179,7 +179,7 @@ export default class Monster
                         damage *= .70;
                         break;
                     case "yellow":
-                        damage *= .10;
+                        damage *= .20;
                         break;
                     case "blue":
                         damage *= 1.10;
@@ -203,7 +203,7 @@ export default class Monster
                         damage *= 1.10;
                         break;
                     case "blue":
-                        damage *= .10;
+                        damage *= .20;
                         break;
                     default:
                         break;
@@ -221,7 +221,7 @@ export default class Monster
                         damage *= .40;
                         break;
                     case "green":
-                        damage *= .10;
+                        damage *= .20;
                         break;
                     case "magenta":
                         damage *= 1.10;
@@ -245,7 +245,7 @@ export default class Monster
                         damage *= 1.10;
                         break;
                     case "magenta":
-                        damage *= .10;
+                        damage *= .20;
                         break;
                     default:
                         break;
