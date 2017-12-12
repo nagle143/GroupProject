@@ -396,7 +396,7 @@ handleMouseClick(event){
         var buttonsX=parseInt((event.x)/(this.ButtonsRec.width/2)%2);
         var buttonsY=parseInt((event.y)/(this.ButtonsRec.width/3)%3);
         //fillRect()
-        if(buttonsY==2 && buttonsX==2){}else{  this.buttonsFunctions[buttonsY][buttonsX](index);}
+        if(buttonsY==2 && buttonsX==1){}else{  this.buttonsFunctions[buttonsY][buttonsX](index);}
 
       //  if(buttonsY==2 && buttonsX==1){}
         this.GemInventory[index].Taken===true;
