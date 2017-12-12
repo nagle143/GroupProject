@@ -20,7 +20,7 @@ export default class Reformer extends Monster
       }
       return false; // do as all enemies do
     }
-
+     
 
     render(ctx)
     {

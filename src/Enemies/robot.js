@@ -19,7 +19,7 @@ export default class Robot extends Monster
       }
       return false;
     }
-
+     
     render(ctx)
     {
         super.render(ctx);
