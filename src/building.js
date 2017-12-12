@@ -6,9 +6,13 @@ export default class Building {
    *  @param  {Integer} x     The x coordinate.
    *  @param  {Integer} y     The y coordinate.
    */
-  constructor(x, y) {
+  constructor(x, y, width, height, Taken, ID) {
     this.x = x;
     this.y = y;
+    this.width = width;
+    this.height = height;
+    this.bool = Taken;
+    this.buildingId = ID;
     this.coolDown = 0;
   }
 
