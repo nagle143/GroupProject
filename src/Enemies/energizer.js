@@ -41,4 +41,20 @@ export default class Energizer extends Monster
             this.CS = this.CS + this.SPS;
         }
     }
+
+
+    render(ctx)
+    {
+        super.render(ctx);
+        ctx.save();
+        //render  stuff
+        ctx.beginPath();
+        ctx.strokeStyle = "black";
+        ctx.moveTo(this.x - this.radius, this.y);
+        ctx.lineTo(this.x + this.radius, this.y);
+        ctx.lineWidth = 5;
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+    }
 }

@@ -20,7 +20,7 @@ export default class Monster
         this.bounty = 1;
 
         //What is this?
-        //this.lives = 0;// exclusively for reformer to see how many times he can come back
+        this.lives = 0;// exclusively for reformer to see how many times he can come back
 
         this.time = 0;
 

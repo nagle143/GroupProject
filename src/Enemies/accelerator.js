@@ -33,5 +33,6 @@ export default class Accelerator extends Monster
         ctx.arc(this.x, this.y, this.radius/2, 0, Math.PI * 2); // need to change radius
         ctx.closePath();
         ctx.fill();
+        ctx.restore();
     }
 }

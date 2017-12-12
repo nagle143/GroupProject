@@ -44,7 +44,16 @@ export default class NanoBot extends Monster
     render(ctx)
     {
         super.render(ctx);
-       
+        ctx.save();
+        //render  stuff
+        ctx.beginPath();
+        ctx.strokeStyle = "black";
+        ctx.moveTo(this.x, this.y - this.radius);
+        ctx.lineTo(this.x, this.y + this.radius);
+        ctx.lineWidth = 5;
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
     }
 
 }
