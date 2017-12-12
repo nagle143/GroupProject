@@ -20,13 +20,13 @@ export default class Monster
         this.bounty = 1;
 
         //What is this?
-        //this.lives = 0;
+        //this.lives = 0;// exclusively for reformer to see how many times he can come back
 
         this.time = 0;
 
         this.healthScale = 0.50; // percentage scaling
         this.armorScale = 0.50;
-        this.bountyScale = 0.50;
+        this.bountyScale = 1.10;
 
 
         this.barWidth = 40;
@@ -63,11 +63,12 @@ export default class Monster
 
     render(ctx)
     {
+        //var rad = this.radius * scaleRadius
         ctx.save();
         //render  stuff
         ctx.beginPath();
         ctx.fillStyle = this.HealthColor;
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); // need to change radius
         ctx.closePath();
         ctx.fill();
 
@@ -126,8 +127,8 @@ export default class Monster
         }
     } */
 
-    //Why return anything?
-    status(projectile) // handles status effects from tower // this is wrong need to fix
+    //Why return anything? for testing!
+    status(projectile) // handles status effects from tower 
     {
         if (this.CS == 0)
         {

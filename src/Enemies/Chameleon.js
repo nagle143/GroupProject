@@ -5,18 +5,18 @@ export default class Chameleon extends Monster
     constructor(x, y, color, level, path)
     {
         super(x, y, color, level, path);
-        this.MHP = 30 + (this.healthScale * this.level);
+        this.MHP = 30 + Math.round(this.level * this.healthScale); 
         this.CHP = this.MHP; // current health
         this.armor = 7; // damage reduction
         this.currentSpeed = this.ogSpeed; // current speed
-        this.bounty = 15 + Math.round(this.level * 1.10);
+        this.bounty = 15 + Math.round(this.level * this.bountyScale);
         this.originalColor = this.HealthColor;
-        this.cooldown = 5; // temp time before next change;
+        this.cooldown = 3; // temp time before next change;
     }
 
     update()
     {
-        if (this.time = 60)
+        if (this.time >= 60)
         {
             if (this.cooldown != 0)
             {
@@ -25,6 +25,7 @@ export default class Chameleon extends Monster
             this.time = 0;
         }
         this.colorChange();
+        this.time++;
         if(super.update()) {
           return true;
         }
@@ -59,7 +60,7 @@ export default class Chameleon extends Monster
                         break;
             }
 
-            this.cooldown = 240;
+            this.cooldown = 3;
         }
     }
 }
