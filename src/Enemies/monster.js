@@ -26,37 +26,62 @@ export default class Monster
 
         this.healthScale = 1.10; // percentage scaling
         this.armorScale = 0.50;
-        this.bountyScale = 1.10;
-
+        this.bountyScale = 1.10;  
 
         this.barWidth = 40;
         this.barHeight = 5;
+
         this.energyEarned = 0;
+
+        this.movement = "forward"
         this.direction = 0.0;
-        //this.tileset = tileset;
-       // this.tileIndex = 0;
-       // this.frameIndex = 0;
         this.lastPoint = 0;
         this.nextPoint = 1;
         this.statusEffect = [];
         this.path = path;
     }
 
-    update()
+    update() // needs to be updated to go opposite direction incase of charm
     {
         this.ApplyStatus(); //see if status effects need to be applied
-        this.direction = Math.getDirection(this.x, this.y, this.path[this.nextPoint].x, this.path[this.nextPoint].y);
-        this.setSpeeds();
-        this.x += this.speed.x;
-        this.y += this.speed.y;
-        if(this.checkPoint(this.path[this.nextPoint])) {
-          if(this.nextPoint >= this.path.length - 1) {
-            return true;
-          }
-          else {
-            this.nextPoint++;
-            this.lastPoint++;
-          }
+        if (movement == "forward")
+        {
+            this.direction = Math.getDirection(this.x, this.y, this.path[this.nextPoint].x, this.path[this.nextPoint].y);
+            this.setSpeeds();
+            this.x += this.speed.x;
+            this.y += this.speed.y;
+            if (this.checkPoint(this.path[this.nextPoint]))
+            {
+                if (this.nextPoint >= this.path.length - 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    this.nextPoint++;
+                    this.lastPoint++;
+                }
+            }           
+        }
+        else // walk backwards
+        {
+            this.direction = Math.getDirection(this.x, this.y, this.path[this.lastPoint].x, this.path[this.lastPoint].y);
+            this.setSpeeds();
+            this.x += this.speed.x;
+            this.y += this.speed.y;
+            if (this.checkPoint(this.path[this.lastPoint]))
+            {
+                if (this.lastPoint <= 0) //dont go back further than last point
+                {
+                    this.currentSpeed = 0;
+                    return false;
+                }
+                else
+                {
+                    this.nextPoint--;
+                    this.lastPoint--;
+                }
+            }
         }
         return false;
     }
@@ -293,10 +318,11 @@ export default class Monster
     {
         if (time <= 0)
         {
-            this.direction = "forward";
+            this.movement = "forward";
+            this.currentSpeed = this.ogSpeed;
             return true;
         }
-        this.direction = "reverse";
+        this.movement = "reverse";
         return false;
 
     }
