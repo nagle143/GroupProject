@@ -293,7 +293,7 @@ export default class Game {
         var SlotId=this.GemInventory[gemInventoryIndex].slot.id;;
         document.body.appendChild(div);
           //Towers.push({color:'green',yCord:y,gemWidth:17,gemheight:17,xCord:x,gemId:GemId,slotId:SlotId});
-            this.Towers.push(new Tower(x,y,null,"green",GemId,SlotId));
+            this.Towers.push(new Tower(x,y,'PlasmaGun',"green",GemId,SlotId));
     }
   }
    CreateBuilding(){
@@ -318,7 +318,7 @@ export default class Game {
         var GemId=div.id;
         var SlotId=this.GemInventory[gemInventoryIndex].slot.id;;
         document.body.appendChild(div);
-        this.Towers.push(new Tower(x,y,null,"blue",GemId,SlotId))
+        this.Towers.push(new Tower(x,y,'PlamsaGun',"blue",GemId,SlotId))
     }
   }
   BuildTowerButton(x,y){}
@@ -885,6 +885,7 @@ handleMouseClick(event){
     /*this.activePowers.forEach(power => {
       power.render(this.backBufferContext);
     });*/
+
     this.energy.render(this.backBufferContext);
     this.currWave.render(this.backBufferContext);
     this.Towers.forEach(tower => {
