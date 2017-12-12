@@ -11,7 +11,7 @@ export default class Building {
     this.y = y;
     this.width = width;
     this.height = height;
-    this.bool = Taken;
+    this.Taken = Taken;
     this.buildingId = ID;
     this.coolDown = 0;
   }
@@ -42,7 +42,7 @@ export default class Building {
   render(ctx, scaleWidth, scaleHeight) {
     ctx.save();
     ctx.strokeStyle = "White";
-    ctx.strokeRect(this.x, this.y, scaleWidth * 48, scaleHeight * 48);
+    ctx.strokeRect(this.x, this.y, scaleWidth * this.width, scaleHeight * this.height);
     ctx.restore();
   }
 }

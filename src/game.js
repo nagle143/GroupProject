@@ -73,8 +73,8 @@ export default class Game {
     this.bool=true;
     this.ButtonsRec={x:750,y:580,width:140,height:120};
     this.inventoryRec={x:750,y:200,width:126,height:224}
-    this.firstCombineSlot={x:570 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot1',gemId:null};
-    this.secondCombineSlot={x:610 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot2',gemId:null};
+    this.firstCombineSlot={x:830 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot1',gemId:null};
+    this.secondCombineSlot={x:880 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot2',gemId:null};
     this.initialX=null;
     this.initialY=null;
     this.EffectState="idle";
@@ -97,7 +97,7 @@ export default class Game {
 
     //Key game objects
     //Map object
-    this.map = new Map(mapFiles[1]);
+    this.map = new Map(mapFiles[0]);
     this.scaleFactor = this.map.getScaleFactor(700, 800);
     this.Buildable = this.map.buildable;
     //Energy object, money & end goal of the monsters
@@ -110,12 +110,12 @@ export default class Game {
 
     this.wave = 0;
     this.mWaves = [
-      { p: 1, c: ['cyan'], t: [Robot, Reformer], d: [{time: 60, lvl: 1}, {time: 60, lvl: 1}, {time: 60, lvl: 1}, {time: 60, lvl: 1}, {time: 60, lvl: 1}] },
-      { p: 1, c: ['cyan'], t: [Energizer, NanoBot], d: [{time: 60, lvl: 1}, {time: 60, lvl: 1}, {time: 60, lvl: 1}, {time: 60, lvl: 1}, {time: 60, lvl: 1}] },
-      { p: 1, c: ['cyan'], t: [Accelerator], d: [{time: 60, lvl: 1}, {time: 60, lvl: 1}]},
-      { p: 1, c: ['red'], t: [Robot, Reformer, Energizer, NanoBot, Accelerator], d: [{time: 60, lvl: 1}, {time: 60, lvl: 1}, {time: 60, lvl: 1}, {time: 60, lvl: 1}, {time: 180, lvl: 1}, {time: 60, lvl: 1}, {time: 60, lvl: 1}]},
-      { p: 1, c: ['cyan', 'yellow', 'Magenta', 'red'], t: [Robot, Reformer, Energizer, NanoBot, Accelerator], d: [{time: 60, lvl: 1}, {time: 60, lvl: 1}, {time: 60, lvl: 1}, {time: 60, lvl: 1}, {time: 180, lvl: 1}, {time: 60, lvl: 1}, {time: 60, lvl: 1}]},
-      { p: 1, c: ['cyan'], t: [Chameleon], d: [{time: 60, lvl: 1}, {time: 60, lvl: 1}]}
+      { p: 1, c: ['cyan'], t: [Robot, Reformer], d: [60, 60, 60, 60, 60] },
+      { p: 1, c: ['cyan'], t: [Energizer, NanoBot], d: [60, 60, 60, 60, 60] },
+      { p: 1, c: ['cyan'], t: [Accelerator], d: [60, 60]},
+      { p: 1, c: ['red'], t: [Robot, Reformer, Energizer, NanoBot, Accelerator], d: [ 60, 60, 60, 60, 180, 60, 60]},
+      { p: 1, c: ['cyan', 'yellow', 'Magenta', 'red'], t: [Robot, Reformer, Energizer, NanoBot, Accelerator], d: [60, 60, 60, 60, 180, 60, 60]},
+      { p: 1, c: ['cyan'], t: [Chameleon], d: [60, 60]}
     ];
 
     //Active Monsters
@@ -379,11 +379,12 @@ handleMouseClick(event){
   console.log(this);
   console.log(this.Buildable);
     for(var j=0;j<this.Buildable.length;j++){
-      if((event.x<this.Buildable[j].x+this.Buildable[j].width&&
+      if((event.x<this.Buildable[j].x+this.Buildable[j].w&&
       event.x+20>this.Buildable[j].x&&
-        event.y<this.Buildable[j].height+this.Buildable[j].y&&
+        event.y<this.Buildable[j].h+this.Buildable[j].y&&
         20+event.y>this.Buildable[j].y))
           {
+              console.log(buildBool);
             buildBool=true;
             //console.log('here');
           for(var i=0;i<this.Buildings.length;i++){
@@ -392,14 +393,13 @@ handleMouseClick(event){
                 this.Buildings[i].y<20+event.y&&
                 20+this.Buildings[i].y>event.y))
                 {
+
                   buildBool=false;
                   break;
                 }
 
               }//
-
               break;
-
           }
 
         }//
@@ -549,22 +549,22 @@ handleMouseClick(event){
 
       switch (Math.randomInt(0, 6)) {
         case 0:
-          this.nextWave.enqueue(new Accelerator(path.steps[0].x, path.steps[0].y, color, this.wave, path.steps), 60);
+          this.nextWave.enqueue(new Accelerator(path.steps[0].x, path.steps[0].y, color, this.wave, path.steps), Math.randomInt(90, 211));
           break;
         case 1:
-          this.nextWave.enqueue(new Chameleon(path.steps[0].x, path.steps[0].y, color, this.wave, path.steps), 60);
+          this.nextWave.enqueue(new Chameleon(path.steps[0].x, path.steps[0].y, color, this.wave, path.steps), Math.randomInt(30, 181));
           break;
         case 2:
-          this.nextWave.enqueue(new Energizer(path.steps[0].x, path.steps[0].y, color, this.wave, path.steps), 60);
+          this.nextWave.enqueue(new Energizer(path.steps[0].x, path.steps[0].y, color, this.wave, path.steps), Math.randomInt(30, 181));
           break;
         case 3:
-          this.nextWave.enqueue(new NanoBot(path.steps[0].x, path.steps[0].y, color, this.wave, path.steps), 60);
+          this.nextWave.enqueue(new NanoBot(path.steps[0].x, path.steps[0].y, color, this.wave, path.steps), Math.randomInt(30, 181));
           break;
         case 4:
-          this.nextWave.enqueue(new Reformer(path.steps[0].x, path.steps[0].y, color, this.wave, path.steps), 60);
+          this.nextWave.enqueue(new Reformer(path.steps[0].x, path.steps[0].y, color, this.wave, path.steps), Math.randomInt(30, 181));
           break;
         default:
-          this.nextWave.enqueue(new Robot(path.steps[0].x, path.steps[0].y, color, this.wave, path.steps), 60);
+          this.nextWave.enqueue(new Robot(path.steps[0].x, path.steps[0].y, color, this.wave, path.steps), Math.randomInt(30, 181));
           break;
       }
     }
@@ -582,7 +582,7 @@ handleMouseClick(event){
 
       ty = types[Math.randomInt(0, types.length)];
 
-      this.nextWave.enqueue(new ty(path.steps[0].x, path.steps[0].y, color, data[n].lvl, path.steps), data[n].time);
+      this.nextWave.enqueue(new ty(path.steps[0].x, path.steps[0].y, color, this.wave + 1, path.steps), data[n]);
     }
   }
 
@@ -595,11 +595,6 @@ handleMouseClick(event){
     {
       console.log("inside rec");
       this.GemInventory.forEach(ele => {
-      //  console.log(gem.x<parseInt(slot.slot.style.left)+parseInt(slot.slot.style.width));
-        //  console.log(gem.x+gem.Width>parseInt(slot.slot.style.left));
-          //  console.log(  gem.y<parseInt(slot.slot.style.height)+parseInt(slot.slot.style.top));
-            //  console.log(  gem.height+gem.y>parseInt(slot.slot.style.top) && slot.Taken==false);
-            //console.log(gem.x<parseInt(ele.slot.style.left)+parseInt(ele.slot.style.width));
         if(gem.x<parseInt(ele.slot.style.left)+parseInt(ele.slot.style.width)&&
           gem.x+gem.Width>parseInt(ele.slot.style.left)&&
           gem.y<parseInt(ele.slot.style.height)+parseInt(ele.slot.style.top)&&
@@ -616,19 +611,23 @@ handleMouseClick(event){
           event.target.style.left=ele.slot.style.left;
           sucessfulDragBool=true;
           ele.Taken=true
-
+          if(!((this.Buildings.find(x => x.buildingId===gem.slotID ))==undefined))
+          {
+            oldSlot=this.Buildings.find(x => x.buildingId===gem.slotID );
+          oldSlot.Taken=false
+          }
           if(!((this.GemInventory.find(x => x.slot.id===gem.slotID ))==undefined)) {
             oldSlot=this.GemInventory.find(x => x.slot.id===gem.slotID );
             oldSlot.Taken=false//  gem2.Taken=false;
           }
-          gem.slotId=ele.slot.id;
+          gem.slotID=ele.slot.id;
         }
       });
     }
     if (gem.x<this.firstCombineSlot.x+this.firstCombineSlot.width &&
       gem.x+gem.Width>this.firstCombineSlot.x &&
       gem.y<this.firstCombineSlot.height+this.firstCombineSlot.y &&
-      gem.height+gem.y>this.firstCombineSlot.y && this.firstCombineSlot.Taken===false)
+      gem.Height+gem.y>this.firstCombineSlot.y && this.firstCombineSlot.Taken===false)
     {
       console.log("collison detected");
       gem.x = this.firstCombineSlot.x;
@@ -638,21 +637,26 @@ handleMouseClick(event){
       sucessfulDragBool = true;
       this.firstCombineSlot.Taken = true
       this.firstCombineSlot.gemId = event.target.id;
-      if(!((this.GemInventory.find(x => x.slot.id===gem.slotId ))==undefined))
+      if(!((this.Buildings.find(x => x.buildingId===gem.slotID ))==undefined))
       {
-        oldSlot=this.GemInventory.find(x => x.slot.id===gem.slotId );
+        oldSlot=this.Buildings.find(x => x.buildingId===gem.slotID );
+      oldSlot.Taken=false
+      }
+      if(!((this.GemInventory.find(x => x.slot.id===gem.slotID ))==undefined))
+      {
+        oldSlot=this.GemInventory.find(x => x.slot.id===gem.slotID );
         oldSlot.Taken=false
       }
-      if(gem.slotId==this.secondCombineSlot.id){
+      if(gem.slotID==this.secondCombineSlot.id){
         this.secondCombineSlot.Taken=false;
         this.secondCombineSlot.gemId=null;
       }
-      gem.slotId=this.firstCombineSlot.id;
+      gem.slotID=this.firstCombineSlot.id;
     }
     if((gem.x<this.secondCombineSlot.x+this.secondCombineSlot.width&&
       gem.x+gem.Width>this.secondCombineSlot.x&&
       gem.y<this.secondCombineSlot.height+this.secondCombineSlot.y&&
-      gem.height+gem.y>this.secondCombineSlot.y&&this.secondCombineSlot.Taken===false))
+      gem.Height+gem.y>this.secondCombineSlot.y&&this.secondCombineSlot.Taken===false))
     {
       console.log("collison detected");
       gem.x=this.secondCombineSlot.x;
@@ -661,17 +665,61 @@ handleMouseClick(event){
       event.target.style.left= this.secondCombineSlot.x+'px';
       sucessfulDragBool=true;
       this.secondCombineSlot.gemId=event.target.id;
-      if(!this.GemInventory.find(x => x.slot.id===gem.slotId))
+      if(!((this.Buildings.find(x => x.buildingId===gem.slotID ))==undefined))
       {
-        oldSlot=this.GemInventory.find(x => x.slot.id===gem.slotId );
+        oldSlot=this.Buildings.find(x => x.buildingId===gem.slotID );
+      oldSlot.Taken=false
+      }
+      if(!this.GemInventory.find(x => x.slot.id===gem.slotID))
+      {
+        oldSlot=this.GemInventory.find(x => x.slot.id===gem.slotID );
         oldSlot.Taken=false
       }
-      if(gem.slotId==this.firstCombineSlot.id){this.firstCombineSlot.Taken=false;
+      if(gem.slotID==this.firstCombineSlot.id){this.firstCombineSlot.Taken=false;
         this.firstCombineSlot.gemId=null;
       }
-      gem.slotId=this.secondCombineSlot.id;
+      gem.slotID=this.secondCombineSlot.id;
       this.secondCombineSlot.Taken=true;
     }
+    console.log(this.Buildings);
+    for(var i=0;i<this.Buildings.length;i++){
+      if((gem.x<this.Buildings[i].x+this.Buildings[i].width&&
+        gem.x+gem.Width>this.Buildings[i].x&&
+        gem.y<this.Buildings[i].height+this.Buildings[i].y&&
+        gem.Height+gem.y>this.Buildings[i].y&&this.Buildings[i].Taken===false))
+        {
+          console.log("collide");
+          gem.x=this.Buildings[i].x;
+          gem.y=this.Buildings[i].y;
+          event.target.style.top= this.Buildings[i].y+"px";
+          event.target.style.left=this.Buildings[i].x+'px';
+          sucessfulDragBool=true;
+            //Buildings[i].gemId=event.target.id;
+            if(!((this.Buildings.find(x => x.buildingId===gem.slotID ))==undefined))
+            {
+              oldSlot=this.Buildings.find(x => x.buildingId===gem.slotID );
+            oldSlot.Taken=false
+            }
+          if(!((this.GemInventory.find(x => x.slot.id===gem.slotID ))==undefined))
+          {
+            oldSlot=this.GemInventory.find(x => x.slot.id===gem.slotID );
+          oldSlot.Taken=false
+          }
+          if(  gem.slotID==this.firstCombineSlot.id){this.firstCombineSlot.Taken=false;
+            this.firstCombineSlot.gemId=null;
+          }
+
+          if(!((this.Buildings.find(x => x.buildingId===gem.slotID ))==undefined))
+          {
+            oldSlot=this.Buildings.find(x => x.buildingId===gem.slotID );
+          oldSlot.Taken=false
+          }
+          gem.slotID=this.Buildings[i].buildingId;
+        this.Buildings[i].Taken=true;
+        break;
+        }
+    }
+
     if(!sucessfulDragBool) {
     console.log("UnSucessful drag here");
       gem.x=this.initialX;
@@ -779,12 +827,18 @@ handleMouseClick(event){
   render() {
 
     this.backBufferContext.fillStyle = 'black';
+    this.backBufferContext.strokeStyle = 'white';
     this.backBufferContext.fillRect(0, 0, 1000, 1000);
     this.map.render(this.backBufferContext, this.scaleFactor.width, this.scaleFactor.height);
     this.backBufferContext.fillStyle = 'white';
     this.GemInventory.forEach(elem=> {
       this.backBufferContext.fillRect(parseInt(elem.slot.style.left) -15, parseInt(elem.slot.style.top)-15, 25, 25);
     });
+    this.Buildings.forEach(building => {
+      building.render(this.backBufferContext, this.scaleFactor.width, this.scaleFactor.height);
+    });
+    this.backBufferContext.strokeRect(this.firstCombineSlot.x, this.firstCombineSlot.y, this.firstCombineSlot.width, this.firstCombineSlot.height);
+    this.backBufferContext.strokeRect(this.secondCombineSlot.x, this.secondCombineSlot.y, this.secondCombineSlot.width, this.secondCombineSlot.height);
     this.backBufferContext.fillRect(this.ButtonsRec.x, this.ButtonsRec.y, this.ButtonsRec.width, this.ButtonsRec.height);
     /*this.activePowers.forEach(power => {
       power.render(this.backBufferContext);
