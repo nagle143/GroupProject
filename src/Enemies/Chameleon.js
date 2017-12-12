@@ -24,8 +24,8 @@ export default class Chameleon extends Monster
             }
             this.time = 0;
         }
-        this.colorChange();
         this.time++;
+        this.colorChange();
         if(super.update()) {
           return true;
         }
@@ -34,7 +34,7 @@ export default class Chameleon extends Monster
 
     colorChange() // if cooldown done change to next color
     {
-        if (this.cooldown == 0)
+        if (this.cooldown === 0)
         {
             switch (this.HealthColor)
             {
