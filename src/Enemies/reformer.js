@@ -29,16 +29,16 @@ export default class Reformer extends Monster
         //render  stuff
         ctx.beginPath();
         ctx.strokeStyle = "black";
-        ctx.fillStyle = "black";
-        ctx.arc(this.x + this.radius / 4, this.y - this.radius / 4, this.radius, 0, Math.PI * 2);
-        ctx.arc(this.x - this.radius / 4, this.y, this.radius / 4, 0, Math.PI * 2);
+       // ctx.fillStyle = "black";
+       // ctx.arc(this.x + this.radius / 4, this.y - this.radius / 4, this.radius, 0, Math.PI * 2);
+      //  ctx.arc(this.x - this.radius / 4, this.y, this.radius / 4, 0, Math.PI * 2);
+        //ctx.closePath();
+        //ctx.fill();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius / 2, 0, Math.PI);
+        ctx.lineWidth = 5;
         ctx.closePath();
-        ctx.fill();
-      //  ctx.beginPath();
-        //ctx.arc(this.x, this.y, this.radius / 2, 0, Math.PI);
-       // ctx.lineWidth = 5;
-       // ctx.closePath();
-        //ctx.stroke();
+        ctx.stroke();
         ctx.restore();
     }
 }
