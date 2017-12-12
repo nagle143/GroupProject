@@ -9,7 +9,7 @@ export default class Energizer extends Monster
         this.CHP = this.MHP; // current health
         this.MS = (this.MHP * 2);  // max shield 200% of total health
         this.CS = this.MS; // current shield
-        this.armor = 7; // damage reduction
+        this.armor = 2 + Math.round(this.level * this.armorScale);
         this.currentSpeed = this.ogSpeed; // current speed
         this.bounty = 12 + Math.round(this.level * this.bountyScale);
         this.SPS =this. MS * .98; //temp shield gained per second

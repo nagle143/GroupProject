@@ -7,8 +7,7 @@ export default class Chameleon extends Monster
         super(x, y, color, level, path);
         this.MHP = 30 + Math.round(this.level * this.healthScale); 
         this.CHP = this.MHP; // current health
-        this.armor = 7; // damage reduction
-        this.currentSpeed = this.ogSpeed; // current speed
+        this.armor = 7 + Math.round(this.level * this.armorScale);
         this.bounty = 15 + Math.round(this.level * this.bountyScale);
         this.originalColor = this.HealthColor;
         this.cooldown = 3; // temp time before next change;

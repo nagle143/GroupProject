@@ -7,7 +7,7 @@ export default class Reformer extends Monster
         super(x, y, color, level, path);
         this.MHP = 10 + Math.round(this.level * this.healthScale); 
         this.CHP = this.MHP; // current health
-        this.armor = 5; // damage reduction
+        this.armor = 5 + Math.round(this.level * this.armorScale);
         this.currentSpeed = this.ogSpeed; // current speed
         this.bounty = 7 + Math.round(this.level * this.bountyScale);
         this.lives = 1; // number of times can come back from the dead

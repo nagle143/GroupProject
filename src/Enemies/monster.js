@@ -25,7 +25,7 @@ export default class Monster
         this.time = 0;
 
         this.healthScale = 1.10; // percentage scaling
-        this.armorScale = 0.50;
+        this.armorScale = 1.10;
         this.bountyScale = 1.10;  
 
         this.barWidth = 40;
