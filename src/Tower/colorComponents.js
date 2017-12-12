@@ -33,38 +33,38 @@ export default class Color {
   initDamage(color) {
     switch (color) {
       case 'red':
-        this.minDamage = 5;
-        this.maxDamage = 10;
+        this.minDamage = 20;
+        this.maxDamage = 30;
         this.color = 'red';
         break;
       case 'blue':
-        this.minDamage = 5;
-        this.maxDamage = 10;
+        this.minDamage = 20;
+        this.maxDamage = 30;
         this.color = 'blue';
         break;
       case 'green':
-        this.minDamage = 5;
-        this.maxDamage = 10;
+        this.minDamage = 20;
+        this.maxDamage = 30;
         this.color = 'green';
         break;
       case 'cyan':
-        this.minDamage = 5;
-        this.maxDamage = 10;
+        this.minDamage = 20;
+        this.maxDamage = 30;
         this.color = 'cyan';
         break;
       case 'magenta':
-        this.minDamage = 5;
-        this.maxDamage = 10;
+        this.minDamage = 20;
+        this.maxDamage = 30;
         this.color = 'magenta';
         break;
       case 'yellow':
-        this.minDamage = 5;
-        this.maxDamage = 10;
+        this.minDamage = 20;
+        this.maxDamage = 30;
         this.color = 'yellow';
         break;
       case 'white':
-        this.minDamage = 5;
-        this.maxDamage = 10;
+        this.minDamage = 20;
+        this.maxDamage = 30;
         this.color = 'white';
         break;
     }

@@ -29,6 +29,12 @@ export default class Wave {
     return this.board.splice(id, 1);
   }
 
+  hurtMonster(color, damage, ID) {
+    if(this.board[ID].hurt(color, damage)) {
+      this.kill(ID);
+    }
+  }
+
   /** @function update
    *  Updates all units on the board, and decrements the counter of the next unit in queue, if it hits 0 that unit is spawned.
    */

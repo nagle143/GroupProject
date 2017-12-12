@@ -71,7 +71,7 @@ export default class Game {
   constructor() {
 
     this.bool=true;
-    this.ButtonsRec={x:750,y:580,width:140,height:120};
+    this.ButtonsRec={x:750,y:530,width:140,height:150};
     this.inventoryRec={x:750,y:200,width:126,height:224}
     this.firstCombineSlot={x:830 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot1',gemId:null};
     this.secondCombineSlot={x:880 ,y:130 ,width:17, height:17,Taken:false,id:'combineSlot2',gemId:null};
@@ -107,7 +107,6 @@ export default class Game {
     this.Buildings = [];
     //The towers themselves, can be color component by itself or structural component by itself. If it has both types of components it is a fully functional tower.
     this.Towers = [];
-
     this.wave = 0;
     this.mWaves = [
       { p: 1, c: ['cyan'], t: [Robot, Reformer], d: [60, 60, 60, 60, 60] },
@@ -125,7 +124,6 @@ export default class Game {
     this.switchWave();
     this.wave++;
     this.genConstrainedWave(this.mWaves[this.wave].p, this.mWaves[this.wave].c, this.mWaves[this.wave].t, this.mWaves[this.wave].d);
-
     //Back Buffer
     this.backBufferCanvas = document.getElementById("canvas");
     this.backBufferCanvas.width = 900;
@@ -378,6 +376,10 @@ export default class Game {
       case 'B':
       this.CreateBlueGem(index);
       break;
+      case 't':
+      case 'T':
+      this.CreateBuilding();
+      break;
     }
 
   }
@@ -393,11 +395,12 @@ handleMouseClick(event){
         }
         if(this.ButtonsRec.x<=event.x && event.x<=this.ButtonsRec.x+this.ButtonsRec.width && this.ButtonsRec.y<=event.y && event.y<=this.ButtonsRec.y+this.ButtonsRec.height)
       {
-        var buttonsX=parseInt((event.x)/(this.ButtonsRec.width/2)%2);
-        var buttonsY=parseInt((event.y)/(this.ButtonsRec.width/3)%3);
+        var buttonsX=parseInt((event.x-this.ButtonsRec.x)/(this.ButtonsRec.width/2)%2);
+        var buttonsY=parseInt((event.y-this.ButtonsRec.y)/(this.ButtonsRec.width/3)%3);
         //fillRect()
         if(buttonsY==2 && buttonsX==1){}else{  this.buttonsFunctions[buttonsY][buttonsX](index);}
-
+        console.log(buttonsX);
+        console.log(buttonsY);
       //  if(buttonsY==2 && buttonsX==1){}
         this.GemInventory[index].Taken===true;
       }
@@ -817,9 +820,9 @@ handleMouseClick(event){
     for(let i = 0; i < this.currWave.board.length; i++) {
       for(let j = 0; j < this.projectiles.length; j++) {
         if(this.circleCollisionDetection(this.currWave.board[i].x, this.currWave.board[i].y, this.currWave.board[i].radius, this.projectiles[j].x, this.projectiles[j].y, this.projectiles[j].radius)) {
-          //this.currWave.board[i].hurt(this.projectiles[j].color, this.projectiles[j].damage);
-          //this.currWave.board[i].status(this.projectiles[j]);
-          console.log('here');
+          console.log(this.currWave);
+          this.currWave.hurtMonster(this.projectiles[j].color, this.projectiles[j].damage, i);
+          //this.currWave.board[i].status(this.projectiles[j]);t
           this.projectiles.splice(j, 1);
           break;
         }
@@ -857,24 +860,30 @@ handleMouseClick(event){
       building.render(this.backBufferContext, this.scaleFactor.width, this.scaleFactor.height);
     });
     this.backBufferContext.fillRect(this.firstCombineSlot.x, this.firstCombineSlot.y, this.firstCombineSlot.width, this.firstCombineSlot.height);
-        this.backBufferContext.fillRect(this.secondCombineSlot.x, this.secondCombineSlot.y, this.secondCombineSlot.width, this.secondCombineSlot.height);
-
-    this.backBufferContext.fillStyle="#304c1e";
-    this.backBufferContext.fillRect(this.ButtonsRec.x,this.ButtonsRec.y,(this.ButtonsRec.width/2),32);
+    this.backBufferContext.fillRect(this.secondCombineSlot.x, this.secondCombineSlot.y, this.secondCombineSlot.width, this.secondCombineSlot.height);
+    var x=this.ButtonsRec.x;
+    var y=this.ButtonsRec.y;
+    var width=this.ButtonsRec.width;
+    var height=this.ButtonsRec.height;
+    this.backBufferContext.fillStyle="#adc685";
+    //ctx.fillRect(x,y,width,height);
+    this.backBufferContext.fillStyle="#007705";
+    this.backBufferContext.fillRect(x,y,(width/2),height/3);
     this.backBufferContext.fillStyle="#367582";
-    this.backBufferContext.fillRect(this.ButtonsRec.x+(this.ButtonsRec.width/2),this.ButtonsRec.y,this.ButtonsRec.width/2,32);
+    this.backBufferContext.fillRect(x+(width/2),y,(width/2),height/3);
     this.backBufferContext.fillStyle="#b73546";
-    this.backBufferContext.fillRect(this.ButtonsRec.x,this.ButtonsRec.y+(32),this.ButtonsRec.width/2,32);
+    this.backBufferContext.fillRect(x,y+(height/3),width/2,height/3);
     this.backBufferContext.fillStyle="#c4ce39";
+    this.backBufferContext.fillRect(x+(width/2),y+(height/3),width/2,height/3);
 
-    this.backBufferContext.fillRect(this.ButtonsRec.x+(this.ButtonsRec.width/2),this.ButtonsRec.y+(32),this.ButtonsRec.width/2,32);
-    this.backBufferContext.fillStyle="#4d6e89";
+    //........
+    //this.backBufferContext.fillStyle="#4aadab";
 
-    this.backBufferContext.fillRect(this.ButtonsRec.x,this.ButtonsRec.y+(32)*2,this.ButtonsRec.width/2,32);
-    this.backBufferContext.fillStyle="#4d6e89";
+    //this.backBufferContext.fillRect(x,y+(32)*2,width/2,32);
+    //this.backBufferContext.fillStyle="#a0b779";
 
-    this.backBufferContext.fillRect(this.ButtonsRec.x+(this.ButtonsRec.width/2),this.ButtonsRec.y+(32)*2,this.ButtonsRec.width/2,32);
-
+    //this.backBufferContext.fillRect(x+(width/2),y+(32)*2,width/2,32);
+    //....
 
     /*this.activePowers.forEach(power => {
       power.render(this.backBufferContext);

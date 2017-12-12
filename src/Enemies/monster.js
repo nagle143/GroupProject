@@ -26,7 +26,7 @@ export default class Monster
 
         this.healthScale = 1.10; // percentage scaling
         this.armorScale = 1.10;
-        this.bountyScale = 1.10;  
+        this.bountyScale = 1.10;
 
         this.barWidth = 40;
         this.barHeight = 5;
@@ -44,7 +44,7 @@ export default class Monster
     update() // needs to be updated to go opposite direction incase of charm
     {
         this.ApplyStatus(); //see if status effects need to be applied
-        if (this.movement == "forward") 
+        if (this.movement == "forward")
         {
             this.direction = Math.getDirection(this.x, this.y, this.path[this.nextPoint].x, this.path[this.nextPoint].y);
             this.setSpeeds();
@@ -61,7 +61,7 @@ export default class Monster
                     this.nextPoint++;
                     this.lastPoint++;
                 }
-            }           
+            }
         }
         else // walk backwards
         {
@@ -141,7 +141,7 @@ export default class Monster
                         break;
                     case "blue":
                     case "green":
-                        damage *= .70;                  
+                        damage *= .70;
                         break;
                     default:
                         break;
@@ -254,9 +254,12 @@ export default class Monster
             default:
                 break;
         }
-        this.SH -= damage - this.armor * 3;
+        if(damage - this.armor * 2 < 0) {
+          return false;
+        }
+        this.CS -= damage - this.armor * 2;
         if (this.CS < 0) {
-            this.CHP -= this.CS;
+            this.CHP += this.CS;
             this.CS = 0;
 
             if (this.CHP <= 0) // if tower kills monster
@@ -276,7 +279,7 @@ export default class Monster
 
 
     //Why return anything? for testing!
-    status(projectile) // handles status effects from tower 
+    status(projectile) // handles status effects from tower
     {
         if (this.CS == 0)
         {
