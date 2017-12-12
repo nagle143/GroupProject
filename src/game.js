@@ -819,7 +819,9 @@ handleMouseClick(event){
         if(this.circleCollisionDetection(this.currWave.board[i].x, this.currWave.board[i].y, this.currWave.board[i].radius, this.projectiles[j].x, this.projectiles[j].y, this.projectiles[j].radius)) {
           //this.currWave.board[i].hurt(this.projectiles[j].color, this.projectiles[j].damage);
           //this.currWave.board[i].status(this.projectiles[j]);
-          this.projectiles.splice(i, 1);
+          console.log('here');
+          this.projectiles.splice(j, 1);
+          break;
         }
       }
     }
@@ -854,6 +856,8 @@ handleMouseClick(event){
     this.Buildings.forEach(building => {
       building.render(this.backBufferContext, this.scaleFactor.width, this.scaleFactor.height);
     });
+    this.backBufferContext.fillRect(this.firstCombineSlot.x, this.firstCombineSlot.y, this.firstCombineSlot.width, this.firstCombineSlot.height);
+        this.backBufferContext.fillRect(this.secondCombineSlot.x, this.secondCombineSlot.y, this.secondCombineSlot.width, this.secondCombineSlot.height);
 
     this.backBufferContext.fillStyle="#304c1e";
     this.backBufferContext.fillRect(this.ButtonsRec.x,this.ButtonsRec.y,(this.ButtonsRec.width/2),32);
@@ -863,7 +867,14 @@ handleMouseClick(event){
     this.backBufferContext.fillRect(this.ButtonsRec.x,this.ButtonsRec.y+(32),this.ButtonsRec.width/2,32);
     this.backBufferContext.fillStyle="#c4ce39";
 
+    this.backBufferContext.fillRect(this.ButtonsRec.x+(this.ButtonsRec.width/2),this.ButtonsRec.y+(32),this.ButtonsRec.width/2,32);
+    this.backBufferContext.fillStyle="#4d6e89";
+
+    this.backBufferContext.fillRect(this.ButtonsRec.x,this.ButtonsRec.y+(32)*2,this.ButtonsRec.width/2,32);
+    this.backBufferContext.fillStyle="#4d6e89";
+
     this.backBufferContext.fillRect(this.ButtonsRec.x+(this.ButtonsRec.width/2),this.ButtonsRec.y+(32)*2,this.ButtonsRec.width/2,32);
+
 
     /*this.activePowers.forEach(power => {
       power.render(this.backBufferContext);
