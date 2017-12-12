@@ -5,11 +5,11 @@ export default class Reformer extends Monster
     constructor(x, y, color, level, path)
     {
         super(x, y, color, level, path);
-        this.MHP = 10 + (this.healthScale * this.level);
+        this.MHP = 10 + Math.round(this.level * this.healthScale); 
         this.CHP = this.MHP; // current health
         this.armor = 5; // damage reduction
         this.currentSpeed = this.ogSpeed; // current speed
-        this.bounty = 7; // * (level * increase percentage) how much you earn
+        this.bounty = 7 + Math.round(this.level * this.bountyScale);
         this.lives = 1; // number of times can come back from the dead
     }
 

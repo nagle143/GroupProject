@@ -11,7 +11,7 @@ export default class EMPbot extends Monster
         this.CS = MS; // current shield
         this.armor = 5; // damage reduction
         this.currentSpeed = this.ogSpeed; // current speed
-        this.bounty = 9; // * (level * increase percentage) how much you earn
+        this.bounty = 9 + Math.round(this.level * 1.10);
         this.range = 5; // temp how far of shutdown reach
         this.shutdowntime = 2; // temp time tower is shutdown
         this.cooldown = 5; // temp time till next shutdown 
