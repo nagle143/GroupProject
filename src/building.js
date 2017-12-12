@@ -6,9 +6,13 @@ export default class Building {
    *  @param  {Integer} x     The x coordinate.
    *  @param  {Integer} y     The y coordinate.
    */
-  constructor(x, y) {
+  constructor(x, y, width, height, Taken, ID) {
     this.x = x;
     this.y = y;
+    this.width = width;
+    this.height = height;
+    this.Taken = Taken;
+    this.buildingId = ID;
     this.coolDown = 0;
   }
 
@@ -38,7 +42,7 @@ export default class Building {
   render(ctx, scaleWidth, scaleHeight) {
     ctx.save();
     ctx.strokeStyle = "White";
-    ctx.strokeRect(this.x, this.y, scaleWidth * 48, scaleHeight * 48);
+    ctx.strokeRect(this.x, this.y, scaleWidth * this.width, scaleHeight * this.height);
     ctx.restore();
   }
 }
