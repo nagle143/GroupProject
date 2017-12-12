@@ -78,7 +78,7 @@ export default class Game {
     this.initialX=null;
     this.initialY=null;
     this.EffectState="idle";
-  //this.BuildableArea=[{x:40,y:50,width:120,height:200},{x:260,y:410,width:250,height:130}];
+    //this.BuildableArea=[{x:40,y:50,width:120,height:200},{x:260,y:410,width:250,height:130}];
     //Still testing these power variables
     /*
     this.activePowers = [];
@@ -241,8 +241,6 @@ export default class Game {
 
     for(var i=0;i<this.GemInventory.length;i++){
       if(this.GemInventory[i].Taken===false){
-        console.log(this.firstCombineSlot);
-        console.log(this.secondCombineSlot);
         this.CreateCombinedGem(this.firstCombineSlot.gemId,this.secondCombineSlot.gemId,i);
       break;
       }
@@ -270,7 +268,7 @@ export default class Game {
             var GemId=div.id;
             var SlotId=this.GemInventory[gemInventoryIndex].slot.id;;
             document.body.appendChild(div);
-                this.Towers.push(new Tower(x,y,'PlasmaGun',"red",GemId,SlotId));
+            this.Towers.push(new Tower(x,y, "PlasmaGun","red",GemId,SlotId));
     }
   }
   CreateGreenGem(gemInventoryIndex) {
@@ -293,7 +291,7 @@ export default class Game {
         var SlotId=this.GemInventory[gemInventoryIndex].slot.id;;
         document.body.appendChild(div);
           //Towers.push({color:'green',yCord:y,gemWidth:17,gemheight:17,xCord:x,gemId:GemId,slotId:SlotId});
-            this.Towers.push(new Tower(x,y,'PlasmaGun',"green",GemId,SlotId));
+        this.Towers.push(new Tower(x,y,"PlasmaGun","green",GemId,SlotId));
     }
   }
    CreateBuilding(){
@@ -318,7 +316,7 @@ export default class Game {
         var GemId=div.id;
         var SlotId=this.GemInventory[gemInventoryIndex].slot.id;;
         document.body.appendChild(div);
-        this.Towers.push(new Tower(x,y,'PlamsaGun',"blue",GemId,SlotId))
+        this.Towers.push(new Tower(x,y,"PlasmaGun","blue",GemId,SlotId))
     }
   }
   BuildTowerButton(x,y){}
@@ -397,8 +395,9 @@ handleMouseClick(event){
       {
         var buttonsX=parseInt((event.x)/(this.ButtonsRec.width/2)%2);
         var buttonsY=parseInt((event.y)/(this.ButtonsRec.width/3)%3);
-fillRect()
-        this.buttonsFunctions[buttonsY][buttonsX](index);
+        //fillRect()
+        if(buttonsY==2 && buttonsX==2){}else{  this.buttonsFunctions[buttonsY][buttonsX](index);}
+
       //  if(buttonsY==2 && buttonsX==1){}
         this.GemInventory[index].Taken===true;
       }
@@ -815,52 +814,27 @@ fillRect()
       }
     }
 
-    /*
-    this.monsters.forEach(monster => {
-      monster.update();
-      if(dieByHealth() == true)
-        //kill enemy
-      if(reachedEnd(energy) == true)
-      {
-      //kill enemy
-      //subtact energy
+    for(let i = 0; i < this.currWave.board.length; i++) {
+      for(let j = 0; j < this.projectiles.length; j++) {
+        if(this.circleCollisionDetection(this.currWave.board[i].x, this.currWave.board[i].y, this.currWave.board[i].radius, this.projectiles[j].x, this.projectiles[j].y, this.projectiles[j].radius)) {
+          //this.currWave.board[i].hurt(this.projectiles[j].color, this.projectiles[j].damage);
+          //this.currWave.board[i].status(this.projectiles[j]);
+          this.projectiles.splice(i, 1);
+        }
       }
-    });*/
+    }
+
     this.Towers.forEach(tower => {
       if(tower.structural && tower.color) {
         for(let i = 0; i < this.currWave.board.length; i++) {
-          if(tower.structural.name !== "Multishot") {
-            if(this.circleCollisionDetection(tower.x, tower.y, tower.range, this.currWave.board[i].x, this.currWave.board[i].y, 15)) {
-              if(tower.targets.length < 1) {
-                tower.targets.push(this.currWave.board[i]);
-              }
-              break;
+          if(this.circleCollisionDetection(tower.x, tower.y, tower.range, this.currWave.board[i].x, this.currWave.board[i].y, 15)) {
+            if(tower.targets.length < 1) {
+              tower.targets.push(this.currWave.board[i]);
             }
-            else if(tower.targets[0] === this.currWave.board[i]) {
-              tower.targets.splice(0, 1);
-            }
+            break;
           }
-          else {
-            if(this.circleCollisionDetection(tower.x, tower.y, tower.range, this.currWave.board[i].x, this.currWave.board[i].y, 15)) {
-              if(tower.targets.length < 3) {
-                let check = false;
-                for(let j = 0; j < tower.targets.length; j ++) {
-                  if(tower.targets[j] === this.currWave.board[i]) {
-                    check = true;
-                  }
-                }
-                if(!check) {
-                  tower.targets.push(this.currWave.board[i]);
-                }
-              }
-            }
-            else {
-              for(let j = 0; j < tower.targets.length; j ++) {
-                if(tower.targets[j] === this.currWave.board[i]) {
-                  tower.targets.splice(j, 1);
-                }
-              }
-            }
+          else if(tower.targets[0] === this.currWave.board[i]) {
+            tower.targets.splice(0, 1);
           }
         }
       }
@@ -873,15 +847,24 @@ fillRect()
     this.backBufferContext.fillRect(0, 0, 1000, 1000);
     this.map.render(this.backBufferContext, this.scaleFactor.width, this.scaleFactor.height);
     this.backBufferContext.fillStyle = 'white';
+
     this.GemInventory.forEach(elem=> {
       this.backBufferContext.fillRect(parseInt(elem.slot.style.left) -15, parseInt(elem.slot.style.top)-15, 25, 25);
     });
     this.Buildings.forEach(building => {
       building.render(this.backBufferContext, this.scaleFactor.width, this.scaleFactor.height);
     });
-    this.backBufferContext.strokeRect(this.firstCombineSlot.x, this.firstCombineSlot.y, this.firstCombineSlot.width, this.firstCombineSlot.height);
-    this.backBufferContext.strokeRect(this.secondCombineSlot.x, this.secondCombineSlot.y, this.secondCombineSlot.width, this.secondCombineSlot.height);
-    this.backBufferContext.fillRect(this.ButtonsRec.x, this.ButtonsRec.y, this.ButtonsRec.width, this.ButtonsRec.height);
+
+    this.backBufferContext.fillStyle="#304c1e";
+    this.backBufferContext.fillRect(this.ButtonsRec.x,this.ButtonsRec.y,(this.ButtonsRec.width/2),32);
+    this.backBufferContext.fillStyle="#367582";
+    this.backBufferContext.fillRect(this.ButtonsRec.x+(this.ButtonsRec.width/2),this.ButtonsRec.y,this.ButtonsRec.width/2,32);
+    this.backBufferContext.fillStyle="#b73546";
+    this.backBufferContext.fillRect(this.ButtonsRec.x,this.ButtonsRec.y+(32),this.ButtonsRec.width/2,32);
+    this.backBufferContext.fillStyle="#c4ce39";
+
+    this.backBufferContext.fillRect(this.ButtonsRec.x+(this.ButtonsRec.width/2),this.ButtonsRec.y+(32)*2,this.ButtonsRec.width/2,32);
+
     /*this.activePowers.forEach(power => {
       power.render(this.backBufferContext);
     });*/

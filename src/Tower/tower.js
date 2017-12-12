@@ -44,6 +44,7 @@ export default class Tower {
     //Variables to hold the size of the object for the divs
     this.Width = 25;
     this.Height = 25;
+    console.log(struct);
     //Only initialzes the ones that are not null
     if(color) {
       this.addColor(color);
