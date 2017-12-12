@@ -40,4 +40,11 @@ export default class NanoBot extends Monster
         }
     }
 
+
+    render(ctx)
+    {
+        super.render(ctx);
+       
+    }
+
 }
