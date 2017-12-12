@@ -174,39 +174,48 @@ export default class Game {
   CreateCombinedGem(gem1Id,gem2Id,gemInventoryIndex){
 
 
-    var div=document.createElement('div');
-    div.style.width="17px";
-    div.style.height="17px";
-    div.style.position='absolute';
-    div.draggable = true;
-    div.ondrag=this.ondrag;
-    div.ondragend=this.dragOver;
+    var div =document.getElementById(gem1Id)
+    var gem= this.Towers.find(x => x.GemID===gem1Id);
+    var gem2= this.Towers.find(x => x.GemID===gem2Id);
+    console.log(gem);
+    console.log(gem2);
+    if(gem.color.level !== gem2.color.level) {
+      return;
+    }
+    //div.style.width="17px";
+    //div.style.height="17px";
+    ///div.style.position='absolute';
+    //div.draggable = true;
+    //div.ondrag=this.ondrag;
+    ///div.ondragend=this.dragOver;
     div.style.left = this.GemInventory[gemInventoryIndex].slot.style.left;
     div.style.top = this.GemInventory[gemInventoryIndex].slot.style.top;;
     div.id="mixedGem"+(this.Towers.length-1).toString();
     var x= parseInt(div.style.left)
     var y=parseInt(div.style.top);
     var GemId=div.id;
-    var SlotId=this.GemInventory[gemInventoryIndex].slot.id;;
-    document.body.appendChild(div);
-      this.Towers.push({color:'mix',yCord:y,gemWidth:17,gemheight:17,xCord:x,gemId:GemId,slotId:SlotId});
+    var SlotId=this.GemInventory[gemInventoryIndex].slot.id;
+    gem.color.combine(gem2.color);
+    //document.body.appendChild(div);
+      //this.Towers.push({color:'mix',yCord:y,gemWidth:17,gemheight:17,xCord:x,gemId:GemId,slotId:SlotId});
 
     this.GemInventory[gemInventoryIndex].Taken=true;
-    for (var i=0;this.Towers.length>i;i++) {
-      if(this.Towers[i].gemId==gem1Id) {
-        this.Towers.splice(i, 1);
-        break;
-      }
-    }
+    //for (var i=0;this.Towers.length>i;i++) {
+    //  if(this.Towers[i].gemId==gem1Id) {
+    //    this.Towers.splice(i, 1);
+    //    break;
+    //  }
+    ///}
     for (var i=0;Tower.length>i;i++) {
-      if(this.Towers[i].gemId==gem2Id){
+      if(this.Towers[i].GemID==gem2Id){
         this.Towers.splice(i, 1);
         break;
       }
     }
-    document.body.appendChild(div);
-    document.getElementById(gem1Id).remove();
+    //document.body.appendChild(div);
+    //document.getElementById(gem1Id).remove();
     document.getElementById(gem2Id).remove();
+    console.log(this.Towers);
   }
   CombineButton() {
     this.firstCombineSlot.Taken=false;
@@ -670,7 +679,7 @@ handleMouseClick(event){
         oldSlot=this.Buildings.find(x => x.buildingId===gem.slotID );
       oldSlot.Taken=false
       }
-      if(!this.GemInventory.find(x => x.slot.id===gem.slotID))
+      if(!(this.GemInventory.find(x => x.slot.id===gem.slotID)==undefined))
       {
         oldSlot=this.GemInventory.find(x => x.slot.id===gem.slotID );
         oldSlot.Taken=false
