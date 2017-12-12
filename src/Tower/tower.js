@@ -255,6 +255,11 @@ export default class Tower {
         this.reloading = true;
       }*/
     }
+    for(let i = 0; i < this.targets.length; i++) {
+      if(this.targets[i].CHP <= 0) {
+        this.targets.splice(i, 1);
+      }
+    }
     //Update projectiles
     /*for(let i = 0; i < this.projectiles.length; i++) {
       if(this.projectiles[i].update()) {

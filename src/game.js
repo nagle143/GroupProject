@@ -869,12 +869,16 @@ handleMouseClick(event){
     //ctx.fillRect(x,y,width,height);
     this.backBufferContext.fillStyle="#007705";
     this.backBufferContext.fillRect(x,y,(width/2),height/3);
-    this.backBufferContext.fillStyle="#367582";
+    this.backBufferContext.fillStyle="#007ab7";
     this.backBufferContext.fillRect(x+(width/2),y,(width/2),height/3);
-    this.backBufferContext.fillStyle="#b73546";
+    this.backBufferContext.fillStyle="#ce0030";
     this.backBufferContext.fillRect(x,y+(height/3),width/2,height/3);
-    this.backBufferContext.fillStyle="#c4ce39";
+    this.backBufferContext.fillStyle="#999b1b";
     this.backBufferContext.fillRect(x+(width/2),y+(height/3),width/2,height/3);
+
+    this.backBufferContext.fillStyle="#846b56";
+    this.backBufferContext.fillRect(x,y+(height/3)*2,width/2,height/3);
+
 
     //........
     //this.backBufferContext.fillStyle="#4aadab";
