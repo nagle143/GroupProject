@@ -25,16 +25,20 @@ export default class Reformer extends Monster
     render(ctx)
     {
         super.render(ctx);
-
         ctx.save();
+        //render  stuff
         ctx.beginPath();
-        ctx.moveTo(this.x, this.y - this.radius);
-        ctx.lineTo(this.x + this.raduis / 6, this.y - this.radius);
-        ctx.lineTo(this.x + this.raduis / 6, this.y + this.radius / 6);
-        ctx.lineTo(this.x + this.raduis / 3, this.y + this.radius / 6);
-        ctx.lineTo(this.x + this.raduis / 3, this.y - this.radius / 6);
-        ctx.lineTo(this.x - this.raduis / 3, this.y + this.radius / 6);
-        ctx.lineTo(this.x - this.raduis / 3, this.y + this.radius / 2);
-
+        ctx.strokeStyle = "black";
+        ctx.fillStyle = "black";
+        ctx.arc(this.x + this.radius / 4, this.y - this.radius / 4, this.radius, 0, Math.PI * 2);
+        ctx.arc(this.x - this.radius / 4, this.y, this.radius / 4, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius / 2, 0, Math.PI);
+        ctx.lineWidth = 5;
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
     }
 }
