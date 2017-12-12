@@ -227,6 +227,7 @@ export default class Tower {
   * Function that handles all updating to do with the tower and sub objects (projectiles and components)
   */
   update() {
+    this.color.update(this.x, this.y);
     //Things to do if you have both types of components
     if(this.color && this.structural) {
       //Update tower stats

@@ -269,8 +269,10 @@ export default class Color {
     this.maxDamage *= multipler;
   }
 
-  update() {
+  update(x, y) {
     //? Don't know if I need this
+    this.x = x;
+    this.y = y;
   }
 
   render(ctx) {
