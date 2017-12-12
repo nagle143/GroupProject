@@ -22,7 +22,7 @@ export default class Reformer extends Monster
     }
 
 
-    render()
+    render(ctx)
     {
         super.render(ctx);
 
