@@ -228,7 +228,10 @@ export default class Tower {
   * Function that handles all updating to do with the tower and sub objects (projectiles and components)
   */
   update() {
-    this.color.update(this.x, this.y);
+    if (this.color)
+      this.color.update(this.x, this.y);
+    if (this.structural)
+      this.structural.update(0, this.x, this.y);
     //Things to do if you have both types of components
     if(this.color && this.structural) {
       //Update tower stats
@@ -236,7 +239,7 @@ export default class Tower {
       //If it has targets, track them
       if(this.targets.length > 0) {
         this.direction = Math.getDirection(this.x, this.y, this.targets[0].x, this.targets[0].y);
-        this.structural.update(this.direction);
+        this.structural.update(this.direction, this.x, this.y);
       }
       //If it is reloading update counter
       if(this.reloading) {
@@ -266,16 +269,8 @@ export default class Tower {
   * @param {context} ctx - back buffer context from game.js
   */
   render(ctx) {
-    ctx.save();
-    ctx.fillStyle = 'white';
-    ctx.fillRect(this.x - 15, this.y - 15, 30, 30);
-    /*
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.range, 0, Math.PI * 2);
-    ctx.closePath();
-    ctx.stroke();
-    */
-    ctx.restore();
+    if (this.structural)
+      this.structural.render(ctx);
     if(this.color) {
       this.color.render(ctx);
     }

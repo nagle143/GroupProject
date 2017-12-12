@@ -11,8 +11,10 @@ export default class Struct {
     this.damageMOD = 1.00;
   }
 
-  update(direction) {
+  update(direction, x, y) {
     this.direction = direction;
+    this.x = x;
+    this.y = y;
   }
 
   render(ctx) {
