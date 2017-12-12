@@ -172,52 +172,82 @@ export default class Game {
     this.Buildings.push(new Building(xCord,yCord,17,17));
   }
   CreateCombinedGem(gem1Id,gem2Id,gemInventoryIndex){
+  //  console.log(gem1Id);
+    //console.log(gem2Id);
 
+    var div =document.getElementById(gem1Id)
+    var gem= this.Towers.find(x => x.GemID===gem1Id);
+    var gem2= this.Towers.find(x => x.GemID===gem2Id);
 
-    var div=document.createElement('div');
-    div.style.width="17px";
-    div.style.height="17px";
-    div.style.position='absolute';
-    div.draggable = true;
-    div.ondrag=this.ondrag;
-    div.ondragend=this.dragOver;
-    div.style.left = this.GemInventory[gemInventoryIndex].slot.style.left;
-    div.style.top = this.GemInventory[gemInventoryIndex].slot.style.top;;
-    div.id="mixedGem"+(this.Towers.length-1).toString();
-    var x= parseInt(div.style.left)
-    var y=parseInt(div.style.top);
-    var GemId=div.id;
-    var SlotId=this.GemInventory[gemInventoryIndex].slot.id;;
-    document.body.appendChild(div);
-      this.Towers.push({color:'mix',yCord:y,gemWidth:17,gemheight:17,xCord:x,gemId:GemId,slotId:SlotId});
-
-    this.GemInventory[gemInventoryIndex].Taken=true;
-    for (var i=0;this.Towers.length>i;i++) {
-      if(this.Towers[i].gemId==gem1Id) {
-        this.Towers.splice(i, 1);
-        break;
-      }
+    if(!gem || !gem2) {
+      return;
     }
-    for (var i=0;Tower.length>i;i++) {
-      if(this.Towers[i].gemId==gem2Id){
-        this.Towers.splice(i, 1);
-        break;
-      }
+    console.log(gem);
+    console.log(gem2);
+    if(gem.color.level !== gem2.color.level) {
+      return;
     }
-    document.body.appendChild(div);
-    document.getElementById(gem1Id).remove();
-    document.getElementById(gem2Id).remove();
+    else {
+      //div.style.width="17px";
+      //div.style.height="17px";
+      ///div.style.position='absolute';
+      //div.draggable = true;
+      //div.ondrag=this.ondrag;
+      ///div.ondragend=this.dragOver;
+
+      div.style.left = this.GemInventory[gemInventoryIndex].slot.style.left;
+      div.style.top = this.GemInventory[gemInventoryIndex].slot.style.top;
+      gem.x = parseInt(div.style.left);
+      gem.y = parseInt(div.style.top);
+      //div.id=""+(this.Towers.length-1).toString();
+      var x= parseInt(div.style.left)
+      var y=parseInt(div.style.top);
+      //var GemId=div.id;
+      var SlotId=this.GemInventory[gemInventoryIndex].slot.id;
+      gem.color.combine(gem2.color);
+
+      var test = this.Towers.find(x => x.GemID===gem1Id);
+      console.log(test.GemID);
+
+      //document.body.appendChild(div);
+        //this.Towers.push({color:'mix',yCord:y,gemWidth:17,gemheight:17,xCord:x,gemId:GemId,slotId:SlotId});
+
+      this.GemInventory[gemInventoryIndex].Taken=true;
+      gem.slotID=this.GemInventory[gemInventoryIndex].slot.id;
+      //for (var i=0;this.Towers.length>i;i++) {
+      //  if(this.Towers[i].gemId==gem1Id) {
+      //    this.Towers.splice(i, 1);
+      //    break;
+      //  }
+      ///}
+      for (var i=0;i < Tower.length;i++) {
+        if(this.Towers[i].GemID==gem2Id){
+          this.Towers.splice(i, 1);
+          break;
+        }
+      }
+
+      //document.body.appendChild(div);
+      //document.getElementById(gem1Id).remove();
+      this.firstCombineSlot.Taken=false;
+      this.secondCombineSlot.Taken=false;
+      this.firstCombineSlot.gemId=null;
+      this.secondCombineSlot.gemId=null;
+      document.getElementById(gem2Id).remove();
+      console.log(this.Towers);
+    }
   }
   CombineButton() {
-    this.firstCombineSlot.Taken=false;
-    this.secondCombineSlot.Taken=false;
+
     for(var i=0;i<this.GemInventory.length;i++){
-      if(this.GemInventory[i].Taken===false){this.CreateCombinedGem(this.firstCombineSlot.gemId,this.secondCombineSlot.gemId,i);
+      if(this.GemInventory[i].Taken===false){
+        console.log(this.firstCombineSlot);
+        console.log(this.secondCombineSlot);
+        this.CreateCombinedGem(this.firstCombineSlot.gemId,this.secondCombineSlot.gemId,i);
       break;
       }
     }
-    this.firstCombineSlot.gemId=null;
-    this.secondCombineSlot.gemId=null;
+
   }
   CreateRedGem(gemInventoryIndex) {
     if(this.Towers.length<this.GemInventory.length){
@@ -263,7 +293,7 @@ export default class Game {
         var SlotId=this.GemInventory[gemInventoryIndex].slot.id;;
         document.body.appendChild(div);
           //Towers.push({color:'green',yCord:y,gemWidth:17,gemheight:17,xCord:x,gemId:GemId,slotId:SlotId});
-            this.Towers.push(new Tower(x,y,null,"green",GemId,SlotId));
+            this.Towers.push(new Tower(x,y,'PlasmaGun',"green",GemId,SlotId));
     }
   }
    CreateBuilding(){
@@ -288,7 +318,7 @@ export default class Game {
         var GemId=div.id;
         var SlotId=this.GemInventory[gemInventoryIndex].slot.id;;
         document.body.appendChild(div);
-        this.Towers.push(new Tower(x,y,null,"blue",GemId,SlotId))
+        this.Towers.push(new Tower(x,y,'PlamsaGun',"blue",GemId,SlotId))
     }
   }
   BuildTowerButton(x,y){}
@@ -367,7 +397,7 @@ handleMouseClick(event){
       {
         var buttonsX=parseInt((event.x)/(this.ButtonsRec.width/2)%2);
         var buttonsY=parseInt((event.y)/(this.ButtonsRec.width/3)%3);
-
+fillRect()
         this.buttonsFunctions[buttonsY][buttonsX](index);
       //  if(buttonsY==2 && buttonsX==1){}
         this.GemInventory[index].Taken===true;
@@ -585,25 +615,30 @@ handleMouseClick(event){
       this.nextWave.enqueue(new ty(path.steps[0].x, path.steps[0].y, color, this.wave + 1, path.steps), data[n]);
     }
   }
-
   dragOver(event){
     var sucessfulDragBool=false;
     this.bool= true;
     var gem= this.Towers.find(x => x.GemID==event.target.id );
+    console.log(this.firstCombineSlot);
+    console.log(this.secondCombineSlot);
     var oldSlot;
+    // Check if dragged into inventory
     if(event.x>this.inventoryRec.x && event.y>this.inventoryRec.y &&event.x<this.inventoryRec.x+this.inventoryRec.width&&event.y<this.inventoryRec.y+this.inventoryRec.height)
     {
       console.log("inside rec");
       this.GemInventory.forEach(ele => {
+        // Check if dragged into a slot in the inventory
         if(gem.x<parseInt(ele.slot.style.left)+parseInt(ele.slot.style.width)&&
           gem.x+gem.Width>parseInt(ele.slot.style.left)&&
           gem.y<parseInt(ele.slot.style.height)+parseInt(ele.slot.style.top)&&
           gem.Height+gem.y>parseInt(ele.slot.style.top) && ele.Taken==false)
         {
+          // Check if the gem came from one of the combine slots
           if (gem.slotID==this.secondCombineSlot.id)
             this.secondCombineSlot.Taken=false;
-          if (gem.slotID==this.firstCombineSlot.id)
+          else if (gem.slotID==this.firstCombineSlot.id)
             this.firstCombineSlot.Taken=false;
+          // Put the gem in the new slot
           console.log("collison detected");
           gem.x=parseInt(ele.slot.style.left);
           gem.y=parseInt(ele.slot.style.top);
@@ -611,24 +646,29 @@ handleMouseClick(event){
           event.target.style.left=ele.slot.style.left;
           sucessfulDragBool=true;
           ele.Taken=true
+          // Check if the gem came from a building
           if(!((this.Buildings.find(x => x.buildingId===gem.slotID ))==undefined))
           {
             oldSlot=this.Buildings.find(x => x.buildingId===gem.slotID );
-          oldSlot.Taken=false
+            oldSlot.Taken=false
           }
+          // Check if the gem came from another inventory slot
           if(!((this.GemInventory.find(x => x.slot.id===gem.slotID ))==undefined)) {
             oldSlot=this.GemInventory.find(x => x.slot.id===gem.slotID );
             oldSlot.Taken=false//  gem2.Taken=false;
           }
+          // Update the slot id of the gem
           gem.slotID=ele.slot.id;
         }
       });
     }
-    if (gem.x<this.firstCombineSlot.x+this.firstCombineSlot.width &&
+    // Otherwise check if dragged into the first combine slot
+    else if (gem.x<this.firstCombineSlot.x+this.firstCombineSlot.width &&
       gem.x+gem.Width>this.firstCombineSlot.x &&
       gem.y<this.firstCombineSlot.height+this.firstCombineSlot.y &&
       gem.Height+gem.y>this.firstCombineSlot.y && this.firstCombineSlot.Taken===false)
     {
+      // Put the gem in the new slot
       console.log("collison detected");
       gem.x = this.firstCombineSlot.x;
       gem.y = this.firstCombineSlot.y;
@@ -637,23 +677,28 @@ handleMouseClick(event){
       sucessfulDragBool = true;
       this.firstCombineSlot.Taken = true
       this.firstCombineSlot.gemId = event.target.id;
+      // Check if the gem came from a building
       if(!((this.Buildings.find(x => x.buildingId===gem.slotID ))==undefined))
       {
         oldSlot=this.Buildings.find(x => x.buildingId===gem.slotID );
-      oldSlot.Taken=false
+        oldSlot.Taken=false
       }
+      // Check if the gem came from the inventory
       if(!((this.GemInventory.find(x => x.slot.id===gem.slotID ))==undefined))
       {
         oldSlot=this.GemInventory.find(x => x.slot.id===gem.slotID );
         oldSlot.Taken=false
       }
+      // Check if the gem came from the second combine slot
       if(gem.slotID==this.secondCombineSlot.id){
         this.secondCombineSlot.Taken=false;
         this.secondCombineSlot.gemId=null;
+        console.log("clearing second slot");
       }
       gem.slotID=this.firstCombineSlot.id;
     }
-    if((gem.x<this.secondCombineSlot.x+this.secondCombineSlot.width&&
+    // Otherwise check if dragged into the second combine slot
+    else if((gem.x<this.secondCombineSlot.x+this.secondCombineSlot.width&&
       gem.x+gem.Width>this.secondCombineSlot.x&&
       gem.y<this.secondCombineSlot.height+this.secondCombineSlot.y&&
       gem.Height+gem.y>this.secondCombineSlot.y&&this.secondCombineSlot.Taken===false))
@@ -664,22 +709,26 @@ handleMouseClick(event){
       event.target.style.top= this.secondCombineSlot.y+"px";
       event.target.style.left= this.secondCombineSlot.x+'px';
       sucessfulDragBool=true;
+      this.secondCombineSlot.Taken=true;
       this.secondCombineSlot.gemId=event.target.id;
-      if(!((this.Buildings.find(x => x.buildingId===gem.slotID ))==undefined))
+      if(!(this.Buildings.find(x => x.buildingId===gem.slotID)==undefined))
       {
         oldSlot=this.Buildings.find(x => x.buildingId===gem.slotID );
-      oldSlot.Taken=false
+        oldSlot.Taken=false
       }
-      if(!this.GemInventory.find(x => x.slot.id===gem.slotID))
+      if(!(this.GemInventory.find(x => x.slot.id===gem.slotID)==undefined))
       {
         oldSlot=this.GemInventory.find(x => x.slot.id===gem.slotID );
         oldSlot.Taken=false
       }
-      if(gem.slotID==this.firstCombineSlot.id){this.firstCombineSlot.Taken=false;
+      console.log(gem.slotID);
+      console.log(this.firstCombineSlot);
+      if(gem.slotID==this.firstCombineSlot.id){
+        this.firstCombineSlot.Taken=false;
         this.firstCombineSlot.gemId=null;
+        console.log("clearing first slot");
       }
       gem.slotID=this.secondCombineSlot.id;
-      this.secondCombineSlot.Taken=true;
     }
     console.log(this.Buildings);
     for(var i=0;i<this.Buildings.length;i++){
@@ -708,7 +757,6 @@ handleMouseClick(event){
           if(  gem.slotID==this.firstCombineSlot.id){this.firstCombineSlot.Taken=false;
             this.firstCombineSlot.gemId=null;
           }
-
           if(!((this.Buildings.find(x => x.buildingId===gem.slotID ))==undefined))
           {
             oldSlot=this.Buildings.find(x => x.buildingId===gem.slotID );
@@ -719,7 +767,6 @@ handleMouseClick(event){
         break;
         }
     }
-
     if(!sucessfulDragBool) {
     console.log("UnSucessful drag here");
       gem.x=this.initialX;
@@ -732,7 +779,6 @@ handleMouseClick(event){
     //render(context);
   }
 
-
   update() {
     this.energy.update();
     /*
@@ -742,7 +788,6 @@ handleMouseClick(event){
         this.activePowers.push(new Power(500, 500, this.powers, this.energy.multipler));
       }
     }*/
-
     if (this.currWave.update()) {
       console.log("this worked");
       this.switchWave();
@@ -764,7 +809,6 @@ handleMouseClick(event){
         tower.reloading = true;
       }
     });
-
     for(let i = 0; i < this.projectiles.length; i++) {
       if(this.projectiles[i].update()) {
         this.projectiles.splice(i, 1);
@@ -823,9 +867,7 @@ handleMouseClick(event){
     });
     //this.map.update();
   }
-
   render() {
-
     this.backBufferContext.fillStyle = 'black';
     this.backBufferContext.strokeStyle = 'white';
     this.backBufferContext.fillRect(0, 0, 1000, 1000);
@@ -843,6 +885,7 @@ handleMouseClick(event){
     /*this.activePowers.forEach(power => {
       power.render(this.backBufferContext);
     });*/
+
     this.energy.render(this.backBufferContext);
     this.currWave.render(this.backBufferContext);
     this.Towers.forEach(tower => {
