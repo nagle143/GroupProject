@@ -269,16 +269,8 @@ export default class Tower {
   * @param {context} ctx - back buffer context from game.js
   */
   render(ctx) {
-    ctx.save();
-    ctx.fillStyle = 'white';
-    ctx.fillRect(this.x - 15, this.y - 15, 30, 30);
-    /*
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.range, 0, Math.PI * 2);
-    ctx.closePath();
-    ctx.stroke();
-    */
-    ctx.restore();
+    if (this.structural)
+      this.structural.render(ctx);
     if(this.color) {
       this.color.render(ctx);
     }
