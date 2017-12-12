@@ -20,4 +20,21 @@ export default class Reformer extends Monster
       }
       return false; // do as all enemies do
     }
+
+
+    render()
+    {
+        super.render(ctx);
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y - this.radius);
+        ctx.lineTo(this.x + this.raduis / 6, this.y - this.radius);
+        ctx.lineTo(this.x + this.raduis / 6, this.y + this.radius / 6);
+        ctx.lineTo(this.x + this.raduis / 3, this.y + this.radius / 6);
+        ctx.lineTo(this.x + this.raduis / 3, this.y - this.radius / 6);
+        ctx.lineTo(this.x - this.raduis / 3, this.y + this.radius / 6);
+        ctx.lineTo(this.x - this.raduis / 3, this.y + this.radius / 2);
+
+    }
 }

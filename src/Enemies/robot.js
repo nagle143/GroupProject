@@ -19,4 +19,10 @@ export default class Robot extends Monster
       }
       return false;
     }
+
+    render()
+    {
+        super.render(ctx);
+
+    }
 }

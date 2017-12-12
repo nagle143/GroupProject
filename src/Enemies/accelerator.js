@@ -22,4 +22,16 @@ export default class Accelerator extends Monster
       }
       return false; // do as all enemies do
     }
+
+    render(ctx)
+    {
+        super.render(ctx);
+        ctx.save();
+        //render  stuff
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        ctx.arc(this.x, this.y, this.radius/2, 0, Math.PI * 2); // need to change radius
+        ctx.closePath();
+        ctx.fill();
+    }
 }
